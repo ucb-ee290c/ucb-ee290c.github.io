@@ -1,3 +1,10 @@
+---
+layout: default
+container_type: text
+---
+
+# Acronyms
+
 ACE				AXI Coherency Extensions (another extension to AMBA and AXI)
 
 ADC				Analog to Digital Converter
