@@ -29,9 +29,9 @@ Join Slack Channel.
 
 ## Labs
 
-[Lab 1: Chipyard FPGA Bringup Flow](/semesters/fa22/labs/lab1-chipyard/chipyardlab-bringup.md)
+[Lab 1: Chipyard FPGA Bringup Flow](/semesters/fa22/labs/lab1-chipyard/)
 
-[Lab 2: TSI Bootflow](/semesters/fa22/labs/lab2-tsi-flow/readme.md)
+[Lab 2: TSI Bootflow](/semesters/fa22/labs/lab2-tsi-flow)
 
 ## Course Outline
 

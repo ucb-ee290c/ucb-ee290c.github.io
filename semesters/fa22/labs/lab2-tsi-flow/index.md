@@ -1,17 +1,22 @@
-# TSI Bootflow
+---
+layout: default
+title: Fa22 Bringup
+---
+
+# Serial TileLink Bootflow
 
 ## Overview
 
-This lab will have two parts, firstly conceptual to get familiar with TileLink and TSI protocol. The other will be hands on compiling and understanding potential linking errors under the hood. 
+This lab will have two parts, firstly conceptual to get familiar with TileLink and SerialTL protocol. The other will be hands on compiling and understanding potential linking errors under the hood. 
 
-## 1. TileLink and Tethered Serial Interface (TSI)
+## 1. TileLink and Serial TileLink
 
 ### 1.1 TileLink
 TileLink is a bus protocol used by Chipyard's memory subsystem. Please read and understand how Channel A and D works in Section 3 of the [TileLink Spec 1.8.0](https://sifive.cdn.prismic.io/sifive%2Fcab05224-2df1-4af8-adee-8d9cba3378cd_tilelink-spec-1.8.0.pdf), this information will be useful in following sections. 
 
-### 1.2 TSI
+### 1.2 Serial TileLink
 
- TSI protocol is an implementation of HTIF that is used to send commands to the RISC-V DUT. These TSI commands are simple R/W commands that are able to access the DUT’s memory space. During test, the host machine sends TSI commands through an USB adapter to DUT. The DUT then converts the TSI command into a TileLink request. This conversion is done by the SerialAdapter module (located in the `generators/testchipip` project). After the transaction is converted to TileLink, the TLSerdesser (located in `generators/testchipip`) serializes the transaction and sends it to the chip (this TLSerdesser is sometimes also referred to as a digital serial-link or SerDes). Once the serialized transaction is received on the chip, it is deserialized and masters a TileLink bus on the chip which handles the request. 
+ Serial TileLink (SerialTL) protocol is an implementation of HTIF that is used to send commands to the RISC-V DUT. These SerialTL commands are simple R/W commands that are able to access the DUT’s memory space. During test, the host machine sends SerialTL commands through an USB adapter to DUT. The DUT then converts the SerialTL command into a TileLink request. This conversion is done by the SerialAdapter module (located in the `generators/testchipip` project). After the transaction is converted to TileLink, the TLSerdesser (located in `generators/testchipip`) serializes the transaction and sends it to the chip (this TLSerdesser is sometimes also referred to as a digital serial-link or SerDes). Once the serialized transaction is received on the chip, it is deserialized and masters a TileLink bus on the chip which handles the request. 
  
  TLDR: it very simply serializes TileLink packets into at least 7 wires, with configurable width of data wires and utilizes a [ready-valid interface](https://inst.eecs.berkeley.edu/~cs150/Documents/Interfaces.pdf) to transfer data in both directions. 
 
@@ -29,14 +34,14 @@ TileLink is a bus protocol used by Chipyard's memory subsystem. Please read and 
 
 ![](assets/chip-bringup.png)
 
-As you can see, this is a very simple protocol with little hardware overhead. But there are downsides, because TileLink is infinitely patient and has no timeout. So if a packet is lost, corrupted, unrecoverable, or not replied, the whole chip will freeze. Watch out for chip-wide freezes when debugging, it is likely a TileLink issue when communicating over TSI. 
+As you can see, this is a very simple protocol with little hardware overhead. But there are downsides, because TileLink is infinitely patient and has no timeout. So if a packet is lost, corrupted, unrecoverable, or not replied, the whole chip will freeze. Watch out for chip-wide freezes when debugging, it is likely a TileLink issue when communicating over SerialTL. 
 
-## 2. Loading Program over TSI
+## 2. Loading Program over SerialTL
 
 As we're still figuring out how to have 20+ people accessing only two OsciBear on one lab bench with one power supply & clock generator, we'll simply explain how our setup works for now & plan to expand this access down the road. The following labs are experimental procedures of remotely debugging OsciBear. 
 
-### 2.1 TSI Packets on Osci
-Please complete the following table using TSI code snippet from [OsciBear's verilog top](https://github.com/ucberkeley-ee290c/fa22/blob/main/oscibear/sp21/chipyard.TestHarness.EE290CBLEConfig.top.v), and save it for your future reference. Signal are ordered exactly how TSI serializes/deserializes, do not try to change the ordering. 
+### 2.1 SerialTL Packets on Osci
+Please complete the following table using SerialTL code snippet from [OsciBear's verilog top](https://github.com/ucberkeley-ee290c/fa22/blob/main/oscibear/sp21/chipyard.TestHarness.EE290CBLEConfig.top.v), and save it for your future reference. Signal are ordered exactly how SerialTL serializes/deserializes, do not try to change the ordering. 
 
 ```verilog
 module GenericSerializer(clock, reset, io_in_ready, io_in_valid,
@@ -56,7 +61,7 @@ module GenericSerializer(clock, reset, io_in_ready, io_in_valid,
 
 | Signal      | Type (direction) | Width | 
 | ----------- | ---------------- | ----- |
-| (chanid)    | TSI              |  _    |
+| (chanid)    | SerialTL         |  _    |
 | a/d_opcode  | C                |  _    |
 | a/d_param   | C                |  _    |
 | a/d_size    | C                | z = _ |
@@ -65,9 +70,9 @@ module GenericSerializer(clock, reset, io_in_ready, io_in_valid,
 | a/d_data    | D                | 8w = _|
 | d_corrupt   | D                |  _    |
 | a/d_mask    | C                | w = _ |
-| (last)      | TSI              |  1    |
+| (last)      | SerialTL         |  1    |
 
-Check that your total serdes data packet width is 123. The following ready valid wires is already part of TSI. 
+Check that your total serdes data packet width is 123. The following ready valid wires is already part of SerialTL. 
 | Signal      | Type (direction) | Width | 
 | ----------- | ---------------- | ----- |
 | a/d_valid   | V                |  1    | 
@@ -83,22 +88,22 @@ The following table is a summary of packets transfered in channel A & D over TL-
  | PutPartialData(A)| Put       | 1     | AccessAck (may have partial mask)|
  | AccessAck     (D)| Put       | 0     | N/A           |
 
-### 2.2 Testing if TSI is Responding Correctly
+### 2.2 Testing if SerialTL is Responding Correctly
 
-To test if TSI is working, read out the BootROM and confirm the contents are correct. To further confirm, we constructed a TSI packet to write some code into the DTIM (scratchpad) and read it back. Let's try this process by hand, but there are two caviats we found out:
+To test if SerialTL is working, read out the BootROM and confirm the contents are correct. To further confirm, we constructed a SerialTL packet to write some code into the DTIM (scratchpad) and read it back. Let's try this process by hand, but there are two caviats we found out:
 
-1. To send/recieve a TSI packet, we construct/deconstruct the message according to TileLink and *flip the bit order (reverse every bit)*. 
+1. To send/recieve a SerialTL packet, we construct/deconstruct the message according to TileLink and *flip the bit order (reverse every bit)*. 
 
 2. OsciBear is 32 bits, but the data width is 64, which means *the upper 32 bits of data are always 0* on this chip, and we need to change the `mask` field accordingly.
 
-#### 2.2.1 Sending a TSI Read Request Packet (A Channel)
-Construct an A Channel TSI packet yourself by trying to read the BootROM at `0x0001_0000`. Remember both caviats above and assume `last` will always be high. You can express this in verilog or in other language that you feel comfortable in, and given a handy imaginary `$reverse(in)` block to reverse the bit order. 
+#### 2.2.1 Sending a SerialTL Read Request Packet (A Channel)
+Construct an A Channel SerialTL packet yourself by trying to read the BootROM at `0x0001_0000`. Remember both caviats above and assume `last` will always be high. You can express this in verilog or in other language that you feel comfortable in, and given a handy imaginary `$reverse(in)` block to reverse the bit order. 
 
 ```
 $reverse({ __ , ... , __})
 ```
 
-#### 2.2.2 Recieving a TSI Read Reply Packet (D Channel)
+#### 2.2.2 Recieving a SerialTL Read Reply Packet (D Channel)
 What would you expect to read back if BootROM is the following? Just give us the `d_data` and the `d_mask`, remember caviat #2. 
 ```assembly
 00010000 <_start>:
@@ -115,7 +120,7 @@ Now that we know our code is on the DTIM, time to let Osci free!
 
 ### 2.2 Running code at DTIM
 
-The full BootROM dump for Osci is [here](https://github.com/ucberkeley-ee290c/chipyard-osci-sky130/blob/master/generators/chipyard/src/main/scala/ee290c/bootrom/bootrom.rv32.dump), beware that the future chips are slightly different. A BootROM is a small read only memory consisting of boot code that jumps to various PC addresses. Basically, the core with hartid=0 will be in a loop checking for CLINT interrupts at `0x0200_0000`, the msip register. After finishing transfer of our code, we set the msip register to 1 through TSI, the BootROM will jump to `<boot_core_hart0>` and begin executing at `0x8000_0000`, our DTIM or scratchpad address. The jump is done by setting mepc and calling mret, for more about interrupts see [RISC-V Interrupts by Krste Asanovic](https://riscv.org/wp-content/uploads/2016/07/Tue0900_RISCV-20160712-Interrupts.pdf).
+The full BootROM dump for Osci is [here](https://github.com/ucberkeley-ee290c/chipyard-osci-sky130/blob/master/generators/chipyard/src/main/scala/ee290c/bootrom/bootrom.rv32.dump), beware that the future chips are slightly different. A BootROM is a small read only memory consisting of boot code that jumps to various PC addresses. Basically, the core with hartid=0 will be in a loop checking for CLINT interrupts at `0x0200_0000`, the msip register. After finishing transfer of our code, we set the msip register to 1 through SerialTL, the BootROM will jump to `<boot_core_hart0>` and begin executing at `0x8000_0000`, our DTIM or scratchpad address. The jump is done by setting mepc and calling mret, for more about interrupts see [RISC-V Interrupts by Krste Asanovic](https://riscv.org/wp-content/uploads/2016/07/Tue0900_RISCV-20160712-Interrupts.pdf).
 
 
 ## 3. Compiling & Linking
