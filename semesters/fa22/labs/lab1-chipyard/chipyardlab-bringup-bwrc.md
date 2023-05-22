@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Fa21 Bringup
-container_type: text
+title: Fa22 Bringup
 ---
 
 # Chipyard 

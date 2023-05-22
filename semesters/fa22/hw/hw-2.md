@@ -1,3 +1,8 @@
+---
+layout: default
+title: Fa22 Bringup
+---
+
 # HW 2
 
 ## Introduction
