@@ -1,4 +1,8 @@
-
+---
+layout: default
+title: Fa21 Bringup
+container_type: text
+---
 
 # Chipyard 
 

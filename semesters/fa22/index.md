@@ -21,17 +21,17 @@ Join Slack Channel.
 
 ## Assignments
 
-[HW 1: Getting Started](https://ucb-ee290c.github.io/semesters/fa22/hw/hw-1)
+[HW 1: Getting Started](/semesters/fa22/hw/hw-1)
 
-[HW 2: Reading through documentation & preliminary test plans](https://ucb-ee290c.github.io/semesters/fa22/hw/hw-2)
+[HW 2: Reading through documentation & preliminary test plans](/semesters/fa22/hw/hw-2)
 
-[HW 3: Final Reflection ](https://ucb-ee290c.github.io/semesters/fa22/hw/hw-3)
+[HW 3: Final Reflection ](/semesters/fa22/hw/hw-3)
 
 ## Labs
 
-[Lab 1: Chipyard FPGA Bringup Flow](https://ucb-ee290c.github.io/semesters/fa22/labs/lab1-chipyard/chipyardlab-bringup.md)
+[Lab 1: Chipyard FPGA Bringup Flow](/semesters/fa22/labs/lab1-chipyard/chipyardlab-bringup.md)
 
-[Lab 2: TSI Bootflow](https://ucb-ee290c.github.io/semesters/fa22/labs/lab2-tsi-flow/readme.md)
+[Lab 2: TSI Bootflow](/semesters/fa22/labs/lab2-tsi-flow/readme.md)
 
 ## Course Outline
 
