@@ -10,16 +10,16 @@ container_type: text
 
 ### Pinout
 
-| Debugger                                  | DUT                                       |
-| ----------------------------------------- | ----------------------------------------- |
-| GND                                       | GND                                       |
-| <spanp style="color:orange">TMS</span>    | <spanp style="color:orange">TMS</span>    |
-| <spanp style="color:blue">TCK</span>      | <spanp style="color:blue">TCK</span>      |
-| <spanp style="color:purple">TDI</span>    | <spanp style="color:purple">TDI</span>    |
-| <spanp style="color:grey">TDO</span>      | <spanp style="color:grey">TDO</span>      |
-| <spanp style="color:brown">NTRST</span>   | <spanp style="color:brown">NTRST</span>   |
-| <spanp style="color:green">RX</span>      | <spanp style="color:yellow">TX</span>     |
-| <spanp style="color:yellow">TX</span>     | <spanp style="color:green">RX</span>      |
+| Debugger                                 | DUT                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| GND                                      | GND                                      |
+| <span style="color:orange">TMS</span>    | <span style="color:orange">TMS</span>    |
+| <span style="color:blue">TCK</span>      | <span style="color:blue">TCK</span>      |
+| <span style="color:purple">TDI</span>    | <span style="color:purple">TDI</span>    |
+| <span style="color:grey">TDO</span>      | <span style="color:grey">TDO</span>      |
+| <span style="color:brown">NTRST</span>   | <span style="color:brown">NTRST</span>   |
+| <span style="color:green">RX</span>      | <span style="color:yellow">TX</span>     |
+| <span style="color:yellow">TX</span>     | <span style="color:green">RX</span>      |
 
 
 ## USB-to-Serial-TileLink Adapter (STM32)
