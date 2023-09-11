@@ -1,6 +1,6 @@
 ---
 title: Setting up RISC-V Environment
-layout: home
+layout: default
 ---
 
 # Setting up RISC-V Environment

@@ -1,11 +1,7 @@
 ---
-layout: default
 title: Installing Chipyard
-container_type: text
-nav_exclude: true
+layout: default
 ---
-
-## Did anyone ACTUALLY scan this QR code???
 
 ## Install Chipyard
 
