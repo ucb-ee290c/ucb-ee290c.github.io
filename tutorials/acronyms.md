@@ -31,6 +31,8 @@ layout: default
 | ASA | American Semiconductor Academy |
 
 
+| Name             | Description         |
+|:-------------|:-------------------------------------------|
 | ASB | Advanced System Bus (predecessor to AHB, not recommended for new designs) |
 | ASCII | American Standard Code for Information Interchange |
 | ASIC | Application Specific Integrated Circuit |
@@ -193,6 +195,11 @@ layout: default
 | Hart | Hardware-managed Thread, a RISC-V concept very similar to "core" in an x86 system. |
 | HBM | High Bandwidth Memory |
 | HCSL | High-speed Current Steering Logic |
+
+
+
+| Name             | Description         |
+|:-------------|:-------------------------------------------|
 | HDL | Hardware Design Language |
 | HDMI | High Definition Multimedia Inteface |
 | HDR | High Dynamic Range |
@@ -409,9 +416,13 @@ layout: default
 | TDC | Time to Digital Converter |
 | TDRE | Transmit Data Register Empty |
 | TIA | Transimpedance Amplifier |
-| TileLink |			Open-source chip-scale interconnect standard (comparable to the industry standard protocols AXI/ACE) |
+| TileLink | Open-source chip-scale interconnect standard (comparable to the industry standard protocols AXI/ACE) |
 | TK | ToolKit - open source cross-platform widget toolkfor making GUIs for various languages |
 | TLB | Translation Lookaside Buffer |
+
+
+| Name             | Description         |
+|:-------------|:-------------------------------------------|
 | TLF | Timing Library Files - .tlf is a file extension that Cadence Innovus understands |
 | TMA | Tapeout Manufacturing Assurance (mock tape-in number) |
 | TNS | Total Negative Slack |
@@ -436,7 +447,7 @@ layout: default
 | VCO | Voltage Controlled Oscillator |
 | VCS | Verilog Compiler and Simulator (a Synopsis tool) |
 | VCU | Video transCoding Unit |
-| VCU118 |			a part number for a Xilinx FPGA board widely used BWRC |
+| VCU118 | a part number for a Xilinx FPGA board widely used BWRC |
 | VCDL | Voltage Controlled Delay Line |
 | VFC | Voltage to Frequency Converter |
 | VGA | Variable gain amplifier |
