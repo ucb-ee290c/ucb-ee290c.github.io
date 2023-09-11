@@ -4,7 +4,7 @@ layout: default
 parent: Setting up RISC-V Environment
 ---
 
-# Setting up RISC-V Environment - Ubuntu
+# 1. Setting up RISC-V Environment - Ubuntu
 
 {: .no_toc }
 
@@ -19,7 +19,7 @@ parent: Setting up RISC-V Environment
 
 This is the recommended method.
 
-## Install RISC-V Toolchain
+## 2. Install RISC-V Toolchain
 
 First, we need to install the following dependencies:
 

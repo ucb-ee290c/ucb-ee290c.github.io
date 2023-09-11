@@ -9,8 +9,8 @@ has_children: true
 In this tutorial, we will install a local RISC-V development environment.
 
 
-[Ubuntu (Recommended)](https://just-the-docs.com){: .btn }
+[Ubuntu (Recommended)](https://ucb-ee290c.github.io/tutorials/software/setting-up-riscv-environment/setting-up-riscv-environment-ubuntu.html){: .btn }
 
-[Windows](https://just-the-docs.com){: .btn }
+[Windows](https://ucb-ee290c.github.io/tutorials/software/setting-up-riscv-environment/setting-up-riscv-environment-windows.html){: .btn }
 
-[Mac OS](https://just-the-docs.com){: .btn }
+[Mac OS](https://ucb-ee290c.github.io/tutorials/software/setting-up-riscv-environment/setting-up-riscv-environment-mac-os.html){: .btn }
