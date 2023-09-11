@@ -18,7 +18,7 @@ parent: Setting up RISC-V Environment
 
 This is the recommended method.
 
-## Install RISC-V Toolchain
+## 1. Install RISC-V Toolchain
 
 First, we need to install the following dependencies:
 
@@ -48,7 +48,7 @@ Build the toolchain
 make
 ```
 
-## Install OpenOCD
+## 2. Install OpenOCD
 
 Clone the RISC-V OpenOCD repo
 
