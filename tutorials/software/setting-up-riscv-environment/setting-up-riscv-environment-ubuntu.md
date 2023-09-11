@@ -1,9 +1,10 @@
 ---
-title: Setting up RISC-V Environment
+title: Setting up RISC-V Environment - Ubuntu
 layout: default
+parent: Setting up RISC-V Environment
 ---
 
-# Setting up RISC-V Environment
+# Setting up RISC-V Environment - Ubuntu
 
 {: .no_toc }
 
@@ -16,9 +17,9 @@ layout: default
 {:toc}
 </details>
 
-## Ubuntu (Recommended)
+This is the recommended method.
 
-### Install RISC-V Toolchain
+## Install RISC-V Toolchain
 
 First, we need to install the following dependencies:
 
@@ -48,7 +49,7 @@ Build the toolchain
 make
 ```
 
-### Install OpenOCD
+## Install OpenOCD
 
 Clone the RISC-V OpenOCD repo
 
@@ -64,12 +65,5 @@ cd ~/Documents/RISCV/riscv-openocd
 make
 sudo make install
 ```
-
-## Windows
-
-
-
-## MacOS
-
 
 
