@@ -5,6 +5,17 @@ layout: default
 
 # Setting up RISC-V Environment
 
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Ubuntu (Recommended)
 
 ### Install RISC-V Toolchain
@@ -14,6 +25,8 @@ First, we need to install the following dependencies:
 ```bash
 sudo apt install texinfo bison flex libgmp-dev
 ```
+
+
 
 Clone the RISC-V GNU Toolchain repo. 
 
