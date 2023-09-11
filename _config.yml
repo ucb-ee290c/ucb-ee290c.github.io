@@ -2,7 +2,12 @@ title: EE 194/290C Lab Tutorials
 description: A starter template for a Jeykll site using the Just the Docs theme!
 theme: just-the-docs
 
-url: https://just-the-docs.github.io
+color_scheme: dark
+
+url: https://ucb-ee290c.github.io/tutorials
+
+search_enabled: true
+heading_anchors: true
 
 aux_links:
   Course Website: https://ucb-ee290c.github.io/
