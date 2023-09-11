@@ -1,6 +1,6 @@
 ---
-layout: default
 title: Sp22 Tapeout
+layout: frontpage
 container_type: text
 ---
 

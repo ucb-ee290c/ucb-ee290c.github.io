@@ -1,6 +1,6 @@
 ---
 title: Fa23 Bringup
-layout: minimal
+layout: frontpage
 nav_exclude: true
 ---
 

@@ -1,6 +1,6 @@
 ---
-layout: default
 title: Fa22 Bringup
+layout: default
 ---
 
 # HW 1

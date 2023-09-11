@@ -1,6 +1,6 @@
 ---
-layout: default
 title: Fa21 Bringup
+layout: frontpage
 container_type: text
 ---
 

@@ -1,6 +1,6 @@
 ---
-layout: default
 title: Fa22 Bringup
+layout: front-page
 ---
 
 # Serial TileLink Bootflow
