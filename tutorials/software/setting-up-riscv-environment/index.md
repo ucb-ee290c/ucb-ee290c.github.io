@@ -2,6 +2,7 @@
 title: Setting up RISC-V Environment
 layout: default
 has_children: true
+nav_order: 4
 ---
 
 # Setting up RISC-V Environment

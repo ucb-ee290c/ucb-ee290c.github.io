@@ -1,6 +1,7 @@
 ---
 title: Installing Chipyard
 layout: default
+nav_order: 3
 ---
 
 ## Install Chipyard
