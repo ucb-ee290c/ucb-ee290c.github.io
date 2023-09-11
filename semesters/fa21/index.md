@@ -2,6 +2,7 @@
 title: Fa21 Bringup
 layout: frontpage
 container_type: text
+nav_exclude: true
 ---
 
 ## Bringup of OsciBear Chip

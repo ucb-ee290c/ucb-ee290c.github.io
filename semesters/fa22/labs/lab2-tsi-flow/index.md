@@ -1,6 +1,7 @@
 ---
 title: Fa22 Bringup
-layout: front-page
+layout: frontpage
+nav_exclude: true
 ---
 
 # Serial TileLink Bootflow

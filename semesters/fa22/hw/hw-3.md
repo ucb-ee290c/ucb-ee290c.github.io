@@ -1,6 +1,7 @@
 ---
 title: Fa22 Bringup
 layout: default
+nav_exclude: true
 ---
 
 # HW 3

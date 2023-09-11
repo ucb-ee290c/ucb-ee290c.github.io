@@ -2,6 +2,7 @@
 layout: default
 title: Statement on DSP Accomendation
 container_type: text
+nav_exclude: true
 ---
 
 ### Statement on Academic Misconduct

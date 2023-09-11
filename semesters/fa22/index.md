@@ -2,6 +2,7 @@
 title: Fa22 Bringup
 layout: frontpage
 container_type: text
+nav_exclude: true
 ---
 
 # Bringup Class

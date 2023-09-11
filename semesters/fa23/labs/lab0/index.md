@@ -2,6 +2,7 @@
 layout: default
 title: Installing Chipyard
 container_type: text
+nav_exclude: true
 ---
 
 ## Did anyone ACTUALLY scan this QR code???

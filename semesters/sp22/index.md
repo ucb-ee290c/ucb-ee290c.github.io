@@ -2,6 +2,7 @@
 title: Sp22 Tapeout
 layout: frontpage
 container_type: text
+nav_exclude: true
 ---
 
 # Advanced Topics in Circuit Design

@@ -1,7 +1,8 @@
 ---
 title: Fa22 Bringup
-layout: front-page
+layout: frontpage
 container_type: text
+nav_exclude: true
 ---
 
 ## Using BWRC Server
