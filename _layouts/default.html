@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>UC Berkeley EE 194/290C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/show-hint.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/show-hint.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".navbar.ui.dropdown").dropdown({
+        "action": "select"
+      });
+
+      // set default table style to be semantic-ui
+      $("table").addClass("ui celled table");
+    });
+  </script>
+  <style>
+    img {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="ui large top fixed menu">
+    <div class="ui container">
+      <a class="header item" href="/">
+        EE 194/290C Tapeout/Bringup
+      </a>
+      <div class="ui navbar dropdown link item">
+        Semesters
+        <div class="menu">
+          <a class="item" href="https://ucb-ee290c.github.io/semesters/fa21">Fa21 Bringup</a>
+          <a class="item" href="https://ucb-ee290c.github.io/semesters/sp22">Sp22 Tapeout</a>
+          <a class="item" href="https://ucb-ee290c.github.io/semesters/fa22">Fa22 Bringup</a>
+          <a class="item" href="https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp23-course-website">Sp23 Tapeout (Access Required)</a>
+          <a class="item" href="https://ucb-ee290c.github.io/semesters/fa23">Fa23 Bringup</a>
+        </div>
+      </div>
+      <div class="ui navbar dropdown link item">
+        Bringup Tools
+        <div class="menu">
+          <a class="item" href="https://ucb-ee290c.github.io/tools/chip-adapters">Chip Adapters</a>
+        </div>
+      </div>
+      <div class="ui navbar dropdown link item">
+        Help
+        <div class="menu">
+          <a class="item" href="https://ucb-ee290c.github.io/help/acronyms">Acronyms</a>
+          <a class="item" href="https://ucb-ee290c.github.io/help/conventions">Conventions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="spacer" style="height: 5em"></div>
+  <div class="ui {{ page.container_type }} container">
+    {{ content }}
+  </div>
+  <div class="spacer" style="height: 10em"></div>
+</body>
+</html>
