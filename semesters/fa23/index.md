@@ -1,6 +1,7 @@
 ---
-layout: default
 title: Fa23 Bringup
+layout: minimal
+nav_exclude: true
 ---
 
 # EE194 (Fall 2023)
