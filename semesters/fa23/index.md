@@ -1,5 +1,5 @@
 ---
-title: Fa23 Bringup
+title: "Fa23 Bringup"
 layout: frontpage
 nav_exclude: true
 ---

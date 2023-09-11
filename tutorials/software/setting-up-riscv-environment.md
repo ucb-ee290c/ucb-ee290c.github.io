@@ -1,5 +1,5 @@
 ---
-title: Home
+title: Setting up RISC-V Environment
 layout: home
 ---
 
