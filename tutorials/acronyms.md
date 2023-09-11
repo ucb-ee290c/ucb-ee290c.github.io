@@ -4,7 +4,8 @@ layout: default
 ---
 
 # Common Acronyms
-| Name             | Description                                |
+
+| Name             | Description         |
 |:-------------|:-------------------------------------------|
 | ACE | AXI Coherency Extensions (another extension to AMBA and AXI) |
 | ADC | Analog to Digital Converter |
@@ -28,6 +29,8 @@ layout: default
 | AR | Address Register |
 | ARNS | Aeronautical Radio Navigation System band - radio frequencies used for airplane navigation|
 | ASA | American Semiconductor Academy |
+
+
 | ASB | Advanced System Bus (predecessor to AHB, not recommended for new designs) |
 | ASCII | American Standard Code for Information Interchange |
 | ASIC | Application Specific Integrated Circuit |
