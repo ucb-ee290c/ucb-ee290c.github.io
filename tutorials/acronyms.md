@@ -4,7 +4,7 @@ layout: default
 ---
 
 # Common Acronyms
-|              |                                            |
+| Name             | Description                                |
 |:-------------|:-------------------------------------------|
 | ACE | AXI Coherency Extensions (another extension to AMBA and  |AXI)
 | ADC | Analog to Digital Converter |
