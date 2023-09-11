@@ -4,8 +4,8 @@ layout: default
 ---
 
 # Common Acronyms
-|     |     |
-| --- | --- |
+|              |                                            |
+|:-------------|:-------------------------------------------|
 | ACE | AXI Coherency Extensions (another extension to AMBA and  |AXI)
 | ADC | Analog to Digital Converter |
 | ADE | Analog Design Environment - a Cadence tool or analdesign |
