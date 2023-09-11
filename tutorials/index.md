@@ -1,6 +1,7 @@
 ---
-title: Tutorials
+title: Home
 layout: home
+nav_order: 2
 ---
 
 # Tutorials
