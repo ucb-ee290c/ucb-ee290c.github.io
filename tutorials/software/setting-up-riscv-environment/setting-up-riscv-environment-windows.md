@@ -5,7 +5,6 @@ parent: Setting up RISC-V Environment
 ---
 
 # Setting up RISC-V Environment - Windows
-
 {: .no_toc }
 
 <details open markdown="block">
@@ -16,8 +15,6 @@ parent: Setting up RISC-V Environment
 - TOC
 {:toc}
 </details>
-
-# Setting up RISC-V Toolchain - Windows
 
 ## 1. Install Make.
 

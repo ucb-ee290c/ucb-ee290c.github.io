@@ -5,7 +5,6 @@ parent: Setting up RISC-V Environment
 ---
 
 # Setting up RISC-V Environment - Mac OS
-
 {: .no_toc }
 
 <details open markdown="block">
