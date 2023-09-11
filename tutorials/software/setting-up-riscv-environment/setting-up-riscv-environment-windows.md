@@ -23,10 +23,8 @@ parent: Setting up RISC-V Environment
 
 Follow the tutorial Install Make on Windows.
 
-{% content-ref url="../../tools/windows/install-make-on-windows.md" %}
-[install-make-on-windows.md](../../tools/windows/install-make-on-windows.md)
-{% endcontent-ref %}
 
+[Install Make on Windows](https://notes.tk233.xyz/tools/windows/install-make-on-windows)
 
 
 ## 2. Download RISC-V Toolchain

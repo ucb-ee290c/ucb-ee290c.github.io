@@ -16,4 +16,4 @@ layout: default
 
 [docs](https://docs.google.com/document/d/1hj8Q8EKpvDe7y_TBqoqWunjOoMvQhrckXg7e4ic5bV0/edit?usp=sharing)
 
-[pdf](https://github.com/ucb-ee290c/ucb-ee290c.github.io/blob/e1ef2d27b945883b34b90a4aa59636c769052cdd/semesters/fa23/files/Chipyard%20Lab%20Cheatsheet.pdf)
+[pdf](https://github.com/ucb-ee290c/ucb-ee290c.github.io/blob/main/assets/files/Chipyard%20Lab%20Cheatsheet.pdf)
