@@ -1,7 +1,9 @@
 ---
 title: Example Chip Design Milestones
 layout: default
+nav_order: 8
 ---
+
 
 # Design Schedule Milestones
 

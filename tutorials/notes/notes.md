@@ -1,7 +1,10 @@
+---
+title: Misc Notes
+layout: default
+nav_order: 20
+---
 
-# Notes
-
-
+# Misc Notes
 
 ## Hierarchical Design Flow Notes
 
