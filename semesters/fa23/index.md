@@ -85,9 +85,9 @@ EECS 151 [Playlist](https://www.youtube.com/playlist?list=PLkFD6_40KJIxrKaukIqIZ
 
 [bCourses](https://bcourses.berkeley.edu/courses/1518323)
 
-[Statement on Academic Misconduct](https://ucb-ee290c.github.io/semesters/statement-on-academic-misconduct)
+[Statement on Academic Misconduct](https://ucb-ee290c.github.io/semesters/common/statement-on-academic-misconduct)
 
-[Statement on DSP Accomendation](https://ucb-ee290c.github.io/semesters/statement-on-dsp-accomendation)
+[Statement on DSP Accomendation](https://ucb-ee290c.github.io/semesters/common/statement-on-dsp-accomendation)
 
 ## Staff
 
