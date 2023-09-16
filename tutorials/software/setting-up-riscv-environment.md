@@ -1,7 +1,7 @@
 ---
-title: Setting up RISC-V Environment - Mac OS
+title: Setting up RISC-V Environment
 layout: default
-parent: Setting up RISC-V Environment
+nav_order: 4
 ---
 
 # Setting up RISC-V Environment
