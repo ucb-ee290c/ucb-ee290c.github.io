@@ -15,11 +15,11 @@ nav_exclude: true
 | Week 1  | 2023-08-24 | Overview of the 3 chips ([slides](https://docs.google.com/presentation/d/1d9ky937-nN-ezsAZ-txdxNYWB94K_HOJdJmOntYfcOQ/edit?usp=sharing)), Lab Etiquette ([slides](https://docs.google.com/presentation/d/1CZHoDTfJQDBrvWoPRSCAtRMXYlKCrpna/edit?usp=sharing&ouid=101719282076225449124&rtpof=true&sd=true)), Previous Chip Demo |   |
 | Week 2  | 2023-08-29 | Review & Improve Tapeout Chip Documentation ([slides](https://docs.google.com/presentation/d/1Xh000HRs_iip3PjNar6EJsKOOgkd2y-KtPV7-s7wXW0/edit?usp=sharing)) |   |
 |         | 2023-08-31 | Student presentation - Go over chip documentation: what to test, how to test |   |
-| Week 3  | 2023-09-05 | Introduction to PCB (1) ([slides]()) |   |
-|         | 2023-09-07 | Introduction to PCB (2) ([slides]()) |   |
-| Week 4  | 2023-09-12 | Introduction to PCB (3) ([slides]()) |   |
-|         | 2023-09-14 |                               |   |
-| Week 5  | 2023-09-19 |                               |   |
+| Week 3  | 2023-09-05 | Introduction to PCB (1) (slides in [GDrive](https://drive.google.com/drive/u/1/folders/1-8BdSkL9BsvL1kXfjZ7S_akkgxsXniAq)) |   |
+|         | 2023-09-07 | Introduction to PCB (2)       |   |
+| Week 4  | 2023-09-12 | Introduction to PCB (3)       |   |
+|         | 2023-09-14 | SCuM-V 23 Review ([slides](https://docs.google.com/presentation/d/1ISP_9QCvmuILOAJQDKhRLXTiUCKvV9yl/edit?usp=sharing&ouid=101719282076225449124&rtpof=true&sd=true)) |   |
+| Week 5  | 2023-09-19 | RISC-V Embedded Systems Crash Course ([slides](https://docs.google.com/presentation/d/1_1kx6wS28d-YJyKw1I7rPDAvyq6DzeZhwJoOrkguyrg/edit?usp=sharing)) |   |
 |         | 2023-09-21 |                               |   |
 | Week 6  | 2023-09-26 |                               |   |
 |         | 2023-09-28 |                               |   |
