@@ -1,6 +1,7 @@
 ---
 title: Serial TileLink
 layout: default
+nav_order: 5
 ---
 
 # Serial TileLink Bootflow
