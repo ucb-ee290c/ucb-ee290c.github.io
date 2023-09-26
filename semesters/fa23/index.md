@@ -20,7 +20,7 @@ nav_exclude: true
 | Week 4  | 2023-09-12 | Introduction to PCB (3)       |   |
 |         | 2023-09-14 | SCuM-V 23 Review ([slides](https://docs.google.com/presentation/d/1ISP_9QCvmuILOAJQDKhRLXTiUCKvV9yl/edit?usp=sharing&ouid=101719282076225449124&rtpof=true&sd=true)) |   |
 | Week 5  | 2023-09-19 | RISC-V Embedded Systems Crash Course ([slides](https://docs.google.com/presentation/d/1_1kx6wS28d-YJyKw1I7rPDAvyq6DzeZhwJoOrkguyrg/edit?usp=sharing)) | [Embedded Systems Lab](https://docs.google.com/presentation/d/1KIsKgCylk6GjQEqqo2dJuTQsezKcqgAN1J2ngPizo9A/edit?usp=sharing)  |
-|         | 2023-09-21 |                               |   |
+|         | 2023-09-21 | Intel FPGA ([slides](https://docs.google.com/presentation/d/1xJ4vUpC60N-7YZRXAIi1qPw3l-1E5U0INo-zIwWI8e0/edit?usp=sharing))                   |   |
 | Week 6  | 2023-09-26 |                               |   |
 |         | 2023-09-28 |                               |   |
 | Week 7  | 2023-10-03 |                               |   |
@@ -32,11 +32,11 @@ nav_exclude: true
 |         | 2023-10-19 |                               |   |
 | Week 10 | 2023-10-24 |                               |   |
 |         | 2023-10-26 |                               |   |
-| Week 11 | 2023-10-31 | [Tentative] How to test a radio - Transmitter |   |
+| Week 11 | 2023-10-31 | How to test a radio - Transmitter |   |
 |         | 2023-11-02 |                               |   |
-| Week 12 | 2023-11-07 | [Tentative] How to test a radio - Receiver |   |
+| Week 12 | 2023-11-07 | How to test a radio - Receiver |   |
 |         | 2023-11-09 |                               |   |
-| Week 13 | 2022-11-14 | [Tentative] How to test a radio - PLL/LO |   |
+| Week 13 | 2022-11-14 | How to test a radio - PLL/LO  |   |
 |         | 2022-11-16 |                               |   |
 | Week 14 | 2022-11-21 |                               |   |
 |         | 2022-11-23 | *Thanksgiving Break*          |   |
