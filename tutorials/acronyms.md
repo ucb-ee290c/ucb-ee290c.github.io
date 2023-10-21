@@ -251,7 +251,8 @@ nav_order: 101
 | LPF | Low Pass Filter |
 | LRU | Least Recently Used |
 | LSB | Least Significant Bit |
-| LSF | Load Sharing Facility| LU | Latch Up |
+| LSF | Load Sharing Facility |
+| LU | Latch Up |
 | LUT | Look Up Table |
 | LVCMOS | Low Voltage CMOS signaling |
 | LVDS | Low Voltage Differential Signaling |
