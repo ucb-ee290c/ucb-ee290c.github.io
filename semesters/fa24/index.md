@@ -23,7 +23,7 @@ This is a dynamic hands-on course, so the below outline is very much subject to 
 
 For access issues, message staff on Slack! Many of these require permissions. 
 
-[Bring-up Slack](https://join.slack.com/t/194bringup/shared_invite/zt-1fwo87bg1-tyiWNVvH2d1lSRYybVpHJQ)
+[Bring-up Slack Fall 2024](https://join.slack.com/t/194bringup/shared_invite/zt-2pw9z6jpf-~OFM2VPzu_EbNE8_suIxAQ)
 
 [Bring-up Calendar: https://tinyurl.com/bringupcalendar](https://tinyurl.com/bringupcalendar)
 
