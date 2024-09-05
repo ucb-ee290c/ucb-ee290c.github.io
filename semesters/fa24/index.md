@@ -43,7 +43,7 @@ For access issues, message staff on Slack! Many of these require permissions.
 
 If you are confused as to which password is your IRIS/BWRC one, you can test at:
 
-[https://iris.eecs.berkeley.edu/selfserve/](https://iris.eecs.berkeley.edu/selfserve/) -> Test your EECS Windows/LDAP Password
+- [https://iris.eecs.berkeley.edu/selfserve/](https://iris.eecs.berkeley.edu/selfserve/) -> Test your EECS Windows/LDAP Password
 
 ### Old Chip Testing Notes
 
