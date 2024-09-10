@@ -13,7 +13,8 @@ nav_exclude: true
 _Last updated: September 10._
 This is a dynamic hands-on course, so the below outline is very much subject to change!
 
-<embed type="text/html" src="calendar_resources/Public.html">
+<!-- Don't forget to change filepath in html -->
+<embed type="text/html" src="calendar_resources/Public.html" width="100%" height="900">
 
 ## Resources
 
