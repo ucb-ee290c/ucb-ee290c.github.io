@@ -13,7 +13,7 @@ nav_exclude: true
 _Last updated: September 10._
 This is a dynamic hands-on course, so the below outline is very much subject to change!
 
-<embed type="text/html" src="calendar_resources/public.html">
+<embed type="text/html" src="calendar_resources/Public.html">
 
 ## Resources
 
