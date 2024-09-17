@@ -10,7 +10,7 @@ nav_exclude: true
 
 ## Course Outline
 
-_Last updated: September 10._
+_Last updated: September 17._
 This is a dynamic hands-on course, so the below outline is very much subject to change!
 
 <!-- Don't forget to change filepath in html -->
