@@ -12,9 +12,9 @@ nav_exclude: true
 
 This is a dynamic hands-on course, so the below outline is very much subject to change!
 
-<!-- To embed a google sheet here, export file as html and chuck it into the resources folder -->
-<!-- Don't forget to change filepath in html file -->
-<!-- <embed type="text/html" src="calendar_resources/Public.html" width="100%" height="900"> -->
+<!-- One way to embed a google sheet here, is export file as html and chuck it into a resources folder -->
+<!-- But the new and improved way is to publish a Google Sheet and embed it as an iframe as seen here --->
+<!-- Note the current published sheet is set to autopublish all changes on the "Public" tab --->
 
 <iframe width="100%" height="900" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSJjK4EGyUqmXMxRfsHPCj0-S2BRH1s4TsldWTL1gsfXNgYidr3bI74AGGyVl5AXxhOMo5LXKCx4w2D/pubhtml?gid=405601920&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
 
