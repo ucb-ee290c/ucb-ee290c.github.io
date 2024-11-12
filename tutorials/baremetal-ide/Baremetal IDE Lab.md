@@ -10,6 +10,7 @@ Baremetal IDE is an SDK developed and maintained by the SLICE lab at Berkeley wh
 Since the actual HeatherLake setups are a bit fragile and require lots of external support equipment, we’ll be running all of these labs on an emulated chip on a Datastorm FPGA. This lab will bring you through the whole process of getting started with a new chip, building a Board Support Package, writing some basic drivers, and benchmarking a simple accelerator. 
 
 ## The Trenz Datastorm Board
+![The Trenz Datastorm Board](assets/datastorm_diagram.png)
 Before we begin, let’s take a closer look at the Trenz Datastorm. Since this is the standard FPGA board we will be using for the rest of the class for Bringup once the PCBs come back, it’s worth getting familiar with its functions and usage. These boards are based on the Cyclone V SoC 5CSEMA5F31 which is a chip that contains both 85K Logic Elements of FPGA fabric and two ARM CPU cores which Intel calls the Hard Processor System. These boards also come with a lot of peripherals like USB, HDMI, or Ethernet, but we’re ignoring them for now. 
 The full board documentation can be found here but we’ve highlighted the most important parts for using the Datastorm for this lab. Since this isn’t an FPGA lab, we’ll mostly be glossing over the inner workings of the board and just touch the parts you’ll have to work with directly.
 Going clockwise from the top, we have:
@@ -28,10 +29,21 @@ For this lab, the Datastorm FPGAs set up on the lab benches are preprogrammed to
 
 Here’s how things are connected on the FPGA:
 
+| Chip Function | FPGA Port                |
+| ------------- | ------------------------ |
+| USB Serial    | Port	UART TSI           |
+| FPGA RST	    | Chip Reset               |
+| FPGA LED 1    | Chip Status (Always lit) |
+| FPGA LED 2    | GPIO 0                   |
+| PMOD 1	      | JTAG + UART              |
+| FPGA BTN	    | GPIO 1                   |
+
 And here’s a memory map of the system:
 
+
+
 ## Setup and Navigating the BWRC Environment
-Before we begin writing software for Baremetal IDE we need to set up our workspace and compiler toolchain. While you can set this up locally on your machine (see here) so you can build RISCV programs on your own machine, the documentation for how to do that is a bit out of date so the rest of this lab assumes you are using the BWRC environment. 
+Before we begin writing software for Baremetal IDE we need to set up our workspace and compiler toolchain. While you can set this up locally on your machine [(see here)] (https://ucb-bar.gitbook.io/chipyard/quickstart/setting-up-risc-v-toolchain) so you can build RISCV programs on your own machine, the documentation for how to do that is a bit out of date so the rest of this lab assumes you are using the BWRC environment. 
 To begin, log into a BWRC machine by either SSHing into one of the login servers like `bwrcrdsl-1.eecs.berkeley.edu` or by going up to one of the four workstations that are set up on benches 11 and 12 in BWRC and logging in. Then, simply source this environment file to active the Bringup Class environment and get access to all the tools you’ll need.
 ```bash
 source /tools/C/ee290-fa24-2/ee290-env.sh
@@ -122,8 +134,7 @@ This is what tells CMake that our blinky program is a program that should be bui
 cmake -S ./ -B ./build/ -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip
 cmake --build ./build/ --target blinky
 ```
-The first command reads all of our CMakeLists.txt files and configures the tools that actually build the project. This only needs to be run if you change a CMakeLists.txt file or you are just setting up your repository. Otherwise, the second command is sufficient. The second command actually builds the program in the build folder. If you look within your build folder, you should now have the file `lab/d01/CMakeLists.txt
-lab/d01/main.c` which is our final binary.
+The first command reads all of our CMakeLists.txt files and configures the tools that actually build the project. This only needs to be run if you change a CMakeLists.txt file or you are just setting up your repository. Otherwise, the second command is sufficient. The second command actually builds the program in the build folder. If you look within your build folder, you should now have the file `build/lab/d01/main.c` which is our final binary.
 
 ## Programming the Chip
 Once we have our ELF binary of program, we now need to somehow get it onto the chip so we can see if our program wroks and show off our demos. There are two primary interfaces for programming the chip, UART-TSI and JTAG which have their own pro's and cons. For these next steps, please be at one of the four workstations at the lab benches.
@@ -155,7 +166,7 @@ Let's break down the arguments here
 
 `<bin>` is the binary that you want to load onto the chip. This can be `none` if no binary is desired.
 
-> Task 1: Write down a sequence of uart_tsi commands that will turn on the LED attached to GPIO pin 0 and another sequence that will allow you to read the status of the button on GPIO pin 1.
+> **Task 1**: Write down a sequence of uart_tsi commands that will turn on the LED attached to GPIO pin 0 and another sequence that will allow you to read the status of the button on GPIO pin 1.
 
 
 Putting that all together we get this command to load the blinky binary we just built to the chip.
