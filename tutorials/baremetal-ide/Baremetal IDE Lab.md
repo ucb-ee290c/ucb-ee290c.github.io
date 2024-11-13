@@ -29,7 +29,7 @@ For this lab, the Datastorm FPGAs set up on the lab benches are preprogrammed to
 
 Here’s how things are connected on the FPGA:
 
-| Chip Function | FPGA Port                |
+| FPGA Port     | Chip Function            |
 | ------------- | ------------------------ |
 | USB Serial    | Port	UART TSI           |
 | FPGA RST	    | Chip Reset               |
@@ -40,18 +40,26 @@ Here’s how things are connected on the FPGA:
 
 And here’s a memory map of the system:
 
-
+| Device                | Base Address |
+| --------------------- | ------------ |
+| Boot Address Register | 0x1000       |
+| Boot ROM              | 0x2000       |
+| CLINT                 | 0x2000000    |
+| PLIC                  | 0xC000000    |
+| Addition Accelerator  | 0x8800000    |
+| GPIO A                | 0x10010000   |
+| UART 0                | 0x10020000   |
 
 ## Setup and Navigating the BWRC Environment
 Before we begin writing software for Baremetal IDE we need to set up our workspace and compiler toolchain. While you can set this up locally on your machine [(see here)] (https://ucb-bar.gitbook.io/chipyard/quickstart/setting-up-risc-v-toolchain) so you can build RISCV programs on your own machine, the documentation for how to do that is a bit out of date so the rest of this lab assumes you are using the BWRC environment. 
 To begin, log into a BWRC machine by either SSHing into one of the login servers like `bwrcrdsl-1.eecs.berkeley.edu` or by going up to one of the four workstations that are set up on benches 11 and 12 in BWRC and logging in. Then, simply source this environment file to active the Bringup Class environment and get access to all the tools you’ll need.
-```bash
+``` bash
 source /tools/C/ee290-fa24-2/ee290-env.sh
 ```
 You’ll need to run this command every time you open a new terminal window so it may be worth placing this command in your bashrc so you don’t have to keep typing it in.
 Now, navigate to the folder `/tools/C` and create a folder called your username. The entire drive mapped to /tools/C is backed up hourly and available to all machines connected to the BWRC network, including the lab benches and login servers. This means you can remotely build on one of the BWRC servers from your laptop and have the files immediately show up on the lab machines to deploy to your chip.
 Once you’re in your /tools/C folder, clone a copy of the Sp24 Barmetal IDE and checkout the `fa24-lab` branch with the following commands:
-```bash
+``` bash
 git clone git@github.com:ucb-bar/sp24-Baremetal-IDE.git
 git checkout fa24-lab
 ```
@@ -84,7 +92,7 @@ This folder contains a bunch of subfolders that each contain an `include` and `s
 
 #### The Blinky Program
 To introduce the Baremetal IDE build flow, we are going start off with a blinky program which is kind of like the “Hello World” of embedded systems programming. All it will do is blink the LED attached to GPIO pin 0 at 5 Hz. This program has been simplified down to the bare minimum to make it easier to understand, ignoring all of the provided libraries and style conventions in favor of directly reading and writing to registers. We will go over cleaner, more idiomatic examples later on, but it’s important to know what’s going on underneath the hood. If you want to dig deeper into how the actual build process is handled and how all the steps of compilation fit together, Yufeng Chi from the SLICE lab has written an excellent guide [here]( https://notes.tk233.xyz/risc-v-soc/risc-v-baremetal-from-the-ground-up-chipyard-edition) going over how to build a program from scratch without something like Baremetal IDE.
-```C
+``` C
 #include <stdint.h>
 
 uint32_t *GPIOA_OUTPUT_VAL = (uint32_t*) 0x1001000CUL;
@@ -116,7 +124,7 @@ The blinky program begins with some pointer definitions that define where all of
 
 #### Building Blinky
 If you take a look at the d01 folder within lab, you should also see a `CMakeLists.txt` file in addition to `main.c`. 
-```Bash
+``` bash
 #################################
 # Build
 #################################
@@ -130,7 +138,7 @@ target_link_libraries(blinky PRIVATE
 )
 ```
 This is what tells CMake that our blinky program is a program that should be built. The way you read this file the `add_executable` directive creates a make target called `blinky` with one source file, `main.c` and the `target_link_libraries` specifies that we want to link our blinky program with glossy, our libc that provides the C runtime. To actually build the executable takes two commands
-```
+``` bash
 cmake -S ./ -B ./build/ -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip
 cmake --build ./build/ --target blinky
 ```
@@ -142,7 +150,7 @@ Once we have our ELF binary of program, we now need to somehow get it onto the c
 ### UART-TSI Programming
 Our emulated chip has a UART-TSI port which is an interface that allows a computer to make TileLink read/writes by reading/writing to a UART. Normally, this would be on a separate FPGA when you are talking to a real chip but for simplicity, this lab only uses one FPGA. `uart_tsi` is a program that can read in an ELF binary, read the header, and issue the correct write commands to load the binary into the chip's memory. UART-TSI has the benefit of being relatively fast and lightweight, but has the downside of requiring an FPGA to work. To begin, simply type `uart_tsi` in your console which displays the help screen.
 
-```Bash
+``` Bash
 Starting UART-based TSI
 Usage: ./uart_tsi +tty=/dev/pts/xx <PLUSARGS> <bin>
        ./uart_tsi +tty=/dev/ttyxx  <PLUSARGS> <bin>
@@ -154,15 +162,16 @@ ERROR: Must use +tty=/dev/ttyxx to specify a tty
 ```
 
 Let's break down the arguments here  
-`+tty=<tty>` specifies what serial port the chip's UART-TSI port is on. Unfortunatley due to the way Unix handles serial devices, the exact device ID changes every time you unplug and replug your device. The best way of figuring out which serial port is which is unplug the device you are trying to find the id of, run the command `ls /dev/ttyUSB*` to lists out all remaining USB serial ports, plug the device in again, and run the command one last time to find the new serial port. For the lab, UART-TSI is on the usb port hooked directly up to the FPGA, not the one plugged into the FT-LINK.
+`+tty=<tty>` specifies what serial port the chip's UART-TSI port is on.
+>> Unfortunately, due to the way Unix handles serial devices, the exact device ID changes every time you unplug and replug your device. The best way of figuring out which serial port is which is unplug the device you are trying to find the id of, run the command `ls /dev/ttyUSB*` to lists out all remaining USB serial ports, plug the device in again, and run the command one last time to find the new serial port. For the lab, UART-TSI is on the usb port hooked directly up to the FPGA, not the one plugged into the FT-LINK.
 
 `+baudrate=<baudrate>` specifies which baudrate the computer should talk to the chip at. This must match whatever the chip was configured for. In our case, this is 921600 baud.
 
-`+no_hart0_msip`
+`+no_hart0_msip` specifies that we should not send a **M**achine **S**oftware **I**nterrupt to hart0 or core 0. By default, after completing all reads and writes, UART-TSI sets the hart0 msip register to 1 which sends an interrupt to core 0 of the chip which tells the chip that we are done loading in the program and should jump to the address in the boot address register to start executing. Specify this argument if you do not want the core to boot up, such as when you are just doing read/writes.
 
-`+init_read=<Read Address>`
+`+init_read=<Read Address>` specifies that we should do a read at a given address before loading in our binary. This always reads a 32 bit word from memory and rounds down any address to the nearest multiple of 4. The address must be given in hex and be prefixed with `0x`
 
-`init_write=<Write Address>`
+`+init_write=<Write Address>:<Write Value>` specifies that we should do a write to a given address before loading in our binary. This always writes a 32 bit word to memory, rounds down any address to the nearest multiple of 4, and zero extends the write value to 32 bits. Both the address and write value must be in hex and prefixed with `0x`
 
 `<bin>` is the binary that you want to load onto the chip. This can be `none` if no binary is desired.
 
@@ -171,7 +180,7 @@ Let's break down the arguments here
 
 Putting that all together we get this command to load the blinky binary we just built to the chip.
 
-```Bash
+``` Bash
 uart_tsi +tty=[YOUR_TTY] +baudrate=921600 build/d01/blinky.elf
 ```
 
@@ -181,13 +190,13 @@ Before running a program with uart_tsi, make sure to hit the reset button. While
 JTAG is the other main programming interface on our chip and it is much more powerful than UART-TSI is, giving you full access into the internal state of the chip such as registers and program counters in addition to memory and letting you set breakpoints and single step a program for easier debugging. In fact, you can attach GDB to your chip and debug your program as if it were a desktop application with all of the features you would expect.
 
 Debugging a chip with JTAG requires two programs, OpenOCD and GDB. OpenOCD is a program that abstracts away all the details of talking to every single chip and every single debugging probe and exposes a simplfied higher level of abstraction to programs that build on top of it like GDB. In our case, OpenOCD will handle talking to our FT-LINK USB JTAG adapter for us. To start OpenOCD, in a separate terminal run the following command:
-```bash
+``` bash
 openocd -f platform/labchip/labchip.cfg
 ```
 This starts up OpenOCD using the chip specific settings we defined in our platform file and starts up some network sockets that other programs can connect to.
 
 While you can use OpenOCD standalone to peek and poke registers and memory, the real benefit of JTAG comes when you use a higher level debugger. In a separate terminal run the follwing command:
-```bash
+``` bash
 $ riscv64-unknown-elf-gdb build/d01/blinky.elf
 GNU gdb (GDB) 14.1
 Copyright (C) 2023 Free Software Foundation, Inc.
@@ -209,17 +218,17 @@ Reading symbols from build/lab/d01/blinky.elf...
 ```
 This starts up GDB that's been built to understand RISCV opcodes, tells GDB what binary we want to be running and debugging, and drops us into a gdb shell.  
 Next, we need to connect to our actual chip and reset it. In the GDB console, run the following command:
-```bash
+``` bash
 (gdb) target extended-remote localhost:3333
 (gdb) monitor reset
 JTAG tap: riscv.cpu tap/device found: 0x00000001 (mfg: 0x000 (<invalid>), part: 0x0000, ver: 0x0)
 ```
 Now we are connected to the chip and can issuing commands to debug the chip like so:
-```bash
+``` bash
 (gdb) x/8wh 0x80000000
 ```
 To load the program onto the chip, we can use the load command:
-```bash
+``` bash
 (gdb) load
 Loading section .text, size 0x3a08 lma 0x20000000
 Loading section .rodata, size 0x680 lma 0x20003a08
@@ -228,4 +237,4 @@ Loading section .sdata, size 0x18 lma 0x200043d8
 Start address 0x00000000200000a8, load size 17392
 Transfer rate: 3 KB/sec, 4348 bytes/write.
 ```
-From here you can either type `run` and let the program start or set a breakpoint. At this point you are in GDB and can treat it like any other debugging session. 
+From here you can either type `run` and let the program start or set a breakpoint. At this point you are in GDB and can treat it like any other debugging session.
