@@ -11,6 +11,7 @@ Since the actual HeatherLake setups are a bit fragile and require lots of extern
 
 ## The Trenz Datastorm Board
 ![The Trenz Datastorm Board](assets/datastorm_diagram.png)
+
 Before we begin, let’s take a closer look at the Trenz Datastorm. Since this is the standard FPGA board we will be using for the rest of the class for Bringup once the PCBs come back, it’s worth getting familiar with its functions and usage. These boards are based on the Cyclone V SoC 5CSEMA5F31 which is a chip that contains both 85K Logic Elements of FPGA fabric and two ARM CPU cores which Intel calls the Hard Processor System. These boards also come with a lot of peripherals like USB, HDMI, or Ethernet, but we’re ignoring them for now. 
 The full board documentation can be found here but we’ve highlighted the most important parts for using the Datastorm for this lab. Since this isn’t an FPGA lab, we’ll mostly be glossing over the inner workings of the board and just touch the parts you’ll have to work with directly.
 Going clockwise from the top, we have:
@@ -51,7 +52,7 @@ And here’s a memory map of the system:
 | UART 0                | 0x10020000   |
 
 ## Setup and Navigating the BWRC Environment
-Before we begin writing software for Baremetal IDE we need to set up our workspace and compiler toolchain. While you can set this up locally on your machine [(see here)] (https://ucb-bar.gitbook.io/chipyard/quickstart/setting-up-risc-v-toolchain) so you can build RISCV programs on your own machine, the documentation for how to do that is a bit out of date so the rest of this lab assumes you are using the BWRC environment. 
+Before we begin writing software for Baremetal IDE we need to set up our workspace and compiler toolchain. While you can set this up locally on your machine [(see here)](https://ucb-bar.gitbook.io/chipyard/quickstart/setting-up-risc-v-toolchain) so you can build RISCV programs on your own machine, the documentation for how to do that is a bit out of date so the rest of this lab assumes you are using the BWRC environment. 
 To begin, log into a BWRC machine by either SSHing into one of the login servers like `bwrcrdsl-1.eecs.berkeley.edu` or by going up to one of the four workstations that are set up on benches 11 and 12 in BWRC and logging in. Then, simply source this environment file to active the Bringup Class environment and get access to all the tools you’ll need.
 ``` bash
 source /tools/C/ee290-fa24-2/ee290-env.sh
@@ -92,7 +93,7 @@ This folder contains a bunch of subfolders that each contain an `include` and `s
 
 #### The Blinky Program
 To introduce the Baremetal IDE build flow, we are going start off with a blinky program which is kind of like the “Hello World” of embedded systems programming. All it will do is blink the LED attached to GPIO pin 0 at 5 Hz. This program has been simplified down to the bare minimum to make it easier to understand, ignoring all of the provided libraries and style conventions in favor of directly reading and writing to registers. We will go over cleaner, more idiomatic examples later on, but it’s important to know what’s going on underneath the hood. If you want to dig deeper into how the actual build process is handled and how all the steps of compilation fit together, Yufeng Chi from the SLICE lab has written an excellent guide [here]( https://notes.tk233.xyz/risc-v-soc/risc-v-baremetal-from-the-ground-up-chipyard-edition) going over how to build a program from scratch without something like Baremetal IDE.
-``` C
+``` c
 #include <stdint.h>
 
 uint32_t *GPIOA_OUTPUT_VAL = (uint32_t*) 0x1001000CUL;
@@ -150,7 +151,7 @@ Once we have our ELF binary of program, we now need to somehow get it onto the c
 ### UART-TSI Programming
 Our emulated chip has a UART-TSI port which is an interface that allows a computer to make TileLink read/writes by reading/writing to a UART. Normally, this would be on a separate FPGA when you are talking to a real chip but for simplicity, this lab only uses one FPGA. `uart_tsi` is a program that can read in an ELF binary, read the header, and issue the correct write commands to load the binary into the chip's memory. UART-TSI has the benefit of being relatively fast and lightweight, but has the downside of requiring an FPGA to work. To begin, simply type `uart_tsi` in your console which displays the help screen.
 
-``` Bash
+``` bash
 Starting UART-based TSI
 Usage: ./uart_tsi +tty=/dev/pts/xx <PLUSARGS> <bin>
        ./uart_tsi +tty=/dev/ttyxx  <PLUSARGS> <bin>
@@ -180,7 +181,7 @@ Let's break down the arguments here
 
 Putting that all together we get this command to load the blinky binary we just built to the chip.
 
-``` Bash
+``` bash
 uart_tsi +tty=[YOUR_TTY] +baudrate=921600 build/d01/blinky.elf
 ```
 
@@ -238,3 +239,7 @@ Start address 0x00000000200000a8, load size 17392
 Transfer rate: 3 KB/sec, 4348 bytes/write.
 ```
 From here you can either type `run` and let the program start or set a breakpoint. At this point you are in GDB and can treat it like any other debugging session.
+
+>**Task 2** Set a breakpoint on the delay function. What value is the stack pointer when you enter the function? What address is the `mtime_start` variable at?
+
+>**Task 3** Now that you've seen how to program the chips and how to write a basic program for bare metal, modify this program so the LED will only blink when the button is pressed. As a reminder, the button is hooked up to pin 1 of the GPIO bank. The [U540 Manual](https://www.sifive.com/document-file/freedom-u540-c000-manual) may be helpful for finding which registers need to be set and read.
