@@ -3,7 +3,9 @@ title: Baremetal IDE Lab
 layout: default
 nav_order: 11
 ---
-
+{: .important }
+> This lab has changed since last Tuesday when it was released, if you have already cloned the repo, please pull the latest changes before preceeding.
+> This lab is due Monday, 11/18 at 11:59PM. Please upload your final lab report to gradescope by then.
 
 # Baremetal IDE Lab
 Baremetal IDE is an SDK developed and maintained by the SLICE lab at Berkeley which allows you to quickly develop C/C++ for chips developed in Chipyard. As implied by the name, Baremetal IDE focuses on providing a bunch of libraries, scripts and device drivers to build “baremetal” programs which run without an operating system like Linux or Zephyr. Programming for bare metal means that you don’t have a bunch of operating system services that you may be used to like multithreading, device drivers, dynamic linking, etc, but in return, you have full control of your code and can extract the maximum amount of performance out of your chips. Baremetla IDE provides a thin layer of drivers and libraries that handles things like malloc or print. This lets you focus on building your workloads to test your chips instead of spending your time messing with linker scripts, stdlib versions, and device drivers.  
@@ -78,7 +80,7 @@ This file contains defines for all of the MMIO devices within a chip as well as 
 A dummy file for CMake to add to include chip_config.h
 
 `CMakeLists.txt`  
-This is the file that tells CMake to add the header file we just created to the project and defines what device drivers CMake should link. By default, this currently contains the rocketcore and clint drivers but you may need to add others for the rest of the lab using the `target_link_libraries` directive.
+This is the file that tells CMake to add the header file we just created to the project and defines what device drivers CMake should link. By default, this currently contains the RocketCore and CLINT drivers but you may need to add others for the rest of the lab using the `target_link_libraries` directive.
 
 `labchip.cfg`  
 This file sets the configuration for JTAG debugging
@@ -164,7 +166,8 @@ ERROR: Must use +tty=/dev/ttyxx to specify a tty
 
 Let's break down the arguments here  
 `+tty=<tty>` specifies what serial port the chip's UART-TSI port is on.
->> Unfortunately, due to the way Unix handles serial devices, the exact device ID changes every time you unplug and replug your device. The best way of figuring out which serial port is which is unplug the device you are trying to find the id of, run the command `ls /dev/ttyUSB*` to lists out all remaining USB serial ports, plug the device in again, and run the command one last time to find the new serial port. For the lab, UART-TSI is on the usb port hooked directly up to the FPGA, not the one plugged into the FT-LINK.
+{: .note }
+Unfortunately, due to the way Unix handles serial devices, the exact device ID changes every time you unplug and replug your device. The best way of figuring out which serial port is which is unplug the device you are trying to find the id of, run the command `ls /dev/ttyUSB*` to lists out all remaining USB serial ports, plug the device in again, and run the command one last time to find the new serial port. For the lab, UART-TSI is on the usb port hooked directly up to the FPGA, not the one plugged into the FT-LINK.
 
 `+baudrate=<baudrate>` specifies which baudrate the computer should talk to the chip at. This must match whatever the chip was configured for. In our case, this is 921600 baud.
 
@@ -242,4 +245,315 @@ From here you can either type `run` and let the program start or set a breakpoin
 
 >**Task 2** Set a breakpoint on the delay function. What value is the stack pointer when you enter the function? What address is the `mtime_start` variable at?
 
->**Task 3** Now that you've seen how to program the chips and how to write a basic program for bare metal, modify this program so the LED will only blink when the button is pressed. As a reminder, the button is hooked up to pin 1 of the GPIO bank. The [U540 Manual](https://www.sifive.com/document-file/freedom-u540-c000-manual) may be helpful for finding which registers need to be set and read.
+>**Task 3** Now that you've seen how to program the chips and how to write a basic program for bare metal, modify this program so the LED will only blink when the button is pressed. As a reminder, the button is hooked up to pin 1 of the GPIO bank. The [U540 Manual](https://www.sifive.com/document-file/freedom-u540-c000-manual) may be helpful for finding which registers need to be set and read. Copy and paste this code into your final lab report appendix as a code block.
+
+## Idiomatic BaremetalIDE
+Now that we've written some Baremetal code, let's take a closer look at some other more idiomatic code that uses the drivers built into BaremetalIDE instead of doing everything from scratch. If you take a look at `lab/d02/src/main.c`, you should see a file like this:
+``` c
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "chip_config.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+/* USER CODE BEGIN PFP */
+
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN PUC */
+
+
+void app_init() {
+  GPIO_InitType gpio_init_config;
+  gpio_init_config.mode = GPIO_MODE_OUTPUT;
+  gpio_init_config.pull = GPIO_PULL_NONE;
+  gpio_init_config.drive_strength = GPIO_DS_STRONG;
+
+  gpio_init(GPIOA, &gpio_init_config, GPIO_PIN_0);
+  
+  gpio_write_pin(GPIOA, GPIO_PIN_0, 1);
+}
+
+
+
+void app_main() {
+  gpio_write_pin(GPIOA, GPIO_PIN_1, 1);
+  msleep(100);
+  
+  gpio_write_pin(GPIOA, GPIO_PIN_1, 0);
+  msleep(100);
+
+}
+/* USER CODE END PUC */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(int argc, char **argv) {
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Configure the system clock */
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */  
+  /* USER CODE BEGIN Init */
+  app_init();
+  /* USER CODE END Init */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1) {
+    app_main();
+    // return 0;
+  }
+  /* USER CODE END WHILE */
+}
+
+/*
+ * Main function for secondary harts
+ * 
+ * Multi-threaded programs should provide their own implementation.
+ */
+void __attribute__((weak, noreturn)) __main(void) {
+  while (1) {
+   asm volatile ("wfi");
+  }
+}
+```
+This may look intimidating but its really no more complicated than the blinky program we just looked at. In fact, this is just the blinky program that we just wrote, just refactored a little to use the library functions and look more like the examples. If you've ever done any work with the STM32 platform, things should look familiar. Most of the lines here are just comments that suggest where you should put different parts of your code to keep it organized. While this is a useful way of organizing things, there is no requirement to follow this convention, but it's worth getting familliar with since most of exisitng code follows this discussion.
+
+``` c
+#include "main.h"
+#include "chip_config.h"
+```
+The first two line simply include some header files. The first header, `main.h` can be found in the `lab/d02/include` folder. This just imports a bunch of standard libraries so things like `printf` and `sleep` will work and forward declares the functions that we are creating in our program.
+
+The second header file imports the `chipconfig.h` header located in the `platform/<CHIP>` folder of the chip you have specified in CMake.
+``` c
+#ifndef __CHIP_CONFIG_H
+#define __CHIP_CONFIG_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "riscv.h"
+#include "clint.h"
+#include "uart.h"
+
+
+// ================================
+//  System Clock
+// ================================
+// system clock frequency in Hz
+#define SYS_CLK_FREQ   16000000
+
+// CLINT time base frequency in Hz
+#define MTIME_FREQ     16000000
+
+
+// ================================
+//  MMIO devices
+// ================================
+#define DEBUG_CONTROLLER_BASE   0x00000000U
+#define BOOTROM_BASE            0x00010000U
+#define RCC_BASE                0x00100000U
+#define CLINT_BASE              0x02000000U
+#define CACHE_CONTROLLER_BASE   0x02010000U
+#define PLIC_BASE               0x0C000000U
+#define UART_BASE               0x10020000U
+#define QSPI_FLASH_BASE         0x20000000U
+#define DRAM_BASE               0x80000000U
+
+/* Peripheral Pointer Definition */
+#define UART0_BASE              (UART_BASE)
+
+/* Peripheral Structure Definition */
+#define RCC                     ((RCC_Type *)RCC_BASE)
+#define PLL                     ((PLL_Type *)PLL_BASE)
+#define CLINT                   ((CLINT_Type *)CLINT_BASE)
+#define PLIC                    ((PLIC_Type *)PLIC_BASE)
+#define PLIC_CC                 ((PLIC_ContextControl_Type *)(PLIC_BASE + 0x00200000U))
+#define UART0                   ((UART_Type *)UART0_BASE)
+
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // __CHIP_CONFIG_H
+```
+This file defines the clock frequency the chip is running at which in turn controls things functions like `sleep` or setting the baudrate and defines pointers to all of our devices we can pass to our device drivers.
+
+The next section of our code is the initialization function.
+``` c
+void app_init() {
+  GPIO_InitType gpio_init_config;
+  gpio_init_config.mode = GPIO_MODE_OUTPUT;
+  gpio_init_config.pull = GPIO_PULL_NONE;
+  gpio_init_config.drive_strength = GPIO_DS_STRONG;
+
+  gpio_init(GPIOA, &gpio_init_config, GPIO_PIN_0);
+  
+  gpio_write_pin(GPIOA, GPIO_PIN_0, 1);
+}
+```
+At a high level, all this code is doing is initializing the GPIO bank to output on pin 0 and setting pin 0 to high. The first line initializes a struct which contains all of the configuration settings of a peripheral. This is defined in `driver/rocket-chip-blocks/gpio/gpio.h` and is a pattern that is used for all Baremetal IDE drivers. The next three lines simply set the parameters, we want our pin to be output, our drive strength to be strong, and the internal pullup resistor to be disabled. After that, we call `gpio_init` function with our config struct as a parameter. In general, all Baremetal IDE drivers that access an MMIO peripheral follow the same pattern, where the first parameter is always a pointer to that peripheral. This pointer is defined in `chipconfig.h` so it can be used throughout your program. Since each GPIO pin within a bank can be configured individually, we also specify that we want to apply these settings to `GPIO_PIN_0`, a macro which is defined in `gpio.h`. Finally, we set pin 0 of the bank to 1.
+
+Next, we have the function `app_main` which toggles the GPIO pin to flash it. This is essentially the same code we had in the previous example, only using the library functions. `msleep` takes the place of the delay function we previously wrote, sleeping for 100 milliseconds and automatically converting the time to machine ticks using the `MTIME_FREQ` variable defined in `chipconfig.h`.
+``` c
+void app_main() {
+  gpio_write_pin(GPIOA, GPIO_PIN_1, 1);
+  msleep(100);
+  
+  gpio_write_pin(GPIOA, GPIO_PIN_1, 0);
+  msleep(100);
+}
+```
+
+Finally we have the actual main function. This sumply calls the `app_init` and `app_main` functions which blinks our LED.
+``` c
+int main(int argc, char **argv) {
+  app_init();
+
+  while (1) {
+    app_main();
+  }
+}
+```
+
+Below the main function, there is one last mysterious function, `__main`. If you have multiple HARTs in a system like on our taped out chips, all HARTs but hart0 will run this function instead of main. For now, this code simply tells each core to go to sleep until they recieve an interrupt.
+``` c
+void __attribute__((weak, noreturn)) __main(void) {
+  while (1) {
+   asm volatile ("wfi");
+  }
+}
+```
+
+The `CMakeLists.txt` file is also updated to include all the files in the `include` directory
+``` bash
+add_executable(hello
+  src/main.c
+)
+
+target_include_directories(hello PUBLIC include)
+
+target_link_libraries(hello PRIVATE 
+  -L${CMAKE_BINARY_DIR}/glossy -Wl,--whole-archive glossy -Wl,--no-whole-archive
+)
+```
+
+To build this program, use the following command which should create a binary called `blinky-2.elf`
+``` bash
+cmake --build ./build/ --target blinky-2
+```
+> **Task 4**: If you read through current `chip_config.h`, you'll notice that it's missing a definition for the GPIO header if you try and build, CMake complains about not missing `hal_gpio.h`. Update the chip platform files so that this demo compiles and load the demo onto the chip using your method of choice. Then add in your changes from Task 3 to only blink the light when the button is pressed, this time using the GPIO driver functions.
+
+> **Task 5**: Pay close attention to the blinking of the light, how does the blinking compare to the last program we ran and the nominal value of 5Hz we were targeting? Is it faster or slower that we would expect and what frequency does in approximatley seem to be flashing at? What might be causing this discrepancy? Hint, where do we tell our program how fast our chip is running? If you already fixed this in the previous step, you get a cookie*.
+>
+>**Terms and Conditions Apply*
+
+## UART and Console IO
+### UART, STDIO, and Baremetal IDE
+When you are writing programs for your demos, you may want to communicate with the host processor to send out data, get user input, or so on. Baremetal IDE makes it really easy to use the UART to send text back and forth, implementing all the standard C console functions such as `printf`, `puts`, `scanf`, etc. The current chip configuration uses `UART0` for stdio but this can be configurable if you have multiple UARTs.
+
+{: .note }
+`printf` and `scanf` are quite heavy in terms of code size, nearly 20kb each which may be an issue if you are trying to run your code from a chip's scratchpad. This is only included if you use the substitution features of these functions so `printf("hello world)` will be small but `printf("Hello %s", name)` will be large.
+
+`lab/d03` contains a basic hello world program that prints "Hello World" to the console. We won't go into too much detail here since it's largely the same as the blinky example, but but we will pay special attention to the init function.  
+Any time you wish to use the UART, you MUST call uart_init to set the baudrate.
+``` c
+void app_init() {
+  UART_InitType UART_init_config;
+  UART_init_config.baudrate = 115200;
+  UART_init_config.mode = UART_MODE_TX_RX;
+  UART_init_config.stopbits = UART_STOPBITS_2;
+  uart_init(UART0, &UART_init_config);
+}
+```
+This should be familliar to you now that you have seen the GPIO init code. The key parameter here is `baudrate`, or the rate that the data changes. You can kind of think of this as the bitrate of the UART, though that's not completely true. This **MUST** be matched between your computer and your device, otherwise you will just recieve gibberish. Here's a list of standard baudrates, while you can in principle choose any baudrate you want, a lot of softwre can only use these baud rates and some hardware won't like arbitrary rates. The rest of the configuration bits don't matter quite as much.
+
+{: .note :}
+The chip baudrate is derived by setting a clock divider from the chip's clock frequency which requires knowing the chip's frequency. Make sure you have proerly fixed the issue described in Task 5 before starting this section.
+
+|Baud Rate|
+|---------|
+|2400     |
+|4800     |
+|9600     |
+|14400    |
+|28800    |
+|38400    |
+|57600    |
+|76800    |
+|115200   |
+|230400   |
+|921600   |
+
+When you are ready, compile the program with the following command to create the binary `hello.elf`
+``` bash
+cmake --build ./build/ --target hello
+```
+### Attaching a Console to UART
+Before we load the hello world program onto our "chip", we need to have a program on our PC which can recieve the text over UART called a Serial Console. There are many serial consoles available for Linux, MacOS, and Windows such as screen, minicom, RealTerm, and even VSCode itself, but today we will focus on Picocom since it strikes a nice balance between features and simplicity.
+
+On this FPGA, we have mapped the UART to pins on PMOD header 1 which goes to the FTLink. The FTLink in turn exposes two usbTTYs, one used for JTAG and the other for talking to UART. To begin, find which serial device corresponds to the the UART of the FT Link Adapter. This should be the higher of the two devices that show up when you plug in the FT Link.
+
+Once you have the serial port path, simply run the following command in a separate terminal window to connect to the UART where you replace `XXX` with the actual device number.
+``` bash
+picocom -b 115200 /dev/ttyUSBXXX
+```
+The `-b` argument specifies the baud rate of 115200. If you omit this flag, picocom will default to 9600 baud. You should now see an empty screen except for the message `Terminal is ready` at the top. This is a serial console and any characters that are transmitted from the chip will show up on the screen and anything you type will be sent to the chip over UART. A good sanity check at this point is to try type some random characters into the console at this point. Nothing should show up, but the RX light on the FT Link should start blinking, indicating you are transmitting data to the chip over UART. If you don't see anything flashing, you have likely chosen the wrong serial port.
+
+Finally, upload `hello.elf` using your method of choice in another terminal window and you should see your serial console fill with the phrase "Hello World". If you instead see garbage characters such as �, make sure you have your baud rate set properly on both and `SYS_CLK_FREQ` is set properly for our chip (40MHz).
+
+> **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string "Hello <NAME>!". If you aren't familliar with how C's stdio works, it may be worth trying to write this program first for linux before trying to run this on the chip. Copy and paste your code in an appendix code block and include a screenshot of the program waiting for input and while it's printing
+
+# Deliverables
+Please upload a pdf containing your writeups for each task and include all code you wrote in an appendix separate from your main answers by Monday, 11/18, 11:59 PM. 
