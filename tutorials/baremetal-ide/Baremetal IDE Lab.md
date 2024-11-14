@@ -68,7 +68,7 @@ git checkout fa24-lab
 ```
 
 ## Exploring Baremetal IDE
-Now that we've got a copy of Baremetal IDE, let's take a closer look at all of its files and how it works. If you haven’t already, we highly recommend opening your cloned Baremetal IDE folder in a proper editor. The ee290 environment contains VSCode preinstalled which can be accessed with the command `code` from the terminal. Baremetal IDE is based around [CMake]( https://cmake.org/), a build system that encourages modularity and makes it easy to manage lots of dependencies. CMake incredibly powerful, but that power also comes with a good deal of complexity. While this lab will attempt to explain the basics, we highly encourage you to explore CMake further as it is one of the most widely used build systems for C/C++ in both embedded and application programming. While you are here, you should take some time to get familiar with the directory structure of Baremetal IDE. Here’s a quick overview to highlight the key files:
+Now that we've got a copy of Baremetal IDE, let's take a closer look at all of its files and how it works. If you haven’t already, we highly recommend opening your cloned Baremetal IDE folder in a proper editor. The ee290 environment contains VSCode preinstalled which can be accessed with the command `code` from the terminal. Baremetal IDE is based around [CMake]( https://cmake.org/), a meta build system that encourages modularity and makes it easy to manage lots of dependencies. CMake incredibly powerful, but that power also comes with a good deal of complexity. While this lab will attempt to explain the basics, we highly encourage you to explore CMake further as it is one of the most widely used build systems for C/C++ in both embedded and application programming. While you are here, you should take some time to get familiar with the directory structure of Baremetal IDE. Here’s a quick overview to highlight the key files:
 
 ### `platform/labchip`
 Within the platform folder, we have a bunch of folders containing chip specific files and information. For today, this will be the `labchip` folder. Each folder will have at minimum the five following files, though a chip may have more to support other functionality or include chip specific drivers.
@@ -205,6 +205,23 @@ Debugging a chip with JTAG requires two programs, OpenOCD and GDB. OpenOCD is a 
 ``` bash
 openocd -f platform/labchip/labchip.cfg
 ```
+
+{: .note }
+>If you get an error like the one below:
+>``` bash
+>Info : clock speed 2000 kHz
+>Info : JTAG tap: riscv.cpu tap/device found: 0x02d120dd (mfg: 0x06e (Altera), part: 0x2d12, ver: 0x0)
+>Error: IR capture error at bit 5, saw 0x55 not 0x...3
+>Warn : Bypassing JTAG setup events due to errors
+>Error: dtmcontrol is 0. Check JTAG connectivity/board power.
+>Error: [riscv.cpu0] Examination failed
+>Warn : target riscv.cpu0 examination failed
+>Info : [riscv.cpu0] starting gdb server on 3333
+>Info : Listening on port 3333 for gdb connections
+>Error: Target not examined yet
+>```
+>This is because OpenOCD is trying to connect to the FPGA's JTAG instead of the FT Link JTAG. To fix this, just unplug the FPGA's usb cable before you connect
+
 This starts up OpenOCD using the chip specific settings we defined in our platform file and starts up some network sockets that other programs can connect to.
 
 While you can use OpenOCD standalone to peek and poke registers and memory, the real benefit of JTAG comes when you use a higher level debugger. In a separate terminal run the follwing command:
