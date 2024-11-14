@@ -145,6 +145,14 @@ This is what tells CMake that our blinky program is a program that should be bui
 cmake -S ./ -B ./build/ -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip
 cmake --build ./build/ --target blinky
 ```
+
+{: .note }
+>If you are using windows, you will need to add the `-G "Unix Makefiles"` argument to the first CMake call so it looks like this:
+>``` bash
+>cmake -S ./ -B ./build/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip
+> ```
+> This is because by default CMake on Windows generates build files for a build system called [Ninja](https://ninja-build.org/).
+
 The first command reads all of our CMakeLists.txt files and configures the tools that actually build the project. This only needs to be run if you change a CMakeLists.txt file or you are just setting up your repository. Otherwise, the second command is sufficient. The second command actually builds the program in the build folder. If you look within your build folder, you should now have the file `build/lab/d01/main.c` which is our final binary.
 
 ## Programming the Chip
