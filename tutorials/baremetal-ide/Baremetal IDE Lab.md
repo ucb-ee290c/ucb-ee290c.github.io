@@ -98,12 +98,12 @@ To introduce the Baremetal IDE build flow, we are going start off with a blinky 
 ``` c
 #include <stdint.h>
 
-uint32_t *GPIOA_OUTPUT_VAL = (uint32_t*) 0x1001000CUL;
-uint32_t *GPIOA_OUTPUT_EN  = (uint32_t*) 0x10010008UL;
-uint32_t *CLINT_MTIME      = (uint32_t*) 0x0200BFF8UL;
+volatile uint32_t *GPIOA_OUTPUT_VAL = (uint32_t*) 0x1001000CUL;
+volatile uint32_t *GPIOA_OUTPUT_EN  = (uint32_t*) 0x10010008UL;
+volatile uint64_t *CLINT_MTIME      = (uint64_t*) 0x0200BFF8UL;
 
-void delay(unsigned int ticks) {
-  unsigned int mtime_start;
+void delay(uint64_t ticks) {
+  uint64_t mtime_start = *CLINT_MTIME;
   while (*CLINT_MTIME - mtime_start < ticks);
 }
 
@@ -119,11 +119,11 @@ void main() {
             *GPIOA_OUTPUT_VAL = 0b0;
         }
         counter ++;
-        delay(4000000);
+        delay(20000);
     }
 }
 ```
-The blinky program begins with some pointer definitions that define where all of the control registers of the GPIOs exist. Of special note is the `CLINT_MTIME` register which is separate from the GPIO bank. `CLINT_MTIME` is a register that simply counts up once every clock cycle which is useful for timing operations and setting delays. Next, we have a small function that uses the `MTIME` register to implement a small delay function, followed by our main program. Here, we simply enable pin zero’s output by writing a 1 to bit 0 of the `GPIOA_OUTPUT_EN` register then jump into our blink loop, either setting pin 0 high or low depending on the counter and delaying for 4,000,000 clock cycles. Since our chip is running at 40MHz, this corresponding to toggling the GPIO pin 10 times a second resulting in a blink rate of 5Hz. 
+The blinky program begins with some pointer definitions that define where all of the control registers of the GPIOs exist. Of special note is the `CLINT_MTIME` register which is separate from the GPIO bank. `CLINT_MTIME` is a register that simply counts up once every "tick" which is 1/1000 of the clock frequnecy. For us this is 40kHz which is useful for timing operations and setting delays. Next, we have a small function that uses the `MTIME` register to implement a small delay function, followed by our main program. Here, we simply enable pin zero’s output by writing a 1 to bit 0 of the `GPIOA_OUTPUT_EN` register then jump into our blink loop, either setting pin 0 high or low depending on the counter and delaying for 4,000,000 clock cycles. Since our chip is running at 40MHz, this corresponding to toggling the GPIO pin 2 times a second resulting in a blink rate of 1Hz. 
 
 #### Building Blinky
 If you take a look at the d01 folder within lab, you should also see a `CMakeLists.txt` file in addition to `main.c`. 
@@ -419,7 +419,7 @@ extern "C" {
 #define SYS_CLK_FREQ   16000000
 
 // CLINT time base frequency in Hz
-#define MTIME_FREQ     16000000
+#define MTIME_FREQ     16000
 
 
 // ================================
