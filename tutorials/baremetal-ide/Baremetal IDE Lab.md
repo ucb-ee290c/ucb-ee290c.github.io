@@ -567,15 +567,15 @@ When you are ready, compile the program with the following command to create the
 cmake --build ./build/ --target hello
 ```
 ### Attaching a Console to UART
-Before we load the hello world program onto our "chip", we need to have a program on our PC which can recieve the text over UART called a Serial Console. There are many serial consoles available for Linux, MacOS, and Windows such as screen, minicom, RealTerm, and even VSCode itself, but today we will focus on Picocom since it strikes a nice balance between features and simplicity.
+Before we load the hello world program onto our "chip", we need to have a program on our PC which can recieve the text over UART called a Serial Console. There are many serial consoles available for Linux, MacOS, and Windows such as screen, minicom, RealTerm, and even VSCode itself, but today we will focus on screen since it is simple and widely available.
 
 On this FPGA, we have mapped the UART to pins on PMOD header 1 which goes to the FTLink. The FTLink in turn exposes two usbTTYs, one used for JTAG and the other for talking to UART. To begin, find which serial device corresponds to the the UART of the FT Link Adapter. This should be the higher of the two devices that show up when you plug in the FT Link.
 
 Once you have the serial port path, simply run the following command in a separate terminal window to connect to the UART where you replace `XXX` with the actual device number.
 ``` bash
-picocom -b 115200 /dev/ttyUSBXXX
+screen /dev/ttyUSBXXX 115200
 ```
-The `-b` argument specifies the baud rate of 115200. If you omit this flag, picocom will default to 9600 baud. You should now see an empty screen except for the message `Terminal is ready` at the top. This is a serial console and any characters that are transmitted from the chip will show up on the screen and anything you type will be sent to the chip over UART. A good sanity check at this point is to try type some random characters into the console at this point. Nothing should show up, but the RX light on the FT Link should start blinking, indicating you are transmitting data to the chip over UART. If you don't see anything flashing, you have likely chosen the wrong serial port.
+The `115200` argument specifies the baud rate of 115200. If you omit this flag, screen will default to 9600 baud. You should now see an empty screen. This is a serial console and any characters that are transmitted from the chip will show up on the screen and anything you type will be sent to the chip over UART. A good sanity check at this point is to try type some random characters into the console at this point. Nothing should show up, but the RX light on the FT Link should start blinking, indicating you are transmitting data to the chip over UART. If you don't see anything flashing, you have likely chosen the wrong serial port.
 
 Finally, upload `hello.elf` using your method of choice in another terminal window and you should see your serial console fill with the phrase "Hello World". If you instead see garbage characters such as �, make sure you have your baud rate set properly on both and `SYS_CLK_FREQ` is set properly for our chip (40MHz).
 
