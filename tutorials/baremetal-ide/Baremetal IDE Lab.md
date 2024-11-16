@@ -36,10 +36,10 @@ Here’s how things are connected on the FPGA:
 | ------------- | ------------------------ |
 | USB Serial    | Port	UART TSI           |
 | FPGA RST	    | Chip Reset               |
-| FPGA LED 1    | Chip Status (Always lit) |
-| FPGA LED 2    | GPIO 0                   |
+| FPGA LED 1    | GPIO 0                   |
+| FPGA LED 2    | Chip Status (Always lit) |
 | PMOD 1	      | JTAG + UART              |
-| FPGA BTN	    | GPIO 1                   |
+| USER BTN	    | GPIO 1                   |
 
 And here’s a memory map of the system:
 
@@ -188,7 +188,10 @@ Unfortunately, due to the way Unix handles serial devices, the exact device ID c
 
 `<bin>` is the binary that you want to load onto the chip. This can be `none` if no binary is desired.
 
-> **Task 1**: Write down a sequence of uart_tsi commands that will turn on the LED attached to GPIO pin 0 and another sequence that will allow you to read the status of the button on GPIO pin 1.
+> **Task 1**: Write down a sequence of uart_tsi commands that will turn on the LED attached to GPIO pin 0 and another sequence that will allow you to read the status of the button on GPIO pin 1. The GPIO register map can be found in the U540 Manual which can be found here: [U540 Manual](https://www.sifive.com/document-file/freedom-u540-c000-manual).
+
+{: .note }
+>When the user manual specifies that GPIO bank can be configured "bitwise", it means that each bit within a configuration register corresponds to a certain GPIO pin, eg bit 0 will configure Pin 0, bit 1 will configure Pin 1, and so on. If you have fewer GPIO pins than 32 in a bank, the other bits will always read zero and ignore writes.
 
 
 Putting that all together we get this command to load the blinky binary we just built to the chip.
@@ -197,7 +200,7 @@ Putting that all together we get this command to load the blinky binary we just 
 uart_tsi +tty=[YOUR_TTY] +baudrate=921600 build/d01/blinky.elf
 ```
 
-Before running a program with uart_tsi, make sure to hit the reset button. While the read/writes will work just fine, the chip neeeds to be fresh out of the reset state in order to start running the loaded program correctly. If everything worked properly, you should see an LED flashing on the FPGA.
+Before running a program with uart_tsi, make sure to hit the reset button. While the read/writes will work just fine, the chip neeeds to be fresh out of the reset state in order to start running the loaded program correctly. If everything worked properly, you should see an LED flashing on the FPGA. Think back to the chipyard boot process and you might be able to figure out why.
 
 ### JTAG Programming
 JTAG is the other main programming interface on our chip and it is much more powerful than UART-TSI is, giving you full access into the internal state of the chip such as registers and program counters in addition to memory and letting you set breakpoints and single step a program for easier debugging. In fact, you can attach GDB to your chip and debug your program as if it were a desktop application with all of the features you would expect.
@@ -579,7 +582,7 @@ The `115200` argument specifies the baud rate of 115200. If you omit this flag, 
 
 Finally, upload `hello.elf` using your method of choice in another terminal window and you should see your serial console fill with the phrase "Hello World". If you instead see garbage characters such as �, make sure you have your baud rate set properly on both and `SYS_CLK_FREQ` is set properly for our chip (40MHz).
 
-> **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string "Hello <NAME>!". If you aren't familliar with how C's stdio works, it may be worth trying to write this program first for linux before trying to run this on the chip. Copy and paste your code in an appendix code block and include a screenshot of the program waiting for input and while it's printing
+> **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string "Hello <NAME>!". While Baremetal IDE supports STDIO for input, output is currently not working properly so you will have to directly use the `uart_receive` function defined in `uart.c`. Copy and paste your code in an appendix code block and include a screenshot of the program waiting for input and while it's printing
 
 # Deliverables
 Please upload a pdf containing your writeups for each task and include all code you wrote in an appendix separate from your main answers by Monday, 11/18, 11:59 PM. 
