@@ -11,3 +11,12 @@ heading_anchors: true
 
 aux_links:
   Course Website: https://ucb-ee290c.github.io/
+
+callouts:
+  important:
+    title: Important
+    color: blue
+
+  note:
+    title: Note
+    color: purple
