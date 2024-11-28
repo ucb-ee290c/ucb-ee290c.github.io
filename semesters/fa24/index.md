@@ -64,8 +64,8 @@ For access issues, message staff on Slack! Many of these require permissions.
 
 **BWRC Resources:**
 
-If you are confused as to which password is your IRIS/BWRC one, you can test at:
-- [https://iris.eecs.berkeley.edu/selfserve/](https://iris.eecs.berkeley.edu/selfserve/) -> Test your EECS Windows/LDAP Password
+- If you are confused as to which password is your IRIS/BWRC one, you can test at:
+[https://iris.eecs.berkeley.edu/selfserve/](https://iris.eecs.berkeley.edu/selfserve/)
 
 - [BWRC Computing Infrastructure slides by Brian Richards - 16 January 2023](https://docs.google.com/presentation/d/110rXp-ZtYGqgIOfiw0k9fJLmHKmXdAyZ/edit#slide=id.g1d6c43f5a99_0_97)
 
@@ -97,27 +97,27 @@ If you are confused as to which password is your IRIS/BWRC one, you can test at:
 
 ### Old Chip Testing Notes
 
-[OSCIBEAR Bringup Note](https://docs.google.com/presentation/d/19t7miUax_Of6cd3P3ku0aEF5J9rQySKc6yDeYJx9vWQ/edit?usp=sharing)
+- [OSCIBEAR Bringup Note](https://docs.google.com/presentation/d/19t7miUax_Of6cd3P3ku0aEF5J9rQySKc6yDeYJx9vWQ/edit?usp=sharing)
 
-[BearlyML22 Testing Note](https://docs.google.com/presentation/d/11BuBN2AjHtR5hc7lh9h7Z0UspvnxgiJxumvH6YZSuuI/edit?usp=sharing)
+- [BearlyML22 Testing Note](https://docs.google.com/presentation/d/11BuBN2AjHtR5hc7lh9h7Z0UspvnxgiJxumvH6YZSuuI/edit?usp=sharing)
 
-[SCuM-V22 Testing Note](https://docs.google.com/presentation/d/11fnA0iv8COFCooklE86xab1LmZUoq2lM6CnV4j3MJbs/edit?usp=sharing)
+- [SCuM-V22 Testing Note](https://docs.google.com/presentation/d/11fnA0iv8COFCooklE86xab1LmZUoq2lM6CnV4j3MJbs/edit?usp=sharing)
 
-SCuM-V23 Spec [(PDF version)](https://raw.githubusercontent.com/ucb-ee290c/scum-v-bringup/gh-pages/SCuM-V23.pdf) [(Web version)](https://ucb-ee290c.github.io/scum-v-bringup/)
+- SCuM-V23 Spec [(PDF version)](https://raw.githubusercontent.com/ucb-ee290c/scum-v-bringup/gh-pages/SCuM-V23.pdf) [(Web version)](https://ucb-ee290c.github.io/scum-v-bringup/)
 
-[Guide](https://github.com/ucb-ee290c/scum-v-bringup/blob/main/docs/README.md) on how to contribute to the spec
+- [Guide](https://github.com/ucb-ee290c/scum-v-bringup/blob/main/docs/README.md) on how to contribute to the spec
 
 ### Useful Lectures
 
-CS 61C [Playlist](https://www.youtube.com/@berkeley-cs61c)
+- CS 61C [Playlist](https://www.youtube.com/@berkeley-cs61c)
 
-EECS 151 [Playlist](https://www.youtube.com/playlist?list=PLkFD6_40KJIxrKaukIqIZMrtSRf6hNdPp)
+- EECS 151 [Playlist](https://www.youtube.com/playlist?list=PLkFD6_40KJIxrKaukIqIZMrtSRf6hNdPp)
 
 ## Course Support Links
 
-[Statement on Academic Misconduct](https://ucb-ee290c.github.io/semesters/common/statement-on-academic-misconduct)
+- [Statement on Academic Misconduct](https://ucb-ee290c.github.io/semesters/common/statement-on-academic-misconduct)
 
-[Statement on DSP Accomendation](https://ucb-ee290c.github.io/semesters/common/statement-on-dsp-accomendation)
+- [Statement on DSP Accomendation](https://ucb-ee290c.github.io/semesters/common/statement-on-dsp-accomendation)
 
 ## Staff
 
