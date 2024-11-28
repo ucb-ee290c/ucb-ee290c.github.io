@@ -32,7 +32,7 @@ For access issues, message staff on Slack! Many of these require permissions.
 
 - [Gradescope Fall 2024](https://www.gradescope.com/courses/853022)
 
-Google Drive:
+**Google Drive:**
 
 - [EE194 Tapeout/Bringup Drive](https://drive.google.com/drive/u/0/folders/0APCrUcTRXIAQUk9PVA)
 
@@ -42,7 +42,7 @@ Google Drive:
 
 - [Tapeout/Bringup Resources - Public Wiki](https://sites.google.com/berkeley.edu/tapeoutclasswiki/home?authuser=0)
 
-GitLab Repository:
+**GitLab Repository:**
 
 - [DSP24 Repository (bearly-final branch)](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp24-chips)
 
@@ -52,9 +52,44 @@ GitLab Repository:
 
 - [Chip Specs - Gitlab Wiki](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp24-chips/-/wikis/home)
 
-If you are confused as to which password is your IRIS/BWRC one, you can test at:
+**PCB Links:**
 
+- [Altium Workspace - https://ucb-bar.365.altium.com/](https://ucb-bar.365.altium.com/getstarted)
+
+- [Parts List & Team Status Google Sheet](https://docs.google.com/spreadsheets/d/1QnngtVF8Tji_2IxZC2dRvMxNdF9dWMUDHkmLEommYXc/edit?gid=1106196622#gid=1106196622)
+
+**BWRC Resources:**
+
+If you are confused as to which password is your IRIS/BWRC one, you can test at:
 - [https://iris.eecs.berkeley.edu/selfserve/](https://iris.eecs.berkeley.edu/selfserve/) -> Test your EECS Windows/LDAP Password
+
+- [BWRC Computing Infrastructure slides by Brian Richards - 16 January 2023](https://docs.google.com/presentation/d/110rXp-ZtYGqgIOfiw0k9fJLmHKmXdAyZ/edit#slide=id.g1d6c43f5a99_0_97)
+
+### New Chip Testing Notes
+
+- [DSP Bring-Up Log](https://docs.google.com/document/d/1b8uBt5jiAvetqXC5461Ghwqu5Urc80badaYFd1H4WyQ/edit?tab=t.0#heading=h.azsjwi5nd07k)
+
+- [BearlyML24 Bring-Up Log](https://docs.google.com/document/d/1fYoAgADz8iEnAtecSEolOnUpnleByqtfKJqG5zQ_QPc/edit?tab=t.0#heading=h.jidrw6bz6uf5)
+
+A new as of Fall 2024 test plan template can be found on the drive / in the slides. 
+
+- [BoraBoard: Boravision test plan](https://docs.google.com/document/d/18GUl2SRCS2BOFe1QiRvAeT9OHxB7Z-wpwT33fAMCCoc/edit?usp=sharing) 
+
+- [BoraBoard: FA2024 Bringup Test Plan Template _ BoraVoice](https://docs.google.com/document/d/1CaCoL889mbWNGqzfL1xzBOUlbdl8NQwICQ-_xh8JjIU/edit)
+
+- [BoraBoard: BorAI FA2024 Bringup Test Plan](https://docs.google.com/document/d/1xJGThxVoav2TazcJc4VIueWXmZEGkyUKVPD0OmBh0v0/edit) 
+
+- [BoraBoard: Inverse Shazam](https://drive.google.com/drive/folders/1_vBw53Rob0fXR7EwUDQ3Bjd2Zcx0yvMG?usp=drive_link)
+
+- [BreakBoard: BearlyVision Test Plan](https://docs.google.com/document/d/1PrzDGF0ru92xNcrGwyWM8UscMSYCMTdF74RX7NB65h4/edit?usp=sharing) 
+
+- [BreakBoard: Shmooooo FA2024 Bringup Test Plan](https://docs.google.com/document/d/1oWi6PKBx2U1HZO2uY-HX8MsvozH7Rw0pomKXfv2l-PM/edit?usp=sharing)
+
+- [PendulumBoard: 360 Pendulum Bringup Test Plan](https://docs.google.com/document/d/1mHioJMuWcBY_013aSAw8JWsqYTAgpDJA3lMloMx1z2I/edit)
+
+- [LinuxBoard: Demo Linux F2024 Bringup Test Plan Template](https://docs.google.com/document/d/146WymlKXXeWQQNhRc1jA4uX08I4t4CSQEecerWo_OX4/edit?usp=sharing)  
+
+- [SCuM-V Bringup Plan 2024](https://docs.google.com/document/d/1YrfA__2HJTrtaTfEXbGAzsECmPM7QpOnUFl70gNJ6eg/edit#heading=h.29lgndn0bg2z) 
 
 ### Old Chip Testing Notes
 
@@ -67,8 +102,6 @@ If you are confused as to which password is your IRIS/BWRC one, you can test at:
 SCuM-V23 Spec [(PDF version)](https://raw.githubusercontent.com/ucb-ee290c/scum-v-bringup/gh-pages/SCuM-V23.pdf) [(Web version)](https://ucb-ee290c.github.io/scum-v-bringup/)
 
 [Guide](https://github.com/ucb-ee290c/scum-v-bringup/blob/main/docs/README.md) on how to contribute to the spec
-
-[BWRC Computing Infrastructure slides by Brian Richards - 16 January 2023](https://docs.google.com/presentation/d/110rXp-ZtYGqgIOfiw0k9fJLmHKmXdAyZ/edit#slide=id.g1d6c43f5a99_0_97)
 
 ### Useful Lectures
 
@@ -83,7 +116,6 @@ EECS 151 [Playlist](https://www.youtube.com/playlist?list=PLkFD6_40KJIxrKaukIqIZ
 [Statement on DSP Accomendation](https://ucb-ee290c.github.io/semesters/common/statement-on-dsp-accomendation)
 
 ## Staff
-
 
 | Name              | Role       | Email                        |
 |-------------------|------------|------------------------------|
