@@ -36,7 +36,7 @@ For access issues, message staff on Slack! Many of these require permissions.
 
 - [EE194 Tapeout/Bringup Drive](https://drive.google.com/drive/u/0/folders/0APCrUcTRXIAQUk9PVA)
 
-- [Specifically, our Fall 2024 folder](https://drive.google.com/drive/u/0/folders/1VdQbTQDC6YEtWkFTcoHKr3WOPrt8zpya)
+- [Specifically, our Fall 2024 folder, with lectures/recordings/etc..](https://drive.google.com/drive/u/0/folders/1VdQbTQDC6YEtWkFTcoHKr3WOPrt8zpya)
 
 - [BWRC Resources Drive](https://drive.google.com/drive/u/0/folders/0ALGvUHbPFpiCUk9PVA)
 
@@ -56,7 +56,11 @@ For access issues, message staff on Slack! Many of these require permissions.
 
 - [Altium Workspace - https://ucb-bar.365.altium.com/](https://ucb-bar.365.altium.com/getstarted)
 
+- [Altium Fall 2024 PCB & Archive Folders](https://ucb-bar.365.altium.com/designs/folder-6BC7549D-923F-424D-8C14-B42F3C81AA72)
+
 - [Parts List & Team Status Google Sheet](https://docs.google.com/spreadsheets/d/1QnngtVF8Tji_2IxZC2dRvMxNdF9dWMUDHkmLEommYXc/edit?gid=1106196622#gid=1106196622)
+
+- [FT Link Debugger PCB (Thanks Yufeng!)](https://ucb-bar.365.altium.com/designs/60758C9D-BF62-41B4-A112-BCE5FF2BFA60)
 
 **BWRC Resources:**
 
@@ -71,7 +75,7 @@ If you are confused as to which password is your IRIS/BWRC one, you can test at:
 
 - [BearlyML24 Bring-Up Log](https://docs.google.com/document/d/1fYoAgADz8iEnAtecSEolOnUpnleByqtfKJqG5zQ_QPc/edit?tab=t.0#heading=h.jidrw6bz6uf5)
 
-A new as of Fall 2024 test plan template can be found on the drive / in the slides. 
+- [A new-as-of-Fall 2024 test plan template](https://docs.google.com/document/d/1TYMe4ajwUz3R3UNQRQy7pzNU4OyXkpSaR2nnfiLJxJI/edit?tab=t.0#heading=h.szdj8uuljdx9)
 
 - [BoraBoard: Boravision test plan](https://docs.google.com/document/d/18GUl2SRCS2BOFe1QiRvAeT9OHxB7Z-wpwT33fAMCCoc/edit?usp=sharing) 
 
