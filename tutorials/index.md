@@ -6,7 +6,7 @@ nav_order: 1
 
 # Tutorials
 
-Below are some highlights, some not in the sidebar. 
+Below are some highlights, some not in the sidebar. Checkout the rest of the website at: https://ucb-ee290c.github.io/
 
 ## Software
 
@@ -16,16 +16,18 @@ Below are some highlights, some not in the sidebar.
 
 [Baremetal IDE Getting Started Lab](baremetal-ide/Baremetal-IDE-Lab.md) - created Fall 2024, still accurate May 2025.
 
-Checkout the rest of the bring-up website for more Baremetal IDE references.
+Checkout the rest of the main website for more Baremetal IDE references.
 
-[Baremetal From The Ground Up](software/baremetal-from-the-ground-up.md) - there's more good baremetal content, but you need to search for the sources on the bring-up website (and maybe PR to here).
+[Baremetal From The Ground Up](software/baremetal-from-the-ground-up.md) - there's more good baremetal content, but you need to search for the sources on the main website (and maybe PR to here).
 
 ## Chipyard
 
 [Chipyard Getting Started Guide](chipyard/chipyard-lab/index.md) - 2023.
 
-Checkout the more recent EE194 Tapeout Labs for a more comprehensive overview. 
+Checkout the more recent EE194 Tapeout Labs linked from the main website for a more comprehensive overview. 
 (But some are only internally accessible on BWRC GitLab.)
+
+[Chipyard Top Level](chipyard/chipyard-toplevel/chipyard-toplevel.md) - 2025. 
 
 ## Serial TileLink
 
