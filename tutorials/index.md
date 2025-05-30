@@ -6,11 +6,11 @@ nav_order: 1
 
 # Tutorials
 
-Below are some highlights, some not in the sidebar. Checkout the rest of the website at: https://ucb-ee290c.github.io/
+Below are some highlights, some not in the sidebar. Checkout the rest of the website for more.
 
 ## Software
 
-[Setting Up RISC-V Environment](software/setting-up-riscv-environment.md) - a little out of date as of May 2025.
+[Setting Up RISC-V Environment](software/setting-up-riscv-environment.html) - a little out of date as of May 2025.
 
 ## Baremetal IDE
 
