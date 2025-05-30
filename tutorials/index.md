@@ -25,7 +25,7 @@ Checkout the rest of the main website for more Baremetal IDE references.
 [Chipyard Getting Started Guide](chipyard/chipyard-lab/index.md) - 2023.
 
 Checkout the more recent EE194 Tapeout Labs linked from the main website for a more comprehensive overview. 
-(But some are only internally accessible on BWRC GitLab.)
+(But some are only accessible internally on [BWRC GitLab](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22)).
 
 [Chipyard Top Level](chipyard/chipyard-toplevel/chipyard-toplevel.md) - 2025. 
 
