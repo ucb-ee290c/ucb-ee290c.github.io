@@ -33,9 +33,11 @@ Checkout the more recent EE194 Tapeout Labs for a more comprehensive overview.
 
 ## Misc
 
+[Example Chip Design Milestones](example-chip-design-milestones/example-chip-design-milestones.md)
+
 [Misc Notes](notes/notes.md)
 
-[Conventions](conventions.md)
+[Conventions](conventions.md) 
 
 [Acronyms](acronyms.md)
 
