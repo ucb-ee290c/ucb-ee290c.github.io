@@ -5,10 +5,12 @@ nav_order: 11
 ---
 
 # Baremetal IDE Lab
+
 Baremetal IDE is an SDK developed and maintained by the SLICE lab at Berkeley which allows you to quickly develop C/C++ for chips developed in Chipyard. As implied by the name, Baremetal IDE focuses on providing a bunch of libraries, scripts and device drivers to build “baremetal” programs which run without an operating system like Linux or Zephyr. Programming for bare metal means that you don’t have a bunch of operating system services that you may be used to like multithreading, device drivers, dynamic linking, etc, but in return, you have full control of your code and can extract the maximum amount of performance out of your chips. Baremetal IDE provides a thin layer of drivers and libraries that handles things like malloc or print. This lets you focus on building your workloads to test your chips instead of spending your time messing with linker scripts, stdlib versions, and device drivers.  
 Since the actual HeatherLake setups are a bit fragile and require lots of external support equipment, we’ll be running all of these labs on an emulated chip on a Datastorm FPGA. This lab will bring you through the whole process of getting started with a new chip, building a Board Support Package, writing some basic drivers, and benchmarking a simple accelerator. 
 
 ## The Trenz Datastorm Board
+
 ![The Trenz Datastorm Board](assets/datastorm_diagram.png)
 
 Before we begin, let’s take a closer look at the Trenz Datastorm. Since this is the standard FPGA board we will be using for the rest of the class for Bringup once the PCBs come back, it’s worth getting familiar with its functions and usage. These boards are based on the Cyclone V SoC 5CSEMA5F31 which is a chip that contains both 85K Logic Elements of FPGA fabric and two ARM CPU cores which Intel calls the Hard Processor System. These boards also come with a lot of peripherals like USB, HDMI, or Ethernet, but we’re ignoring them for now. 
@@ -23,6 +25,7 @@ Going clockwise from the top, we have:
 7.	A Barrel Jack for delivering 12V DC
 
 ## The Lab Bitstream
+
 For this lab, the Datastorm FPGAs set up on the lab benches are preprogrammed to emulate a Chipyard Chip very similar to the ones that were taped out last semester and that you will be bringing up. It contains 1 Rocket core, 1 2-pin GPIO bank, 1GB of external DRAM, 1 UART, 1 UART-TSI port, a JTAG tap, and a custom addition accelerator which we will be explaining later. The JTAG and UART ports are going to a device called the FT-LINK which acts like a combination USB UART adapter and USB JTAG Adapter. 
 
 [INSERT PHOTO HERE]
@@ -51,14 +54,20 @@ And here’s a memory map of the system:
 | UART 0                | 0x10020000   |
 
 ## Setup and Navigating the BWRC Environment
+
 Before we begin writing software for Baremetal IDE we need to set up our workspace and compiler toolchain. While you can set this up locally on your machine [(see here)](https://ucb-bar.gitbook.io/chipyard/quickstart/setting-up-risc-v-toolchain) so you can build RISCV programs on your own machine, the documentation for how to do that is a bit out of date so the rest of this lab assumes you are using the BWRC environment. 
 To begin, log into a BWRC machine by either SSHing into one of the login servers like `bwrcrdsl-1.eecs.berkeley.edu` or by going up to one of the four workstations that are set up on benches 11 and 12 in BWRC and logging in. Then, simply source this environment file to active the Bringup Class environment and get access to all the tools you’ll need.
+
 ``` bash
 source /tools/C/ee290-fa24-2/ee290-env.sh
 ```
+
 You’ll need to run this command every time you open a new terminal window so it may be worth placing this command in your bashrc so you don’t have to keep typing it in.
+
 Now, navigate to the folder `/tools/C` and create a folder called your username. The entire drive mapped to /tools/C is backed up hourly and available to all machines connected to the BWRC network, including the lab benches and login servers. This means you can remotely build on one of the BWRC servers from your laptop and have the files immediately show up on the lab machines to deploy to your chip.
+
 Once you’re in your /tools/C folder, clone a copy of the Sp24 Barmetal IDE and checkout the `fa24-lab` branch with the following commands:
+
 ``` bash
 git clone git@github.com:ucb-bar/sp24-Baremetal-IDE.git
 git checkout fa24-lab
@@ -581,5 +590,5 @@ Finally, upload `hello.elf` using your method of choice in another terminal wind
 
 > **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string "Hello <NAME>!". While Baremetal IDE supports STDIO for input, output is currently not working properly so you will have to directly use the `uart_receive` function defined in `uart.c`. Copy and paste your code in an appendix code block and include a screenshot of the program waiting for input and while it's printing
 
-# Deliverables
+# Deliverables (for bring-up class)
 Please upload a pdf containing your writeups for each task and include all code you wrote in an appendix separate from your main answers by Monday, 11/18, 11:59 PM. 
