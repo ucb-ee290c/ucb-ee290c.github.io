@@ -3,9 +3,6 @@ title: Baremetal IDE Lab
 layout: default
 nav_order: 11
 ---
-{: .important }
-> This lab has changed since last Tuesday when it was released, if you have already cloned the repo, please pull the latest changes before preceeding.
-> This lab is due Monday, 11/18 at 11:59PM. Please upload your final lab report to gradescope by then.
 
 # Baremetal IDE Lab
 Baremetal IDE is an SDK developed and maintained by the SLICE lab at Berkeley which allows you to quickly develop C/C++ for chips developed in Chipyard. As implied by the name, Baremetal IDE focuses on providing a bunch of libraries, scripts and device drivers to build “baremetal” programs which run without an operating system like Linux or Zephyr. Programming for bare metal means that you don’t have a bunch of operating system services that you may be used to like multithreading, device drivers, dynamic linking, etc, but in return, you have full control of your code and can extract the maximum amount of performance out of your chips. Baremetal IDE provides a thin layer of drivers and libraries that handles things like malloc or print. This lets you focus on building your workloads to test your chips instead of spending your time messing with linker scripts, stdlib versions, and device drivers.  
