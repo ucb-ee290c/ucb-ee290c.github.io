@@ -4,7 +4,9 @@ layout: default
 nav_exclude: true
 ---
 
-This is an excerpt from https://github.com/chipsalliance/rocket-chip/blob/v1.6/README.md
+# RocketChip and Debugging with GDB
+
+This is an archived excerpt from: https://github.com/chipsalliance/rocket-chip/blob/v1.6/README.md
 
 ## <a name="how"></a> How should I use the Rocket chip generator?
 
