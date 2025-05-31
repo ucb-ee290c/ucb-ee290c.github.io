@@ -12,7 +12,7 @@ Below are some highlights, some not in the sidebar. Checkout the rest of the web
 
 [Setting Up RISC-V Environment](software/setting-up-riscv-environment.html) - a little out of date as of May 2025.
 
-[Linux Installation with Firemarshal](software/firemarshal-setup.md)
+[Linux Installation with Firemarshal](software/firemarshal-setup.html)
 
 ## Baremetal IDE
 
