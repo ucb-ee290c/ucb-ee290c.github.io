@@ -10,9 +10,13 @@ Note: This tutorial was written with the needs of the bring-up class in mind and
 
 ## Setup 
 
-0. To ssh into bwrc-amd2, first regularly ssh into [username@bwrcrds1.eecs.berkeley.edu](mailto:username@bwrcrds1.eecs.berkeley.edu) or your corresponding machine. 
+#### 0. 
 
-1. Setup Chipyard while ssh'ed into `username@bwrc-amd2.eecs.berkeley.edu` by cloning the Chipyard repo into your `/tools/C/\<INSERT USERNAME HERE\>`  directory:  
+To ssh into bwrc-amd2, first regularly ssh into [username@bwrcrds1.eecs.berkeley.edu](mailto:username@bwrcrds1.eecs.berkeley.edu) or your corresponding machine. 
+
+#### 1. 
+
+Setup Chipyard while ssh'ed into `username@bwrc-amd2.eecs.berkeley.edu` by cloning the Chipyard repo into your `/tools/C/\<INSERT USERNAME HERE\>`  directory:  
 
 - Run to clone:
 
@@ -26,7 +30,9 @@ Note: This tutorial was written with the needs of the bring-up class in mind and
 git checkout 1.13.0
 ```
 
-2. Make sure you have Ethan’s bring up environment sourced (if you have access): 
+#### 2. 
+
+Make sure you have Ethan’s bring up environment sourced (if you have access): 
 
 ```
 source /tools/C/ee290-fa24-2/ee290-env.sh
@@ -34,43 +40,57 @@ source /tools/C/ee290-fa24-2/ee290-env.sh
 
 - Else `source ./env.sh`, the standard Chipyard environment.
 
-3. Run in the base Chipyard directory to initialize some of Chipyard’s submodules
+#### 3. 
+
+Run in the base Chipyard directory to initialize some of Chipyard’s submodules
 
 ```
 ./scripts/init-submodules-no-riscv-tools.sh 
 ```
 
-4. Navigate to the FireMarshal folder at `chipyard/software/firemarshal`.
+#### 4. 
+
+Navigate to the FireMarshal folder at `chipyard/software/firemarshal`.
 
 ```
 cd /tools/C/\<INSERT USERNAME HERE\> /chipyard/software/firemarshal
 ```
 
-5. Run to initialize FireMarshal’s submodules.
+#### 5. 
+
+Run to initialize FireMarshal’s submodules.
 
 ```
 ./init-submodules.sh
 ```
 
-6. Source the Chipyard environment from the base Chipyard directory: 
+#### 6. 
+
+Source the Chipyard environment from the base Chipyard directory: 
 
 ```
 source ./env.sh
 ```
 
-7. “By default, FireMarshal is setup to work with FireSim. Instead, we want to target the prototype platform. This is done by switching the FireMarshal “board” from “firechip” to “chipyard” using marshal-config.yaml”  
+#### 7. 
+
+“By default, FireMarshal is setup to work with FireSim. Instead, we want to target the prototype platform. This is done by switching the FireMarshal “board” from “firechip” to “chipyard” using marshal-config.yaml”  
 
 - This means adding the line “board-dir : 'boards/chipyard'“ to your marshal-config.yaml file. This file should be in your fire marshal directory  
 
 - If the file does not exist, feel free to make a new one (although one should already exist) and include the 
 
-8. Since the basic linux image doesn’t have the correct device tree, copy over the device tree from the DSP24 design: 
+#### 8. 
+
+Since the basic linux image doesn’t have the correct device tree, copy over the device tree from the DSP24 design: 
 
 ```
 /scratch/eygao/sp24-chips/vlsi/generated-src/chipyard.harness.TestHarness.DSPConfig/chipyard.harness.TestHarness.DSPConfig.dts
 ```
 
-9. Edit this file (`chipyard.harness.TestHarness.DSPConfig.dts`).
+#### 9. 
+
+Edit this file (`chipyard.harness.TestHarness.DSPConfig.dts`).
 
 - Delete the htif section (this is broken on the chip currently and is not needed)  
 
@@ -78,7 +98,9 @@ source ./env.sh
 
   - My basic understanding of this is that currently the unedited device tree is expecting the clock to be at 500MHz with a baudrate of 115200, which is beyond what we are able to run the chip on. To fix this we edit the clock speed down to something the chip is capable of doing, which will update the baudrate divisor to keep our baudrate at 115200.
 
-10.  Use DTC to turn our device tree file into a device tree binary that FireMarshal can use:
+#### 10.  
+
+Use DTC to turn our device tree file into a device tree binary that FireMarshal can use:
 
 ```
 dtc < chipyard.harness.TestHarness.DSPConfig.dts > updated_dsp24dt.dtb
@@ -89,7 +111,9 @@ dtc < chipyard.harness.TestHarness.DSPConfig.dts > updated_dsp24dt.dtb
   - DTC will place your .dtb file in your current location  
   - `<` and `>` indicate input and output file
 
-11.  Add this flag in the firmware options within the `br-base.json` in the `chipyard/software/firemarshal/boards/chipyard/base-workloads`:
+#### 11.  
+
+Add this flag in the firmware options within the `br-base.json` in the `chipyard/software/firemarshal/boards/chipyard/base-workloads`:
 
 ```
 "opensbi-build-args" : "FW_FDT_PATH=/scratch/eygao/chipyard1-13/spike.dtb"
@@ -100,35 +124,47 @@ Should look like this:![][image1]
 
 From debugging, we found it necessary to disable SemiHosting, steps to do this:  
 
-1. Open this file with your favorite text editor: 
+#### 1. 
+
+Open this file with your favorite text editor: 
 
 ```
 chipyard/software/firemarshal/boards/chipyard/firmware/opensbi/platform/generic/configs/defconfig
 ```
 
-2. Change the line containing SERIAL\_SEMIHOSTING from y to n:
+#### 2. 
+
+Change the line containing SERIAL\_SEMIHOSTING from y to n:
 
 ```
 CONFIG_SERIAL_SEMIHOSTING=y -> CONFIG_SERIAL_SEMIHOSTING=n
 ```
 
-3. Next open this file:
+#### 3. 
+
+Next open this file:
 
 ```
 chipyard/software/firemarshal/boards/chipyard/firmware/opensbi/platform/generic/platform.c
 ```
 
-4. Change the if statement containing semihosting to always run fdt\_serial\_init():
+#### 4. 
+
+Change the if statement containing semihosting to always run fdt\_serial\_init():
 
 ![][image2]
 
-5. Finally open this file:
+#### 5. 
+
+Finally open this file:
 
 ```
 chipyard/software/firemarshal/boards/chipyard/firmware/opensbi/lib/utils/serial/semihosting.c
 ```
 
-6. Set both of the booleans relating to semihosting to false:
+#### 6. 
+
+Set both of the booleans relating to semihosting to false:
 
 ```
 static bool _semihosting_enabled = false;
@@ -137,7 +173,9 @@ static bool try_semihosting = false;
 
 ## Build Image
 
-13.  Attempt to build a Linux image:
+#### 13.  
+
+Attempt to build a Linux image:
 
 ```
 ./marshal -d build br-base.json
@@ -147,7 +185,9 @@ static bool try_semihosting = false;
  
  - Can add \-v to print debug messages while running, can add \-v to get verbose debug messages
 
-14.  ~~Attempt to Launch the image in terminal to see if the image works~~  
+#### 14.  
+
+~~Attempt to Launch the image in terminal to see if the image works~~  
 
 - ~~./marshal \-d launch br-base.json \-s~~  
 
@@ -155,19 +195,23 @@ static bool try_semihosting = false;
 
 - Currently with these changes, the simulation should not work\! This is fine :^)
 
-15.  Find the built image at: 
+#### 15.  
+
+Find the built image at: 
 
 ```
 /scratch/<INSERT_USERNAME>/chipyard/software/firemarshal/images/chipyard/br-base/br-base-bin-nodisk
 ```
 
-16.  Since this image is on the amd2 server, we need to copy it over to the local BWRC machines for us to load the binary onto the chips, copy the file over to your bwrcrdsl-1 directory (as one line):
+#### 16.  
+
+Since this image is on the amd2 server, we need to copy it over to the local BWRC machines for us to load the binary onto the chips, copy the file over to your bwrcrdsl-1 directory (as one line):
 
 ```
 scp /scratch/<INSERT_USERNAME>/chipyard/software/firemarshal/images/chipyard/br-base/br-base-bin-nodisk <INSERT_USERNAME>@bwrcrdsl-1.eecs.berkeley.edu:/tools/C/<Continue Path to your Build Folder>
 ```
 
-# **Credits**
+# Credits
 
 Google Drive doc written by Michael McCulloch in Fall 2024\.  
 Content taken from the [FireMarshal Chipyard Documentation](https://chipyard.readthedocs.io/en/stable/Prototyping/VCU118.html#building-linux-with-firemarshal) and Ethan Gao.
