@@ -1,10 +1,10 @@
 ---
-title: "Fa24 Bringup"
+title: "Fa25 Bringup"
 layout: frontpage
 nav_exclude: true
 ---
 
-# EE194 (Fall 2024)
+# EE194/290 (Fall 2025)
 
 #### Test Integrated Circuit Chips Designed in Previous Tapeout Classes 
 
@@ -24,19 +24,21 @@ This is a dynamic hands-on course, so the below outline is very much subject to 
 
 For access issues, message staff on Slack! Many of these require permissions. 
 
-- [Bring-up Slack Fall 2024](https://join.slack.com/t/194bringup/shared_invite/zt-2pw9z6jpf-~OFM2VPzu_EbNE8_suIxAQ)
+- [Bring-up Slack Fall 2025](https://join.slack.com/t/194bringup/shared_invite/zt-3bzuz6tpi-AM5IC0oCQH5uqLaNIV~dIg)
 
-- [Bring-up Calendar: https://tinyurl.com/bringupcalendar](https://tinyurl.com/bringupcalendar)
+- [Bring-up Calendar: https://tinyurl.com/bringupfa25calendar](https://tinyurl.com/bringupfa25calendar)
 
-- [bCourses Fall 2024](https://bcourses.berkeley.edu/courses/1539266)
+- [bCourses Fall 2025 Coming Soon...]()
 
-- [Gradescope Fall 2024](https://www.gradescope.com/courses/853022)
+- [Gradescope Fall 2025 Coming Soon...]()
 
 **Google Drive:**
 
 - [EE194 Tapeout/Bringup Drive](https://drive.google.com/drive/u/0/folders/0APCrUcTRXIAQUk9PVA)
 
-- [Specifically, our Fall 2024 folder, with lectures/recordings/etc..](https://drive.google.com/drive/u/0/folders/1VdQbTQDC6YEtWkFTcoHKr3WOPrt8zpya)
+- [Specifically, our Fall 2025 folder, with lectures/recordings/etc..](https://drive.google.com/drive/folders/1rq9Uh3J4t9h6y1KYHQ75jh0djjSALBUL)
+
+- [Fall 2024 Folder for those interested](https://drive.google.com/drive/folders/1VdQbTQDC6YEtWkFTcoHKr3WOPrt8zpya)
 
 - [BWRC Resources Drive](https://drive.google.com/drive/u/0/folders/0ALGvUHbPFpiCUk9PVA)
 
@@ -56,20 +58,24 @@ For access issues, message staff on Slack! Many of these require permissions.
 
 - [Altium Workspace - https://ucb-bar.365.altium.com/](https://ucb-bar.365.altium.com/getstarted)
 
-- [Altium Fall 2024 PCB & Archive Folders](https://ucb-bar.365.altium.com/designs/folder-6BC7549D-923F-424D-8C14-B42F3C81AA72)
+- [Altium Fall 2025 PCB Folder](https://ucb-bar.365.altium.com/designs/folder-BABE9F1F-D848-42AB-8AEF-CFF9CC056372)
 
-- [Parts List & Team Status Google Sheet](https://docs.google.com/spreadsheets/d/1QnngtVF8Tji_2IxZC2dRvMxNdF9dWMUDHkmLEommYXc/edit?gid=1106196622#gid=1106196622)
+- [Parts List & Team Status Google Sheet Coming Soon...]()
 
 - [FT Link Debugger PCB (Thanks Yufeng!)](https://ucb-bar.365.altium.com/designs/60758C9D-BF62-41B4-A112-BCE5FF2BFA60)
 
 **BWRC Resources:**
 
-- If you are confused as to which password is your IRIS/BWRC one, you can test at:
+- If you are confused as to which password is your IRIS/BWRC one, you can test and reset at:
 [https://iris.eecs.berkeley.edu/selfserve/](https://iris.eecs.berkeley.edu/selfserve/)
 
 - [BWRC Computing Infrastructure slides by Brian Richards - 16 January 2023](https://docs.google.com/presentation/d/110rXp-ZtYGqgIOfiw0k9fJLmHKmXdAyZ/edit#slide=id.g1d6c43f5a99_0_97)
 
 ### New Chip Testing Notes
+
+- [Coming Soon...]()
+
+### Old Chip Testing Notes
 
 - [DSP Bring-Up Log](https://docs.google.com/document/d/1b8uBt5jiAvetqXC5461Ghwqu5Urc80badaYFd1H4WyQ/edit?tab=t.0#heading=h.azsjwi5nd07k)
 
@@ -94,8 +100,6 @@ For access issues, message staff on Slack! Many of these require permissions.
 - [LinuxBoard: Demo Linux F2024 Bringup Test Plan Template](https://docs.google.com/document/d/146WymlKXXeWQQNhRc1jA4uX08I4t4CSQEecerWo_OX4/edit?usp=sharing)  
 
 - [SCuM-V Bringup Plan 2024](https://docs.google.com/document/d/1YrfA__2HJTrtaTfEXbGAzsECmPM7QpOnUFl70gNJ6eg/edit#heading=h.29lgndn0bg2z) 
-
-### Old Chip Testing Notes
 
 - [OSCIBEAR Bringup Note](https://docs.google.com/presentation/d/19t7miUax_Of6cd3P3ku0aEF5J9rQySKc6yDeYJx9vWQ/edit?usp=sharing)
 
@@ -124,8 +128,10 @@ For access issues, message staff on Slack! Many of these require permissions.
 | Name              | Role       | Email                        |
 |-------------------|------------|------------------------------|
 | Bora Nikolic      | Professor  | <bora@berkeley.edu>          |
+| Jun-Chau Chien    | Professor  | <jcchien@berkeley.edu>       |
 | Brian Richards    | BWRC Staff | <bcr@berkeley.edu>           |
-| Lucy Revina       | GSI        | <srevi@berkeley.edu>         |
-| Ethan Gao         | GSI        | <eygao@berkeley.edu>         |
+| John Lomax        | GSI        | <jclomax25@berkeley.edu>     |
+| Lily Li           | GSI        | <yueting_li@berkeley.edu>    |
+| Jack Kang         | GSI        | <dongwon900@berkeley.edu>    |
 
 
