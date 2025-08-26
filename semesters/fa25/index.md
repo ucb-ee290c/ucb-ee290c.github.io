@@ -18,8 +18,6 @@ This is a dynamic hands-on course, so the below outline is very much subject to 
 
 <iframe width="100%" height="900" src="https://docs.google.com/spreadsheets/d/1kd1jJFrmOZJaPxO7eFxkk7yuYOG3JPpVxQOLYAdZK7Q/pubhtml?gid=405601920&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
 
-https://docs.google.com/spreadsheets/d/1kd1jJFrmOZJaPxO7eFxkk7yuYOG3JPpVxQOLYAdZK7Q/pubhtml?gid=405601920
-
 ## Resources
 
 ### Useful Links
