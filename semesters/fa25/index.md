@@ -16,7 +16,7 @@ This is a dynamic hands-on course, so the below outline is very much subject to 
 <!-- But the new and improved way is to publish a Google Sheet and embed it as an iframe as seen here --->
 <!-- Note the current published sheet is set to autopublish all changes on the "Public" tab --->
 
-<iframe width="100%" height="900" src="https://docs.google.com/spreadsheets/d/1kd1jJFrmOZJaPxO7eFxkk7yuYOG3JPpVxQOLYAdZK7Q/pubhtml?gid=405601920&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+<iframe width="100%" height="900" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS7VbGknuph8E7YwDk3rT5Dwo6KPRMbFcA-jeVOEYC5XiJ5yr-PBBeOqTNtEcZZQq_XH---nvO8GpqF/pubhtml?gid=405601920&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
 
 ## Resources
 
