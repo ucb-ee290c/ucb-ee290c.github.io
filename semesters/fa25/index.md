@@ -44,15 +44,17 @@ For access issues, message staff on Slack! Many of these require permissions.
 
 - [Tapeout/Bringup Resources - Public Wiki](https://sites.google.com/berkeley.edu/tapeoutclasswiki/home?authuser=0)
 
-**GitLab Repository:**
+**GitLab Repository: (IRIS Account Required to Access)**
 
-- [DSP24 Repository (bearly-final branch)](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp24-chips)
+- [DSP25 Repository (bearly-final branch)](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp25-chips)
 
-- [BearlyML24 Repository (bearly-final branch)](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp24-chips) 
+- [BearlyML25 Repository (bearly-final branch)](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp25-chips) 
 
-- [SCuM-V24 Repository (scum-tapeout branch)](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp24-chips)
+- [SCuM-V25 Repository (scum-tapeout branch)](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/scumv25)
 
-- [Chip Specs - Gitlab Wiki](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp24-chips/-/wikis/home)
+- [Digital Chip Specs - Gitlab Wiki](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/sp25-chips/-/wikis/home)
+
+- [SCuM-V25 Specs - Gitlab docs Folder](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22/scumv25/-/tree/master/docs?ref_type=heads)
 
 **PCB Links:**
 
