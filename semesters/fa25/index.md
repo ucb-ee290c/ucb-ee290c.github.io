@@ -28,9 +28,9 @@ For access issues, message staff on Slack! Many of these require permissions.
 
 - [Bring-up Calendar: https://tinyurl.com/bringupfa25calendar](https://tinyurl.com/bringupfa25calendar)
 
-- [bCourses Fall 2025 Coming Soon...]()
+- [bCourses Fall 2025](https://bcourses.berkeley.edu/courses/1549040)
 
-- [Gradescope Fall 2025 Coming Soon...]()
+- [Gradescope Fall 2025](https://www.gradescope.com/courses/1108255)
 
 **Google Drive:**
 
