@@ -10,11 +10,11 @@ Below are some highlights, some not in the sidebar. Checkout the rest of the web
 
 ## Software
 
+[Bringup Software Setup](software/bringup-software-setup.html)
+
 [Setting Up RISC-V Environment](software/setting-up-riscv-environment.html) - a little out of date as of May 2025.
 
 [Linux Installation with Firemarshal](software/firemarshal-setup.html)
-
-[Bringup Software Setup](software/bringup-software-setup.html)
 
 ## Baremetal IDE
 
