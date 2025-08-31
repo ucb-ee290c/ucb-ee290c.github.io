@@ -10,7 +10,7 @@ Below is a checklist for access to accounts and resources. Please make sure you 
 
 - [X] Completed BWRC Forms DocuSign in an email titled "\*\*Action Required\*\* Complete BWRC Forms"
 - [X] Received IRIS account login in an email titled "IRIS Account request for FirstName LastName" and verified it via IRIS Self-Serve website
-- [X] If accessing previous semester tapeout material or simulating chip standard cells, sign Intel NDA.
+- [X] If accessing previous semester tapeout material or simulating chip standard cells, sign Intel NDA (**Note:** If you have previously signed the Intel NDA, you do not have to re-sign it).
 
 ## Setting up Berkeley VPN
 
