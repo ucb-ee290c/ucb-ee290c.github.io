@@ -14,6 +14,8 @@ Below are some highlights, some not in the sidebar. Checkout the rest of the web
 
 [Linux Installation with Firemarshal](software/firemarshal-setup.html)
 
+[Bringup Software Setup](software/bringup-software-setup.md)
+
 ## Baremetal IDE
 
 [Baremetal IDE Getting Started Lab](baremetal-ide/Baremetal-IDE-Lab.html) - created Fall 2024, still accurate May 2025.
