@@ -14,7 +14,7 @@ Below are some highlights, some not in the sidebar. Checkout the rest of the web
 
 [Linux Installation with Firemarshal](software/firemarshal-setup.html)
 
-[Bringup Software Setup](software/bringup-software-setup.md)
+[Bringup Software Setup](software/bringup-software-setup.html)
 
 ## Baremetal IDE
 
