@@ -1,6 +1,7 @@
 ---
 title: Setting up Software and Accounts for Bringup
 layout: default
+nav_order: 1
 ---
 
 ## Access Checklist
