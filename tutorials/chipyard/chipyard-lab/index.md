@@ -166,7 +166,7 @@ All of these modules are built as generators (a core driving point of using Chis
 
 ### SoC Architecture 
 
-<table border-"0">
+<table border="0">
   <tr>
     <td><img src="assets/tutorial/rtl_gen_layer.png" width=700 /></td>
     <td><img src="assets/tutorial/chipyard.jpg" /></td>
@@ -312,7 +312,7 @@ All of these modules are built as generators (a core driving point of using Chis
 
 </table>
 
-<table border-"0">
+<table border="0">
   <tr>
     <td><img src="assets/tutorial/config_gen_layer.png" width=1000 /></td>
     <td><img alt="How Configs Work" src="assets/tutorial/02_chipyard_basics.gif" width=660></td>
@@ -334,7 +334,7 @@ class BigRocketConfig extends Config(
   new chipyard.config.AbstractConfig)                            // builds one on top of another, so the single rocket-core is built on top of the AbstractConfig
 ```
 
-<table border-"0">
+<table border="0">
   <tr>
     <td>
     RocketConfig is part of the "Digital System configuration" depicted below. It is built on top of the AbstractConfig which contains the config fragments (each line like <code>freechips.rocketchip.subsystem.WithNBigCores(1)</code> that adds something to the overall system is called a config fragment) for IO Binders and Harness Binders (depicted below).
@@ -345,7 +345,7 @@ class BigRocketConfig extends Config(
 
 
 
-<table border-"0">
+<table border="0">
   <tr>
     <td><img src="assets/tutorial/io_harness.jpg" /></td>
     <td><img src="assets/tutorial/io_harness_map.jpg"/></td>
@@ -417,7 +417,7 @@ We'll be running the `CONFIG=RocketConfig` config (the `-j16` executes the run w
 
 [FIRRTL](https://github.com/chipsalliance/firrtl) is used to translate Chisel source files into another representation--in this case, Verilog. Without going into too much detail, FIRRTL is consumed by a FIRRTL compiler (another Scala program) which passes the circuit through a series of circuit-level transformations. An example of a FIRRTL pass (transformation) is one that optimizes out unused signals. Once the transformations are done, a Verilog file is emitted and the build process is done. You can think of FIRRTL as an HDL version of LLVM if you are familar with LLVM (depicted below).
 
-<table border-"0">
+<table border="0">
   <tr>
     <td><img src="assets/tutorial/firrtl_high.jpg" /></td>
     <td><img src="assets/tutorial/firrtl.jpg"/></td>
@@ -467,7 +467,7 @@ When building something like that, you would typically build your "accelerator" 
 You can then write integration tests (eg. a baremetal C program) which can then be simulated with your Rocket Chip and "accelerator" block together to test end-to-end system functionality. 
 Chipyard provides the infrastructure to help you do this for both VCS (Synopsys) and Verilator (open-source). The same infrastructure enables a few other applications as depicted below.
 
-<table border-"0">
+<table border="0">
   <tr>
     <td>
 
@@ -482,7 +482,7 @@ Chipyard provides the infrastructure to help you do this for both VCS (Synopsys)
 
 ## In summary...
 
-<table border-"0">
+<table border="0">
   <tr>
     <td>
 
