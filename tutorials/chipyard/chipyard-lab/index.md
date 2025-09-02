@@ -12,7 +12,7 @@ nav_order: 3
 
 ## Overview
 
-![Chipyard Flow Diagram](assets/chipyard-flow.PNG)
+![Chipyard Flow Diagram](assets/chipyard-flow.png)
 
 In this lab, we will explore the [Chipyard](https://github.com/ucb-bar/chipyard) framework. 
 
@@ -38,7 +38,7 @@ In particular, the lab provides a brief overview of Chipyard's diverse features,
 
 <!-- 
 
-![](assets/chipyard-components.PNG)
+![](assets/chipyard-components.png)
 
 ## Access & Setup
 
