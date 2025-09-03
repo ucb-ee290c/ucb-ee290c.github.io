@@ -4,6 +4,8 @@ layout: default
 nav_order: 2
 ---
 
+# Setting up Software and Accounts for Bringup
+
 ## Getting Help with Tools and BWRC Resources
 
 Inevitably, at some point, some tool will not work the way as you expect.  First, search through existing resources (e.g. the Google sites).  Then, try to ask your peers for help, and record any knowledge you find to share with future students.
@@ -75,7 +77,7 @@ Most login services require the VPN to access while off campus. This can get ann
 
 ![VS Code Remote-SSH Tool](assets/VSCodeRemSSH.png)
 
-Enter '<your username>@bwrcrdsl-x.eecs.berkeley.edu'
+Enter 'your_username@bwrcrdsl-X.eecs.berkeley.edu'
 
 ![VS Code SSH Sign In](assets/VSCodeSSHUser.png)
 
@@ -106,7 +108,7 @@ Check your directory '/tools/C/<your username>' for either miniforge3 or minicon
 
 If you have one of these already you are good to go.
 
-Otherwise, we recommend installing [miniconda](hhttps://www.anaconda.com/docs/getting-started/miniconda/install) or [miniforge](https://github.com/conda-forge/miniforge) (You can download miniforge from [here](https://conda-forge.org/download/#:~:text=Basic%20installation%20instructions%20are%20available%20below.%20More%20detailed,Miniforge3-%24%28uname%29-%24%28uname%20-m%29.sh%20Download%20and%20execute%20the%20Windows%20installer.) but we will show you how to download via wget in a few moments) in a tools space (e.g your /tools/C) and pointing to, or activating, it as necessary.
+Otherwise, we recommend installing [miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install) or [miniforge](https://github.com/conda-forge/miniforge) (You can download miniforge from [here](https://conda-forge.org/download/#:~:text=Basic%20installation%20instructions%20are%20available%20below.%20More%20detailed,Miniforge3-%24%28uname%29-%24%28uname%20-m%29.sh%20Download%20and%20execute%20the%20Windows%20installer.) but we will show you how to download via wget in a few moments) in a tools space (e.g your /tools/C) and pointing to, or activating, it as necessary.
 
 ### Below are a Walkthrough of Installing Miniforge
 
@@ -134,8 +136,10 @@ Run
 ```
 
 Resources:
-[Managing Conda Environments](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
-[Conda Cheatsheet](https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf)
+
+- [Managing Conda Environments](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+
+- [Conda Cheatsheet](https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf)
 
 
 Conda libraries sometimes come in conflict with libraries needed by the virtual desktop, causing issues with loading remote desktop sessions.  As such, **we recommend against having conda activate by default** (i.e. conda base should be available after running `conda activate base`).
