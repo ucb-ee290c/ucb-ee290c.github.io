@@ -54,6 +54,12 @@ To access both the BWRC GitLab repository and establish a remote connection to t
 
 If you have forgotten/wish to change your password, you can recover/change it [here](https://iris2.eecs.berkeley.edu/selfserve/adpasswd/) (Click on 'Email' if you have forgotten your password and wish to receive a recovery link via email)
 
+## GitLab
+BWRC has a private GitLab instance at bwrcrepo.eecs.berkeley.edu. GitLab works just like Github, so if you’re familiar with the latter you’re good to go.  This website should be accessible when at BWRC or on the VPN.  If not, it is always accessible through a virtual machine (x2go or NoMachine).  This is not available to the public, so it is a great place to store sensitive project files, especially NDA’d files.  You can also search for existing projects.
+
+Just like with Github, on GitLab you can set up SSH keys for secure access and cloning. SSH keys can be added in the SSH key tab under User Settings. Instructions for generating SSH keys are on the GitLab page, or you can refer to any other online resource such at this one: [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key).  Add an SSH key from anywhere you expect to push and pull from, e.g. your Unix account and your personal laptop.
+
+
 ## SSH Access to BWRC Machines on Your Local Machine
 
 There are 6 BWRC remote machines that you can access, bwrcrdsl-X.eecs.berkeley.edu where X can be 1-6.
@@ -85,10 +91,6 @@ In the pop-up panel, select 'Linux', then select 'Continue', and then enter your
 
 ![VS Code SSH Connection Completed](assets/VSCodeSSHCon.png)
 
-## Chipyard+Baremetal IDE access and RISC-V Toolchain
-
-RISC-V 64 bit toolchains is by default available on BWRC machines. Chipyard and BaremetalIDE repositories will be cloned onto your account on the BWRC machines. You should not have to clone these repositories or build the RISC-V Toolchain locally on your machine.
-
 ## Creating Your Directory on BWRC Machine
 
 Each of you will have your own directory under the BWRC machines. **First check if one already exists under you username** (the path will be 'tools/C/<your username>').
@@ -99,6 +101,74 @@ Run
 ```
  <your username>@bwrcrdsl-#:/tools/C/ $ mkdir <your username>
 ```
+
+## SSH Key for GitLab and BWRC Machines
+
+To directly access the BWRC compute servers (amd-X) (as Bringup students please try to only use 2 (but if 2 is busy/slow you can use 5 and 6)), you need to set up a private SSH key. 
+
+We will walk you through the instructions described [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key).
+
+Log in to a BWRC bwrcrdsl-x server/machine via ssh.
+Run
+```
+ <your username>@bwrcrdsl-#: $ cd /tools/C/<your username>
+```
+
+Next run
+```
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+replacing the email with your berkeley email to your berkeley github account.
+
+You will be prompted to "Enter a file in which to save the key", you can press Enter to accept the default file location.
+```
+> Enter file in which to save the key (/users/your_username/.ssh/id_ALGORITHM):[Press enter]
+```
+
+You may be prompted to set up a secure passphrase, you should not create one. Just hit enter to create no passphare
+```
+> Enter passphrase (empty for no passphrase): [Type a passphrase]
+> Enter same passphrase again: [Type passphrase again]
+```
+
+Finally,
+Run
+```
+ssh-copy-id localhost
+```
+This will allow you to ssh in without entering your password every single time.
+
+Now, we must add the SSH Key to you Gitlab account.
+On your personal device (**Do not close your terminal to the bwrcrdsl machine yet**), go to [https://bwrcrepo.eecs.berkeley.edu/](https://bwrcrepo.eecs.berkeley.edu/)
+
+1. Click your profile (The icon in the upper right)
+2. Click 'Edit profile'
+3. Click 'SSH Keys'
+
+![Finding Your Current SSH Keys via Gitlab Profile](assets/GitlabViewSSHKeys.png)
+
+4. Click 'Add new key'
+5. Now back in the ssh terminal run ```cat /users/your_username/.ssh/id_ed25519.pub```
+6. Copy output including ssh-ed25519 and the key that follows
+7. Back in the BWRC Gitlab webpage paste the output under the 'Key' part of the 'Add an SSH Key' section
+8. Give it a title like 'Name's Laptop BWRC SSH Key'
+9. Keep the usage type as 'Authentication & Signing'
+10. Remove any Expiration Date
+11. Click 'Add Key'
+
+![Adding New SSH Key to Gitlab](assets/GitlabAddSSHKey.png)
+
+You can now ssh directly into our compute servers.
+
+To test, go back to your terminal with the bwrcrdsl-x machine and run
+```
+ <your username>@bwrcrdsl-#:/tools/C/<your username>/ $  ssh <your username>@bwrc-amd2.eecs.berkeley.edu
+```
+You should now successfully ssh into the amd-2 compute server.
+
+## Chipyard+Baremetal IDE access and RISC-V Toolchain
+
+RISC-V 64 bit toolchains is by default available on BWRC machines. Chipyard and BaremetalIDE repositories will be cloned onto your account on the BWRC machines. You should not have to clone these repositories or build the RISC-V Toolchain locally on your machine.
 
 ## Setting Up Your Conda Environment 
 
