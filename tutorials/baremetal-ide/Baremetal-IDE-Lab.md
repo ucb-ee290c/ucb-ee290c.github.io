@@ -69,8 +69,8 @@ Now, navigate to the folder `/tools/C` and create a folder called your username.
 Once you’re in your /tools/C folder, clone a copy of the Sp24 Barmetal IDE and checkout the `fa24-lab` branch with the following commands:
 
 ``` bash
-git clone git@github.com:ucb-bar/sp24-Baremetal-IDE.git
-git checkout fa24-lab
+git clone https://github.com/ucb-bar/sp24-Baremetal-IDE.git
+git checkout fa25-lab
 ```
 
 ## Exploring Baremetal IDE
@@ -125,11 +125,13 @@ void main() {
             *GPIOA_OUTPUT_VAL = 0b0;
         }
         counter ++;
-        delay(20000);
+        delay(8000);
     }
 }
 ```
-The blinky program begins with some pointer definitions that define where all of the control registers of the GPIOs exist. Of special note is the `CLINT_MTIME` register which is separate from the GPIO bank. `CLINT_MTIME` is a register that simply counts up once every "tick" which is 1/1000 of the clock frequnecy. For us this is 40kHz which is useful for timing operations and setting delays. Next, we have a small function that uses the `MTIME` register to implement a small delay function, followed by our main program. Here, we simply enable pin zero’s output by writing a 1 to bit 0 of the `GPIOA_OUTPUT_EN` register then jump into our blink loop, either setting pin 0 high or low depending on the counter and delaying for 4,000,000 clock cycles. Since our chip is running at 40MHz, this corresponding to toggling the GPIO pin 2 times a second resulting in a blink rate of 1Hz. 
+The blinky program begins with some pointer definitions that define where all of the control registers of the GPIOs exist. Of special note is the `CLINT_MTIME` register which is separate from the GPIO bank. `CLINT_MTIME` is a register that simply counts up once every "tick" which is 1/1000 of the clock frequnecy. For us this is 16kHz which is useful for timing operations and setting delays. Next, we have a small function that uses the `MTIME` register to implement a small delay function, followed by our main program. Here, we simply enable pin zero’s output by writing a 1 to bit 0 of the `GPIOA_OUTPUT_EN` register then jump into our blink loop, either setting pin 0 high or low depending on the counter and delaying for 1,600,000 clock cycles. Since our chip is running at 16MHz, this corresponding to toggling the GPIO pin 2 times a second resulting in a blink rate of 1Hz.
+
+**Note:** Here we are using a counter to mark time. In other classes you may have seen a sleep() function that puts the CPU to sleep for a certain amount of time for LED blinking. We have a function that does this as well `msleep(int milliseconds)`. BE CAREFUL, this will SLEEP all cores, so no tasks will be completed for the duration
 
 #### Building Blinky
 If you take a look at the d01 folder within lab, you should also see a `CMakeLists.txt` file in addition to `main.c`. 
@@ -148,18 +150,18 @@ target_link_libraries(blinky PRIVATE
 ```
 This is what tells CMake that our blinky program is a program that should be built. The way you read this file the `add_executable` directive creates a make target called `blinky` with one source file, `main.c` and the `target_link_libraries` specifies that we want to link our blinky program with glossy, our libc that provides the C runtime. To actually build the executable takes two commands
 ``` bash
-cmake -S ./ -B ./build/ -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip
-cmake --build ./build/ --target blinky
+cmake -S ./ -B ./build/ -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip -D LINKER=labchip
+cmake --build ./build/lab/d01/ --target blinky
 ```
 
 {: .note }
 >If you are using windows, you will need to add the `-G "Unix Makefiles"` argument to the first CMake call so it looks like this:
 >``` bash
->cmake -S ./ -B ./build/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip
+>cmake -S ./ -B ./build/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip -D LINKER=labchip
 > ```
 > This is because by default CMake on Windows generates build files for a build system called [Ninja](https://ninja-build.org/).
 
-The first command reads all of our CMakeLists.txt files and configures the tools that actually build the project. This only needs to be run if you change a CMakeLists.txt file or you are just setting up your repository. Otherwise, the second command is sufficient. The second command actually builds the program in the build folder. If you look within your build folder, you should now have the file `build/lab/d01/main.c` which is our final binary.
+The first command reads all of our CMakeLists.txt files and configures the tools that actually build the project. This only needs to be run if you change a CMakeLists.txt file or you are just setting up your repository. Otherwise, the second command is sufficient. The second command actually builds the program in the build folder. If you look within your build folder, you should now have the file `build/lab/d01/blinky.elf` which is our final binary.
 
 ## Programming the Chip
 Once we have our ELF binary of program, we now need to somehow get it onto the chip so we can see if our program wroks and show off our demos. There are two primary interfaces for programming the chip, UART-TSI and JTAG which have their own pro's and cons. For these next steps, please be at one of the four workstations at the lab benches.
@@ -590,5 +592,22 @@ Finally, upload `hello.elf` using your method of choice in another terminal wind
 
 > **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string "Hello <NAME>!". While Baremetal IDE supports STDIO for input, output is currently not working properly so you will have to directly use the `uart_receive` function defined in `uart.c`. Copy and paste your code in an appendix code block and include a screenshot of the program waiting for input and while it's printing
 
-# Deliverables (for bring-up class)
-Please upload a pdf containing your writeups for each task and include all code you wrote in an appendix separate from your main answers by Monday, 11/18, 11:59 PM. 
+### Program Our SOC
+
+Now it is your turn to take your Hello World program and program it onto one of the SP24 chips we have in the lab. You can use either a George board (CHIP=dsp24) or Bringup Board (CHIP=dsp24 or CHIP=bearly24) setup sitting at the lab stations. Make sure to connect the board to your personal or lab computer (which ever one you have been using to program so far) via USB-C. Since we do not have an FPGA mediating the programming, we are only able to use JTAG+OpenOCD to program our chip for this lab.
+
+Remember we have two types of memory onboard our PCBs, FLASH and DRAM. For this lab our program is small enough that we can store everything in FLASH, so when you compile your code use LINKER={CHIP}-flash
+
+> **Task 7**: Compile and run your hello world program on one of the chip test setups. Include a screenshot of the program load onto flash (0x2XXXXXX), the program waiting for input, and it printing on the chip.
+
+**Note:** If you every run into issues flashing the code, ie the load or gdb connection fail. Unplug the PCB, press and hold the BOOT button (SW3 on George), plug the PCB back in while holding the BOOT button and connect to OpenOCD and GDB before releasing the boot button.
+
+**Windows Users Running the Lab on their local machine:** Your device will not detect the FTDI chip as a single UART COM port but instead as a Dual COM port RS232 signal. We use a software called [Zadig](https://zadig.akeo.ie/) to reprogram the driver (You will have to reprogram the driver for each port on your computer and each new chip)
+
+Once you have installed Zadig, open the app.
+
+1. If you receive a pop-up about allowing this application to make changes, click 'Yes'
+2. Once Zadig opens, go to Options and click 'List All Devices'
+3. Click the drop down and select the 'Dual RS232-HS (Interface-X) where X is the smallest value of the pair (usually 0).
+4. For the new driver click the arrows until you get a WinUSB driver. It should look like this 'WinUSB (v6.1.7600.16385)'.
+5. Click 'Replace Driver'. Zadig will now replace the driver and you will have a single COM port under your Device Manager for the chip.
