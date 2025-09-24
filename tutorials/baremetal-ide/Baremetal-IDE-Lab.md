@@ -528,7 +528,7 @@ target_link_libraries(hello PRIVATE
 
 To build this program, use the following command which should create a binary called `blinky-2.elf`
 ``` bash
-cmake --build ./build/ --target blinky-2
+cmake --build ./build/lab/d02/ --target blinky-2
 ```
 > **Task 4**: If you read through current `chip_config.h`, you'll notice that it's missing a definition for the GPIO header if you try and build, CMake complains about not missing `hal_gpio.h`. Update the chip platform files so that this demo compiles and load the demo onto the chip using your method of choice. Then add in your changes from Task 3 to only blink the light when the button is pressed, this time using the GPIO driver functions.
 
@@ -575,7 +575,7 @@ The chip baudrate is derived by setting a clock divider from the chip's clock fr
 
 When you are ready, compile the program with the following command to create the binary `hello.elf`
 ``` bash
-cmake --build ./build/ --target hello
+cmake --build ./build/lab/d03/ --target hello
 ```
 ### Attaching a Console to UART
 Before we load the hello world program onto our "chip", we need to have a program on our PC which can recieve the text over UART called a Serial Console. There are many serial consoles available for Linux, MacOS, and Windows such as screen, minicom, RealTerm, and even VSCode itself, but today we will focus on screen since it is simple and widely available.
@@ -596,9 +596,12 @@ Finally, upload `hello.elf` using your method of choice in another terminal wind
 
 Now it is your turn to take your Hello World program and program it onto one of the SP24 chips we have in the lab. You can use either a George board (CHIP=dsp24) or Bringup Board (CHIP=dsp24 or CHIP=bearly24) setup sitting at the lab stations. Make sure to connect the board to your personal or lab computer (which ever one you have been using to program so far) via USB-C. Since we do not have an FPGA mediating the programming, we are only able to use JTAG+OpenOCD to program our chip for this lab.
 
-Remember we have two types of memory onboard our PCBs, FLASH and DRAM. For this lab our program is small enough that we can store everything in FLASH, so when you compile your code use LINKER={CHIP}-flash
+Remember we have two types of memory onboard our PCBs, FLASH and DRAM. For this lab our program is small enough that we can store everything in FLASH, so when you compile your code use LINKER=flash
 
-> **Task 7**: Compile and run your hello world program on one of the chip test setups. Include a screenshot of the program load onto flash (0x2XXXXXX), the program waiting for input, and it printing on the chip.
+Compile your hello world program with these new configuration parameters.You will notice an error when you try to compile the program with the new chip configs. Once you find the error, you will want to use the Memory Map on the SP25 Digital Chip Wiki on the BWRC Gitlab to correct the missing memory address.
+
+> **Task 7**: Compile and run your hello world program on one of the chip test setups. Include a screenshot of the program load onto flash (0x2XXXXXX), the program waiting for input, and it printing on the chip. 
+
 
 **Note:** If you every run into issues flashing the code, ie the load or gdb connection fail. Unplug the PCB, press and hold the BOOT button (SW3 on George), plug the PCB back in while holding the BOOT button and connect to OpenOCD and GDB before releasing the boot button.
 
