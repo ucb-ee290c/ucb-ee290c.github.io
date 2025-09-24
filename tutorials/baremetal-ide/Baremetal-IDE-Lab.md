@@ -157,7 +157,7 @@ cmake --build ./build/lab/d01/ --target blinky
 {: .note }
 >If you are using windows, you will need to add the `-G "Unix Makefiles"` argument to the first CMake call so it looks like this:
 >``` bash
->cmake -S ./ -B ./build/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip -D LINKER=labchip
+>cmake -S ./ -B ./build/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip -D LINKER=
 > ```
 > This is because by default CMake on Windows generates build files for a build system called [Ninja](https://ninja-build.org/).
 
