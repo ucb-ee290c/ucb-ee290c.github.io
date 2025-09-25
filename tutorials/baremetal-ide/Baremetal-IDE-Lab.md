@@ -205,7 +205,7 @@ Unfortunately, due to the way Unix handles serial devices, the exact device ID c
 Putting that all together we get this command to load the blinky binary we just built to the chip.
 
 ``` bash
-uart_tsi +tty=[YOUR_TTY] +baudrate=921600 build/d01/blinky.elf
+uart_tsi +tty=[YOUR_TTY_PATH] +baudrate=921600 build/lab/d01/blinky.elf
 ```
 
 Before running a program with uart_tsi, make sure to hit the reset button. While the read/writes will work just fine, the chip neeeds to be fresh out of the reset state in order to start running the loaded program correctly. If everything worked properly, you should see an LED flashing on the FPGA. Think back to the chipyard boot process and you might be able to figure out why.
