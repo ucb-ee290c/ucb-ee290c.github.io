@@ -238,7 +238,7 @@ This starts up OpenOCD using the chip specific settings we defined in our platfo
 
 While you can use OpenOCD standalone to peek and poke registers and memory, the real benefit of JTAG comes when you use a higher level debugger. In a separate terminal run the follwing command:
 ``` bash
-$ riscv64-unknown-elf-gdb build/d01/blinky.elf
+$ riscv64-unknown-elf-gdb build/lab/d01/blinky.elf
 GNU gdb (GDB) 14.1
 Copyright (C) 2023 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
