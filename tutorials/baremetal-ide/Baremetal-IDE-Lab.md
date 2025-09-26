@@ -530,7 +530,7 @@ To build this program, use the following command which should create a binary ca
 ``` bash
 cmake --build ./build/lab/d02/ --target blinky-2
 ```
-> **Task 4**: If you read through current `chip_config.h`, you'll notice that it's missing a definition for the GPIO header if you try and build, CMake complains about not missing `hal_gpio.h`. Update the chip platform files so that this demo compiles and load the demo onto the chip using your method of choice. Then add in your changes from Task 3 to only blink the light when the button is pressed, this time using the GPIO driver functions.
+> **Task 4**: If you read through current `chip_config.h`, you'll notice that it's missing a definition for the GPIO header if you try and build, CMake complains about not missing `gpio.h`. Update the chip platform files so that this demo compiles and load the demo onto the chip using your method of choice. Then add in your changes from Task 3 to only blink the light when the button is pressed, this time using the GPIO driver functions.
 
 > **Task 5**: Pay close attention to the blinking of the light, how does the blinking compare to the last program we ran and the nominal value of 5Hz we were targeting? Is it faster or slower that we would expect and what frequency does in approximatley seem to be flashing at? What might be causing this discrepancy? Hint, where do we tell our program how fast our chip is running? If you already fixed this in the previous step, you get a cookie*.
 >
