@@ -600,7 +600,7 @@ Remember we have two types of memory onboard our PCBs, FLASH and DRAM. For this 
 
 Compile your hello world program with these new configuration parameters.You will notice an error when you try to compile the program with the new chip configs. Once you find the error, you will want to use the Memory Map on the SP25 Digital Chip Wiki on the BWRC Gitlab to correct the missing memory address.
 
-> **Task 7**: Compile and run your hello world program on one of the chip test setups. Include a screenshot of the program load onto flash (0x2XXXXXX), the program waiting for input, and it printing on the chip. 
+> **Task 7**: Compile and run your hello world program on one of the chip test setups. **Note: For this part of the lab, you should comment out the lines of code that take in an input (the uart_receive function calls you implemented).** Include a screenshot of the program load onto flash (0x2XXXXXX) and it printing "Hello World" on the chip. 
 
 
 **Note:** If you every run into issues flashing the code, ie the load or gdb connection fail. Unplug the PCB, press and hold the BOOT button (SW3 on George), plug the PCB back in while holding the BOOT button and connect to OpenOCD and GDB before releasing the boot button.
