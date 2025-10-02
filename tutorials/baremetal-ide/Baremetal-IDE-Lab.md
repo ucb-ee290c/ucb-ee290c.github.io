@@ -66,7 +66,7 @@ You’ll need to run this command every time you open a new terminal window so i
 
 Now, navigate to the folder `/tools/C` and create a folder called your username. The entire drive mapped to /tools/C is backed up hourly and available to all machines connected to the BWRC network, including the lab benches and login servers. This means you can remotely build on one of the BWRC servers from your laptop and have the files immediately show up on the lab machines to deploy to your chip.
 
-Once you’re in your /tools/C folder, clone a copy of the Sp24 Barmetal IDE and checkout the `fa24-lab` branch with the following commands:
+Once you’re in your /tools/C folder, clone a copy of the Sp24 Barmetal IDE and checkout the `fa25-lab` branch with the following commands:
 
 ``` bash
 git clone https://github.com/ucb-bar/sp24-Baremetal-IDE.git
@@ -151,6 +151,8 @@ target_link_libraries(blinky PRIVATE
 This is what tells CMake that our blinky program is a program that should be built. The way you read this file the `add_executable` directive creates a make target called `blinky` with one source file, `main.c` and the `target_link_libraries` specifies that we want to link our blinky program with glossy, our libc that provides the C runtime. To actually build the executable takes two commands
 ``` bash
 cmake -S ./ -B ./build/ -D CMAKE_BUILD_TYPE=Debug -D CMAKE_TOOLCHAIN_FILE=./riscv-gcc.cmake -D CHIP=labchip -D LINKER=
+```
+``` bash
 cmake --build ./build/lab/d01/ --target blinky
 ```
 
