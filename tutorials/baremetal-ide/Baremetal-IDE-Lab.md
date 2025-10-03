@@ -592,7 +592,7 @@ The `115200` argument specifies the baud rate of 115200. If you omit this flag, 
 
 Finally, upload `hello.elf` using your method of choice in another terminal window and you should see your serial console fill with the phrase "Hello World". If you instead see garbage characters such as �, make sure you have your baud rate set properly on both and `SYS_CLK_FREQ` is set properly for our chip (40MHz).
 
-> **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string "Hello <NAME>!". While Baremetal IDE supports STDIO for input, output is currently not working properly so you will have to directly use the `uart_receive` function defined in `uart.c`. Copy and paste your code in an appendix code block and include a screenshot of the program waiting for input and while it's printing
+> **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string `Hello <your_name>!`. While Baremetal IDE supports STDIO for input, output is currently not working properly so you will have to directly use the `uart_receive` function defined in `uart.c`. Copy and paste your code in an appendix code block and include a screenshot of the program waiting for input and while it's printing
 
 ### Program Our SOC
 
