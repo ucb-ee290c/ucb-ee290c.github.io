@@ -138,23 +138,18 @@ weeks:
     milestones:
       - name: "Send out Breakout Board"
 
-  - number: 7
-    date: "Oct 2"
-    start: "2026-09-28"
-    topic: "Team Presentation"
-
   - number: 8
     date: "Oct 9"
     start: "2026-10-05"
     topic: "Team Presentation"
-    milestones:
-      - name: "SODIMM Board Schematic + Layout"
     notes: "Assembled chips back"
 
   - number: 9
     date: "Oct 16"
     start: "2026-10-12"
     topic: "Team Presentation"
+    milestones:
+      - name: "SODIMM Board Schematic + Layout"
 
   - number: 10
     date: "Oct 23"

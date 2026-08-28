@@ -124,17 +124,24 @@ def splice(path, weeks_yaml):
 
 
 def report(blocks, skipped, year):
-    weeks_by_start = {}
+    numbers, weeks_by_start = [], {}
     for block in blocks:
-        number = re.search(r"number: (\d+)", block).group(1)
+        number = int(re.search(r"number: (\d+)", block).group(1))
+        numbers.append(number)
         start = re.search(r'start: "([\d-]+)"', block)
         if start:
             weeks_by_start.setdefault(start.group(1), []).append(number)
 
-    for start, numbers in sorted(weeks_by_start.items()):
-        if len(numbers) > 1:
+    for start, shared in sorted(weeks_by_start.items()):
+        if len(shared) > 1:
             print("  WARNING  weeks %s share the week of %s"
-                  % (" and ".join(numbers), start))
+                  % (" and ".join(str(n) for n in shared), start))
+
+    gaps = [n for n in range(min(numbers), max(numbers)) if n not in numbers]
+    if gaps:
+        print("  WARNING  week numbers skip %s"
+              % ", ".join(str(n) for n in gaps))
+
     for label, date in skipped:
         print("  DATE NOT IMPORTED  %s -> %s (not a %d Friday)" % (label, date, year))
 
