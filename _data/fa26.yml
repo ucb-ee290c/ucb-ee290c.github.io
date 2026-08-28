@@ -138,60 +138,60 @@ weeks:
     milestones:
       - name: "Send out Breakout Board"
 
-  - number: 8
+  - number: 7
     date: "Oct 9"
     start: "2026-10-05"
     topic: "Team Presentation"
     notes: "Assembled chips back"
 
-  - number: 9
+  - number: 8
     date: "Oct 16"
     start: "2026-10-12"
     topic: "Team Presentation"
     milestones:
       - name: "SODIMM Board Schematic + Layout"
 
-  - number: 10
+  - number: 9
     date: "Oct 23"
     start: "2026-10-19"
     topic: "Team Presentation"
 
-  - number: 11
+  - number: 10
     date: "Oct 30"
     start: "2026-10-26"
     topic: "Apple Mid-term Presentation"
 
-  - number: 12
+  - number: 11
     date: "Nov 6"
     start: "2026-11-02"
     topic: "Team Presentation"
 
-  - number: 13
+  - number: 12
     date: "Nov 13"
     start: "2026-11-09"
     topic: "Team Presentation"
 
-  - number: 14
+  - number: 13
     date: "Nov 20"
     start: "2026-11-16"
     topic: "Team Presentation"
 
-  - number: 15
+  - number: 14
     date: "Nov 27"
     start: "2026-11-23"
     topic: "No Class (Administrative Holiday)"
 
-  - number: 16
+  - number: 15
     date: "Dec 4"
     start: "2026-11-30"
     topic: "Worksession"
 
-  - number: 17
+  - number: 16
     date: "Dec 11"
     start: "2026-12-07"
     topic: "RRR Week"
 
-  - number: 18
+  - number: 17
     date: "Dec 18"
     start: "2026-12-14"
     topic: "Apple Final Presentation"
