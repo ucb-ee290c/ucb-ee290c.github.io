@@ -1,10 +1,6 @@
 {%- comment -%}
-Resolve a URL from _data/<semester>.yml against the site root.
-
-  absolute / mailto / #anchor -> emitted unchanged
-  starts with "/"             -> prefixed with site.baseurl via relative_url
-  anything else               -> treated as relative to the current page
-
+Resolve a data-file URL. Absolute, mailto and #anchor pass through; a leading
+"/" gets site.baseurl; anything else stays relative to the current page.
 Usage: {% include course-url.html url=link.url %}
 {%- endcomment -%}
 {%- assign _u = include.url -%}

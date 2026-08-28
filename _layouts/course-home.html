@@ -24,10 +24,7 @@ layout: course
     {%- if c.staff and c.staff.size > 0 %}
       <div class="head-people" id="staff">
         <ul class="people-grid">
-          {%- comment -%}
-          Start a fresh row whenever the role changes, so instructors and
-          GSIs never share one.
-          {%- endcomment -%}
+          {%- comment -%}A role change starts a fresh row.{%- endcomment -%}
           {%- assign prev_role = '' -%}
           {%- for person in c.staff %}
             <li class="person{% if prev_role != '' and person.role != prev_role %} starts-group{% endif %}">
@@ -101,14 +98,12 @@ layout: course
                   <span class="topic-slides">
                     {%- for item in week.slides -%}
                       {%- comment -%}
-                      A deck's URL lives in slide_links, keyed by name, so it
-                      survives re-importing the calendar from the spreadsheet.
+                      URLs live in slide_links, keyed by name, so they survive
+                      re-importing the calendar.
                       {%- endcomment -%}
                       {%- assign slide_url = item.url | default: c.slide_links[item.name] -%}
                       {%- comment -%}
-                      A lone deck is labelled "Slides" -- the row already says
-                      which week it belongs to. Where a week has several, each
-                      keeps its own name so they stay distinguishable.
+                      A lone deck reads "Slides"; several keep their own names.
                       {%- endcomment -%}
                       {%- if week.slides.size == 1 -%}
                         {%- assign slide_label = "Slides" -%}
@@ -173,10 +168,7 @@ layout: course
   </section>
 {%- endfor %}
 
-{%- comment -%}
-Free-form markdown from the page body, if there is any. Stripped first so a
-page with an empty body does not render an empty section.
-{%- endcomment -%}
+{%- comment -%}Stripped so an empty body renders no section.{%- endcomment -%}
 {%- assign body = content | strip -%}
 {%- if body != '' %}
   <section class="standard-text wrap-container">

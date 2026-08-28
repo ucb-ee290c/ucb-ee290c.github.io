@@ -1,13 +1,6 @@
 {%- comment -%}
-Base chrome for a semester course site, styled after the CS 285 course page:
-header with inline nav, content slot, and a one-line footer baseline.
-
-Page front matter:
-  semester: fa26      key into site.data (required)
-  title:              browser tab title
-  description:        meta description (optional)
-
-Header navigation comes from site.data[page.semester].nav.
+Base chrome: header with inline nav, content slot, footer baseline.
+Front matter: semester (key into site.data, required), title, description.
 {%- endcomment -%}
 {%- assign c = site.data[page.semester] -%}
 {%- assign course = c.course -%}

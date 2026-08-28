@@ -1,11 +1,6 @@
 # ---------------------------------------------------------------------------
-# Fall 2026 bring-up course content.
-#
-# Everything the CS285-style course layout renders comes from this file.
-# Edit here; you should not need to touch _layouts/course.html.
-#
-# Anything still marked "TBD" is a placeholder to fill in before the site
-# goes live.
+# Fall 2026 course content. Everything the layouts render comes from here.
+# "TBD" marks a placeholder still to be filled in.
 # ---------------------------------------------------------------------------
 
 course:
@@ -17,24 +12,16 @@ course:
   # Rendered as raw HTML, so the venue can carry its own link.
   lectures: '<a href="https://maps.app.goo.gl/w3SZwYDuYRUozRV38">Berkeley Wireless Research Center</a>, Friday 14:00-17:00'
 
-# Notices under the hero, rendered as plain paragraphs. Free-form HTML, so
-# lead with a bold label the way the reference site does. Delete the list
-# items to hide the block.
+# Plain paragraphs under the hero. Free-form HTML; delete to hide the block.
 announcements:
   - text: >-
       <b>Announcement</b>: This site is the Fall 2026 offering. Content is still being finalized.
 
 # ---------------------------------------------------------------------------
-# Staff cards. Roster taken from Lecture 1, slides 2 and 3.
-#
-# `image` is a path under /assets/images/staff/ and is optional; a lettered
-# placeholder is drawn when it is missing. `url` and `bio` are optional too.
-#
-# The lecture slides carry no instructor emails or homepage links, so those
-# are left TBD rather than guessed.
-#
-# Office hours are not listed. To bring them back, add `hours: "..."` to any
-# person -- the layout already renders that field when it is present.
+# Staff cards, from Lecture 1 slides 2 and 3. `image` (under
+# /assets/images/staff/), `url`, `bio` and `hours` are all optional; without
+# an image a lettered placeholder is drawn. Cards break to a new row whenever
+# the role changes.
 # ---------------------------------------------------------------------------
 staff:
   - role: "Instructor"
@@ -76,9 +63,9 @@ staff:
       SCuM-V '26 tapeout, Fall '25 SCuM-V bring-up.
 
 # ---------------------------------------------------------------------------
-# Links for slide decks, keyed by the name the importer produces (the
-# spreadsheet's Slides cell, minus any file extension). Kept out of the
-# weeks block so re-importing the calendar does not wipe them.
+# Slide deck URLs, keyed by the name the importer produces (the Slides cell
+# minus its file extension). Kept out of the weeks block so a re-import does
+# not wipe them.
 # ---------------------------------------------------------------------------
 slide_links:
   "Lecture 1": "https://docs.google.com/presentation/d/1psqea8kYcc_5TjZENkLpGUXaTFXarX85ZRN-n_WSEXM/edit?usp=sharing"
@@ -88,15 +75,11 @@ slide_links:
 # sheet of the semester calendar spreadsheet.
 #
 # Class meets Fridays; `date` is that Friday and `start` is the Monday of the
-# same week, which is what marks the current row in the rendered calendar.
+# same week, which marks the current row in the rendered calendar.
 #
-# Edit the spreadsheet and re-import rather than hand-editing this block.
-# Add a `url:` to any entry to turn it into a link; slide deck URLs belong in
-# `slide_links` above, which the importer does not touch.
-#
-# `milestones` comes from the sheet's Team Milestones column but is not
-# rendered: that column was removed from the calendar table. It is kept here
-# so the column can be restored without re-importing.
+# Edit the spreadsheet and re-import rather than editing this block by hand.
+# Slide deck URLs belong in `slide_links` above, which the importer leaves
+# alone. `milestones` is imported but not rendered.
 # ---------------------------------------------------------------------------
 weeks:
   - number: 1
@@ -156,8 +139,8 @@ weeks:
       - name: "Send out Breakout Board"
 
   - number: 7
-    date: "TBD"
-    # Spreadsheet has 2025-10-02 for this row -- not a 2026 Friday.
+    date: "Oct 2"
+    start: "2026-09-28"
     topic: "Team Presentation"
 
   - number: 8
@@ -219,7 +202,7 @@ weeks:
     topic: "Apple Final Presentation"
 
 # ---------------------------------------------------------------------------
-# Flat link sections rendered under the calendar, in order.
+# Link sections rendered under the calendar, in order.
 # ---------------------------------------------------------------------------
 sections:
   - title: "Labs"
@@ -261,8 +244,7 @@ sections:
         url: "/semesters/common/statement-on-dsp-accomendation"
 
 # ---------------------------------------------------------------------------
-# Header navigation. Only top-level entries with a `url` are rendered;
-# there is no footer nav or drawer any more.
+# Header navigation. Entries need a `url` to render.
 # ---------------------------------------------------------------------------
 nav:
   - title: "Calendar"

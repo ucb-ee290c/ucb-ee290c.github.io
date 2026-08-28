@@ -1,21 +1,13 @@
 /* ===========================================================================
-   Course site styling for the EE 194 / 290C bring-up class.
+   EE 194 / 290C course site, after the CS 285 course page: white, near
+   monochrome, light Raleway headings over Work Sans.
 
-   Follows the visual language of the CS 285 (Deep RL) course site: a white
-   page, near-monochrome palette, light-weight Raleway headings over Work
-   Sans body text, a static header, a full-semester calendar table, and
-   flat two-column lists of dark underlined links.
+   Berkeley blue and gold appear only here, and the restraint is the look:
 
-   The page is deliberately near-monochrome. Berkeley blue and gold appear
-   only in these places, and nowhere else:
-
-     California gold     the 3px rule at the top of the page
-                         the current week in the calendar
-                         link hover underlines, the note callout
-     Founders Rock blue  inline prose links, focus ring
+     California gold     rule at the top of the page, current calendar week,
+                         link hover underlines, note callout
+     Founders Rock blue  prose links, focus ring
      Berkeley blue       link hover, skip link
-
-   Keep it that way when extending this file -- the restraint is the look.
    =========================================================================== */
 
 /* --- Tokens ------------------------------------------------------------- */
@@ -80,8 +72,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* The only accent colour that is visible without interacting with the page.
-   Delete this block for a fully monochrome header. */
+/* The only accent visible without interacting. Delete for full monochrome. */
 body::before {
   content: "";
   display: block;
@@ -198,7 +189,6 @@ pre code {
 
 /* --- Header ------------------------------------------------------------- */
 
-/* Static, like the reference site: it scrolls away with the page. */
 .site-header .wrap {
   display: flex;
   align-items: center;
@@ -338,8 +328,7 @@ pre code {
   gap: 1.3rem;
 }
 
-/* First card of a new role group: force column 1 so instructors and GSIs
-   never share a row. Harmless in the single-column layout. */
+/* Start a new row per role group, so instructors and GSIs never share one. */
 .people-grid .starts-group {
   grid-column: 1;
 }
@@ -379,7 +368,6 @@ pre code {
   padding-top: 0.1rem;
 }
 
-/* Role sits inline ahead of the name, in grey. */
 .person-name {
   font-size: 1.42rem;
   margin: 0 0 0.35rem;
@@ -456,10 +444,9 @@ pre code {
   border-bottom: 1px solid var(--rule-strong);
 }
 
-/* Both lead columns hold short, fixed-shape strings; never let "Week 18"
-   or "Aug 28" break across two lines. */
+/* Short fixed-shape strings; never let "Week 18" or "Aug 28" wrap.
+   The week column is also sized for the "This week" badge. */
 .calendar .col-week {
-  /* Wide enough for the "This week" badge the script appends here. */
   width: 6.5rem;
   padding-left: 0.9rem;
   color: var(--heading);
@@ -479,7 +466,6 @@ pre code {
   color: var(--heading);
 }
 
-/* Slide decks hang under the topic rather than taking their own column. */
 .topic-slides {
   display: block;
   margin-top: 0.25rem;
@@ -492,7 +478,6 @@ pre code {
   font-size: 0.9rem;
 }
 
-/* Lists sit tight inside the table cells. */
 .calendar .lists {
   margin: 0;
 }
@@ -502,13 +487,11 @@ pre code {
   font-size: 0.95rem;
 }
 
-/* A week with nothing scheduled: quieter than a TBD badge. */
 .calendar .none {
   color: var(--faint);
 }
 
-/* The week covering today, marked by the script. Gold edge is one of the
-   page's few accents. */
+/* The week covering today, marked by the script. */
 .calendar tr.is-current th,
 .calendar tr.is-current td {
   background: #fbfbfb;
@@ -538,7 +521,6 @@ pre code {
   padding-bottom: 1rem;
 }
 
-/* The last section should not butt up against the footer baseline. */
 main > .standard-text:last-child .wrap {
   padding-bottom: 7rem;
 }
@@ -586,7 +568,6 @@ main > .standard-text:last-child .wrap {
   border-bottom-color: var(--california-gold);
 }
 
-/* Named but not yet linked. */
 .lists .pending {
   color: var(--faint);
 }
@@ -699,8 +680,7 @@ main > .standard-text:last-child .wrap {
   color: var(--faint);
 }
 
-/* Footer links are deliberately indistinguishable from the text around
-   them: same colour, weight and size, and no underline in any state. */
+/* Deliberately indistinguishable from the surrounding text. */
 .footer-baseline a,
 .footer-baseline a:hover,
 .footer-baseline a:focus {
@@ -756,8 +736,7 @@ main > .standard-text:last-child .wrap {
     columns: 1;
   }
 
-  /* The calendar stops being a grid and becomes one card per week --
-     four columns will not fit, and a scrolling table is worse. */
+  /* One card per week: the columns will not fit, and side-scrolling is worse. */
   .calendar,
   .calendar tbody,
   .calendar tr,
@@ -795,19 +774,17 @@ main > .standard-text:last-child .wrap {
     white-space: normal;
   }
 
-  /* An empty cell would otherwise leave its label stranded on a card.
-     Flagged in the template rather than matched with :empty, which fails on
-     the whitespace Liquid leaves behind. */
+  /* Hides a stranded column label. Flagged in the template rather than
+     matched with :empty, which fails on the whitespace Liquid leaves. */
   .calendar td.is-empty {
     display: none;
   }
 
-  /* Week number and dates read as one line on a card. */
   .calendar .col-week {
     padding-bottom: 0;
   }
 
-  /* Restore the header meaning the stacked layout drops. */
+  /* Restore the column headers the stacked layout drops. */
   .calendar td[data-label]::before {
     content: attr(data-label);
     display: block;
