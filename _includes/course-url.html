@@ -1,0 +1,18 @@
+{%- comment -%}
+Resolve a URL from _data/<semester>.yml against the site root.
+
+  absolute / mailto / #anchor -> emitted unchanged
+  starts with "/"             -> prefixed with site.baseurl via relative_url
+  anything else               -> treated as relative to the current page
+
+Usage: {% include course-url.html url=link.url %}
+{%- endcomment -%}
+{%- assign _u = include.url -%}
+{%- assign _first = _u | slice: 0 -%}
+{%- if _u contains '://' or _u contains 'mailto:' or _first == '#' -%}
+{{ _u }}
+{%- elsif _first == '/' -%}
+{{ _u | relative_url }}
+{%- else -%}
+{{ _u }}
+{%- endif -%}

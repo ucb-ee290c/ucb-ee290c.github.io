@@ -1,0 +1,189 @@
+---
+layout: course
+---
+{%- assign c = site.data[page.semester] -%}
+{%- assign course = c.course -%}
+
+<section class="page-head wrap-container" id="top">
+  <div class="wrap">
+    <div class="head-decor">
+      <h1 class="head-title">{{ course.title }}</h1>
+      <p class="head-tagline">{{ course.tagline }}</p>
+
+      <p class="head-meta"><strong>Lectures:</strong> {{ course.lectures }}</p>
+
+      {%- if c.announcements and c.announcements.size > 0 %}
+        <div class="announcements">
+          {%- for item in c.announcements %}
+            <p class="announcement">{{ item.text }}</p>
+          {%- endfor %}
+        </div>
+      {%- endif %}
+    </div>
+
+    {%- if c.staff and c.staff.size > 0 %}
+      <div class="head-people" id="staff">
+        <ul class="people-grid">
+          {%- comment -%}
+          Start a fresh row whenever the role changes, so instructors and
+          GSIs never share one.
+          {%- endcomment -%}
+          {%- assign prev_role = '' -%}
+          {%- for person in c.staff %}
+            <li class="person{% if prev_role != '' and person.role != prev_role %} starts-group{% endif %}">
+              <div class="person-avatar">
+                {%- if person.image %}
+                  <span class="person-image" role="img" aria-label="{{ person.name }}"
+                        style="background-image: url('{{ person.image | prepend: '/assets/images/staff/' | relative_url }}');"></span>
+                {%- else %}
+                  <span class="person-initial" aria-hidden="true">{{ person.name | slice: 0 }}</span>
+                {%- endif %}
+              </div>
+              <div class="person-text">
+                <h2 class="person-name">
+                  <span class="person-role">{{ person.role }}</span>
+                  {% if person.url -%}
+                    <a href="{{ person.url }}">{{ person.name }}</a>
+                  {%- else -%}
+                    {{ person.name }}
+                  {%- endif %}
+                </h2>
+                {%- if person.email %}
+                  <p>{% if person.email contains '@' %}<a href="mailto:{{ person.email }}">{{ person.email }}</a>{% else %}{{ person.email }}{% endif %}</p>
+                {%- endif %}
+                {%- if person.hours %}
+                  <p>{{ person.hours }}</p>
+                {%- endif %}
+                {%- if person.bio %}
+                  <p class="person-bio">{{ person.bio }}</p>
+                {%- endif %}
+              </div>
+            </li>
+            {%- assign prev_role = person.role -%}
+          {%- endfor %}
+        </ul>
+      </div>
+    {%- endif %}
+  </div>
+</section>
+
+{%- if c.weeks and c.weeks.size > 0 %}
+  <section class="standard-text wrap-container" id="schedule">
+    <div class="wrap">
+      <h2 class="standard-title">Semester Calendar</h2>
+      <table class="calendar">
+        <caption class="sr-only-inline">
+          {{ course.term }} week-by-week schedule
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col" class="col-week">Week</th>
+            <th scope="col" class="col-date">Date</th>
+            <th scope="col" class="col-topic">Topic</th>
+            <th scope="col">Lab Assignments</th>
+            <th scope="col" class="col-notes">Additional Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for week in c.weeks %}
+            <tr{% if week.start %} data-start="{{ week.start }}"{% endif %}>
+              <th scope="row" class="col-week">Week {{ week.number }}</th>
+              <td class="col-date">
+                {%- if week.date and week.date != 'TBD' -%}
+                  {{ week.date }}
+                {%- else -%}
+                  <span class="pending">Date</span>
+                {%- endif -%}
+              </td>
+              <td class="col-topic" data-label="Topic">
+                {{ week.topic }}
+                {%- if week.slides %}
+                  <span class="topic-slides">
+                    {%- for item in week.slides -%}
+                      {%- comment -%}
+                      A deck's URL lives in slide_links, keyed by name, so it
+                      survives re-importing the calendar from the spreadsheet.
+                      {%- endcomment -%}
+                      {%- assign slide_url = item.url | default: c.slide_links[item.name] -%}
+                      {%- comment -%}
+                      A lone deck is labelled "Slides" -- the row already says
+                      which week it belongs to. Where a week has several, each
+                      keeps its own name so they stay distinguishable.
+                      {%- endcomment -%}
+                      {%- if week.slides.size == 1 -%}
+                        {%- assign slide_label = "Slides" -%}
+                      {%- else -%}
+                        {%- assign slide_label = item.name -%}
+                      {%- endif -%}
+                      {%- if slide_url -%}
+                        <a href="{% include course-url.html url=slide_url %}">{{ slide_label }}</a>
+                      {%- else -%}
+                        <span class="pending">{{ slide_label }}</span>
+                      {%- endif -%}
+                      {%- unless forloop.last %}, {% endunless -%}
+                    {%- endfor -%}
+                  </span>
+                {%- endif %}
+              </td>
+              <td data-label="Lab Assignments"{% unless week.labs %} class="is-empty"{% endunless %}>
+                {%- if week.labs %}
+                  <ul class="lists">
+                    {%- for item in week.labs %}
+                      <li>
+                        {%- if item.url -%}
+                          <a href="{% include course-url.html url=item.url %}">{{ item.name }}</a>
+                        {%- else -%}
+                          {{ item.name }}
+                        {%- endif -%}
+                      </li>
+                    {%- endfor %}
+                  </ul>
+                {%- endif %}
+              </td>
+              <td class="col-notes{% unless week.notes %} is-empty{% endunless %}" data-label="Additional Notes">
+                {%- if week.notes %}{{ week.notes }}{% endif -%}
+              </td>
+            </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+{%- endif %}
+
+{%- for section in c.sections %}
+  <section class="standard-text wrap-container" id="{{ section.id }}">
+    <div class="wrap">
+      <h2 class="standard-title">{{ section.title }}</h2>
+      {%- if section.intro %}
+        <p class="section-intro">{{ section.intro }}</p>
+      {%- endif %}
+      <ul class="lists two-col">
+        {%- for link in section.links %}
+          <li>
+            {%- if link.url -%}
+              <a href="{% include course-url.html url=link.url %}">{{ link.name }}</a>
+            {%- else -%}
+              <span class="pending">{{ link.name }}</span>
+            {%- endif -%}
+          </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+{%- endfor %}
+
+{%- comment -%}
+Free-form markdown from the page body, if there is any. Stripped first so a
+page with an empty body does not render an empty section.
+{%- endcomment -%}
+{%- assign body = content | strip -%}
+{%- if body != '' %}
+  <section class="standard-text wrap-container">
+    <div class="wrap">
+      <div class="prose">
+        {{ content }}
+      </div>
+    </div>
+  </section>
+{%- endif %}

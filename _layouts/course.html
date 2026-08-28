@@ -1,0 +1,70 @@
+{%- comment -%}
+Base chrome for a semester course site, styled after the CS 285 course page:
+header with inline nav, content slot, and a one-line footer baseline.
+
+Page front matter:
+  semester: fa26      key into site.data (required)
+  title:              browser tab title
+  description:        meta description (optional)
+
+Header navigation comes from site.data[page.semester].nav.
+{%- endcomment -%}
+{%- assign c = site.data[page.semester] -%}
+{%- assign course = c.course -%}
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} &middot; {% endif %}{{ course.short }} {{ course.term }}</title>
+    <meta name="description" content="{{ page.description | default: course.tagline | strip_html }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ course.short }} {{ course.term }} &middot; {{ course.title }}">
+    <meta property="og:description" content="{{ page.description | default: course.tagline | strip_html }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/course.css' | relative_url }}">
+  </head>
+
+  <body>
+    <a class="skip-to-main" href="#main-content">Skip to main content</a>
+
+    <header class="site-header wrap-container">
+      <div class="wrap">
+        <h1 class="header-title">
+          <a href="{{ '/semesters/' | append: page.semester | append: '/' | relative_url }}">
+            {{ course.short }} <span class="term">{{ course.term }}</span>
+          </a>
+        </h1>
+
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            {%- for item in c.nav %}
+              {%- if item.url %}
+                <li>
+                  <a href="{% include course-url.html url=item.url %}">{{ item.title }}</a>
+                </li>
+              {%- endif %}
+            {%- endfor %}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      {{ content }}
+    </main>
+
+    <div class="footer-baseline wrap-container">
+      <div class="wrap">
+        <span>{{ course.number }} &middot; {{ course.term }} &middot; UC Berkeley EECS</span>
+        <span>Designed by <a href="https://github.com/T-K-233">-T.K.-</a> &middot; Made by Claude Opus 5 High</span>
+      </div>
+    </div>
+
+    <script src="{{ '/assets/js/course.js' | relative_url }}"></script>
+  </body>
+</html>
