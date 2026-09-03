@@ -94,29 +94,23 @@ layout: course
               </td>
               <td class="col-topic" data-label="Topic">
                 {{ week.topic }}
-                {%- if week.slides %}
+                {%- comment -%}
+                Decks are keyed by week number in slide_links, not by the
+                spreadsheet's Slides cell, which is rarely filled in. Falls
+                back to naming an unlinked deck the sheet does know about.
+                {%- endcomment -%}
+                {%- assign week_key = week.number | append: '' -%}
+                {%- assign slide_url = c.slide_links[week_key] -%}
+                {%- if slide_url or week.slides %}
                   <span class="topic-slides">
-                    {%- for item in week.slides -%}
-                      {%- comment -%}
-                      URLs live in slide_links, keyed by name, so they survive
-                      re-importing the calendar.
-                      {%- endcomment -%}
-                      {%- assign slide_url = item.url | default: c.slide_links[item.name] -%}
-                      {%- comment -%}
-                      A lone deck reads "Slides"; several keep their own names.
-                      {%- endcomment -%}
-                      {%- if week.slides.size == 1 -%}
-                        {%- assign slide_label = "Slides" -%}
-                      {%- else -%}
-                        {%- assign slide_label = item.name -%}
-                      {%- endif -%}
-                      {%- if slide_url -%}
-                        <a href="{% include course-url.html url=slide_url %}">{{ slide_label }}</a>
-                      {%- else -%}
-                        <span class="pending">{{ slide_label }}</span>
-                      {%- endif -%}
-                      {%- unless forloop.last %}, {% endunless -%}
-                    {%- endfor -%}
+                    {%- if slide_url -%}
+                      <a href="{% include course-url.html url=slide_url %}">Slides</a>
+                    {%- else -%}
+                      {%- for item in week.slides -%}
+                        <span class="pending">{{ item.name }}</span>
+                        {%- unless forloop.last %}, {% endunless -%}
+                      {%- endfor -%}
+                    {%- endif -%}
                   </span>
                 {%- endif %}
               </td>
