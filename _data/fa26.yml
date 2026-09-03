@@ -204,7 +204,10 @@ sections:
     id: "labs"
     links:
       - name: "Lab 1: Chipyard"
-      - name: "Lab 2: PCB"
+      - name: "Lab 2: PCB (KiCad)"
+        url: "https://docs.google.com/document/d/1IKHQXg2jLJTqXtq4N0vtaWjvkmNU7mZcR7Kqh2qMf1g/edit?usp=sharing"
+      - name: "Lab 2: PCB (Altium)"
+        url: "https://docs.google.com/presentation/d/17N9VFr_9k82WmoItjAEJApA0vhc2WLPA4ZAqwGVu8FU/edit?usp=sharing"
       - name: "Lab 3: FPGA"
       - name: "Lab 4: Baremetal IDE"
 
