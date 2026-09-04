@@ -78,6 +78,8 @@ slide_links:
 # so a re-import keeps them.
 # ---------------------------------------------------------------------------
 lab_links:
+  "Lab 1 Chipyard Released":
+    - url: "https://github.com/ucb-ee194-tapeout/chipyard-lab"
   "Lab 2 PCB Released":
     - name: "KiCad"
       url: "https://docs.google.com/document/d/1IKHQXg2jLJTqXtq4N0vtaWjvkmNU7mZcR7Kqh2qMf1g/edit?usp=sharing"
@@ -218,6 +220,7 @@ sections:
     id: "labs"
     links:
       - name: "Lab 1: Chipyard"
+        url: "https://github.com/ucb-ee194-tapeout/chipyard-lab"
       - name: "Lab 2: PCB (KiCad)"
         url: "https://docs.google.com/document/d/1IKHQXg2jLJTqXtq4N0vtaWjvkmNU7mZcR7Kqh2qMf1g/edit?usp=sharing"
       - name: "Lab 2: PCB (Altium)"
