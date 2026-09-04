@@ -118,11 +118,29 @@ layout: course
                 {%- if week.labs %}
                   <ul class="lists">
                     {%- for item in week.labs %}
+                      {%- comment -%}
+                      Match on the "Lab N" prefix so a handout covers both the
+                      released and the due entry.
+                      {%- endcomment -%}
+                      {%- assign handouts = null -%}
+                      {%- for pair in c.lab_links -%}
+                        {%- if item.name contains pair[0] -%}
+                          {%- assign handouts = pair[1] -%}
+                        {%- endif -%}
+                      {%- endfor -%}
                       <li>
-                        {%- if item.url -%}
-                          <a href="{% include course-url.html url=item.url %}">{{ item.name }}</a>
+                        {%- if handouts.size == 1 -%}
+                          <a href="{% include course-url.html url=handouts[0].url %}">{{ item.name }}</a>
                         {%- else -%}
                           {{ item.name }}
+                          {%- if handouts %}
+                            <span class="lab-links">
+                              {%- for handout in handouts -%}
+                                <a href="{% include course-url.html url=handout.url %}">{{ handout.name }}</a>
+                                {%- unless forloop.last %}, {% endunless -%}
+                              {%- endfor -%}
+                            </span>
+                          {%- endif -%}
                         {%- endif -%}
                       </li>
                     {%- endfor %}

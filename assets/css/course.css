@@ -466,10 +466,21 @@ pre code {
   color: var(--heading);
 }
 
-.topic-slides {
+.topic-slides,
+.lab-links {
   display: block;
   margin-top: 0.25rem;
   font-size: 0.87rem;
+}
+
+/* Handout links read like the Slides link, not like the dark list links
+   they sit among; the extra .calendar beats `.lists a` on specificity. */
+.calendar .lab-links a {
+  color: var(--link);
+}
+
+.calendar .lab-links a:hover {
+  color: var(--link-hover);
 }
 
 .calendar .col-notes {
