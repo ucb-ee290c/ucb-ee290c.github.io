@@ -71,13 +71,14 @@ slide_links:
   "2": "https://docs.google.com/presentation/d/16lRiiqOjpSRyHzCrbcEbWbjYOWwTZnEv2IEmjbekmek/edit?usp=sharing"
 
 # ---------------------------------------------------------------------------
-# Lab handout URLs, matched against any calendar entry whose name starts
-# with the key -- so "Lab 2" covers both "Lab 2 PCB Released" and
-# "Lab 2 PCB Due". A single entry links the whole line; several are listed
-# after it by name. Kept out of the weeks block so a re-import keeps them.
+# Lab handout URLs, matched against any calendar entry containing the key.
+# Use the full entry name to hit one row only; a shorter key like "Lab 2"
+# would also match that lab's "Due" row. A single entry links the whole
+# line; several are listed after it by name. Kept out of the weeks block
+# so a re-import keeps them.
 # ---------------------------------------------------------------------------
 lab_links:
-  "Lab 2":
+  "Lab 2 PCB Released":
     - name: "KiCad"
       url: "https://docs.google.com/document/d/1IKHQXg2jLJTqXtq4N0vtaWjvkmNU7mZcR7Kqh2qMf1g/edit?usp=sharing"
     - name: "Altium"
