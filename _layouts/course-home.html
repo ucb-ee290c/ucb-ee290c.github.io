@@ -130,7 +130,12 @@ layout: course
                       {%- endfor -%}
                       <li>
                         {%- if handouts.size == 1 -%}
-                          <a href="{% include course-url.html url=handouts[0].url %}">{{ item.name }}</a>
+                          {%- comment -%}
+                          Bound to a plain variable first: Jekyll's include tag
+                          rejects bracket indexing in a parameter value.
+                          {%- endcomment -%}
+                          {%- assign only_handout = handouts | first -%}
+                          <a href="{% include course-url.html url=only_handout.url %}">{{ item.name }}</a>
                         {%- else -%}
                           {{ item.name }}
                           {%- if handouts %}
