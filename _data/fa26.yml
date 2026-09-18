@@ -121,28 +121,27 @@ weeks:
     start: "2026-09-07"
     topic: "Guest Lecture: Ethan on bringup FPGAs"
     labs:
-      - name: "Lab 3 FPGA Released"
       - name: "Lab 1 Chipyard Due"
-    notes: "Bare dies back"
 
   - number: 4
     date: "Sep 18"
     start: "2026-09-14"
     topic: "Intro to Interfaces and Embedded Programming"
     labs:
-      - name: "Lab 4 Baremetal IDE Released"
+      - name: "Lab 3 FPGA Released"
       - name: "Lab 2 PCB Due"
     milestones:
       - name: "Breakout Board Schematic"
       - name: "Atlas FPGA bringup"
       - name: "Setting up software flow"
+    notes: "Bare dies back"
 
   - number: 5
     date: "Sep 25"
     start: "2026-09-21"
     topic: "Team Presentation"
     labs:
-      - name: "Lab 3 FPGA Due"
+      - name: "Lab 4 Baremetal IDE Released"
     milestones:
       - name: "Breakout Board Layout"
 
@@ -151,15 +150,17 @@ weeks:
     start: "2026-09-28"
     topic: "Team Presentation"
     labs:
-      - name: "Lab 4 Baremetal IDE Due"
+      - name: "Lab 3 FPGA Due"
     milestones:
       - name: "Send out Breakout Board"
-    notes: "Packaged chips back"
 
   - number: 7
     date: "Oct 9"
     start: "2026-10-05"
     topic: "Team Presentation"
+    labs:
+      - name: "Lab 4 Baremetal IDE Due"
+    notes: "Packaged chips back"
 
   - number: 8
     date: "Oct 16"
@@ -167,12 +168,12 @@ weeks:
     topic: "Team Presentation"
     milestones:
       - name: "SODIMM Board Schematic + Layout"
-    notes: "Assembled chips back"
 
   - number: 9
     date: "Oct 23"
     start: "2026-10-19"
     topic: "Team Presentation"
+    notes: "Assembled chips back"
 
   - number: 10
     date: "Oct 30"
