@@ -234,6 +234,11 @@ sections:
         url: "https://github.com/ucb-ee194-tapeout/chipyard-lab"
       - name: "Lab 4: Baremetal IDE"
 
+  - title: "Office Hours"
+    id: "office-hours"
+    intro: >-
+      Tuesdays 2:00&ndash;3:30 PM, while labs are running.
+
   - title: "Resources"
     id: "resources"
     links:

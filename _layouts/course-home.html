@@ -170,6 +170,7 @@ layout: course
       {%- if section.intro %}
         <p class="section-intro">{{ section.intro }}</p>
       {%- endif %}
+      {%- if section.links %}
       <ul class="lists two-col">
         {%- for link in section.links %}
           <li>
@@ -181,6 +182,7 @@ layout: course
           </li>
         {%- endfor %}
       </ul>
+      {%- endif %}
     </div>
   </section>
 {%- endfor %}
