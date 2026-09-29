@@ -7,7 +7,7 @@ nav_order: 5
 # Baremetal IDE Lab
 
 Baremetal IDE is an SDK developed and maintained by the SLICE lab at Berkeley which allows you to quickly develop C/C++ for chips developed in Chipyard. As implied by the name, Baremetal IDE focuses on providing a bunch of libraries, scripts and device drivers to build “baremetal” programs which run without an operating system like Linux or Zephyr. Programming for bare metal means that you don’t have a bunch of operating system services that you may be used to like multithreading, device drivers, dynamic linking, etc, but in return, you have full control of your code and can extract the maximum amount of performance out of your chips. Baremetal IDE provides a thin layer of drivers and libraries that handles things like malloc or print. This lets you focus on building your workloads to test your chips instead of spending your time messing with linker scripts, stdlib versions, and device drivers.  
-Since real chip setups are a bit fragile and require lots of external support equipment, we’ll be running all of these labs on a chip emulated on the SophiaLake FPGA board you used in Lab 3. This lab will bring you through the whole process of getting started with a new chip: building a Board Support Package, writing some basic drivers, and loading and debugging programs over UART-TSI and JTAG.
+Since real chip setups are a bit fragile and require lots of external support equipment, we’ll be running all of these labs on a chip emulated on the SophiaLake FPGA board you used in Lab 3. This lab will bring you through the whole process of getting started with a new chip: building a Board Support Package, writing some basic drivers, and loading and debugging programs over UART-TSI and JTAG. Submit your answers to the seven tasks on Gradescope.
 
 ## The SophiaLake Board
 
@@ -314,7 +314,7 @@ From here you can either type `continue` and let the program start or set a brea
 
 >**Task 2** Set a breakpoint on the delay function. What value is the stack pointer when you enter the function? What address is the `mtime_start` variable at?
 
->**Task 3** Now that you've seen how to program the chips and how to write a basic program for bare metal, modify this program so the LED will only blink when the button is pressed. As a reminder, button SW8 is hooked up to pin 2 of the GPIO bank. The [U540 Manual](https://www.sifive.com/document-file/freedom-u540-c000-manual) may be helpful for finding which registers need to be set and read. Copy and paste this code into your final lab report appendix as a code block.
+>**Task 3** Now that you've seen how to program the chips and how to write a basic program for bare metal, modify this program so the LED will only blink when the button is pressed. As a reminder, button SW8 is hooked up to pin 2 of the GPIO bank. The [U540 Manual](https://www.sifive.com/document-file/freedom-u540-c000-manual) may be helpful for finding which registers need to be set and read. Submit your code on Gradescope.
 
 ## Idiomatic BaremetalIDE
 Now that we've written some Baremetal code, let's take a closer look at some other more idiomatic code that uses the drivers built into BaremetalIDE instead of doing everything from scratch. If you take a look at `lab/d02/src/main.c`, you should see a file like this:
@@ -623,7 +623,7 @@ Finally, upload `hello.elf` using your method of choice in another terminal wind
 {: .note }
 You may see a single stray character each time you press the reset button. That's the UART line sitting low while the chip is in reset, and it's harmless.
 
-> **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string `Hello <your_name>!`. While Baremetal IDE supports STDIO for output, input through `scanf` and `getchar` is not implemented yet, so you will have to directly use the `uart_receive` function defined in `uart.c`. Copy and paste your code in an appendix code block and include a screenshot of the program waiting for input and while it's printing
+> **Task 6**: Modify this hello world program to first ask for a name, wait for an input, and repeatedly print the string `Hello <your_name>!`. While Baremetal IDE supports STDIO for output, input through `scanf` and `getchar` is not implemented yet, so you will have to directly use the `uart_receive` function defined in `uart.c`. Submit your code on Gradescope, along with a screenshot of the program waiting for input and another while it's printing.
 
 ### Program Our SoC
 
