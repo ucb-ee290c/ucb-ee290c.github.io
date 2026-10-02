@@ -161,14 +161,14 @@ weeks:
     date: "Oct 9"
     start: "2026-10-05"
     topic: "Team Presentation"
+    labs:
+      - name: "Lab 4 Baremetal IDE Due"
     notes: "Packaged chips back"
 
   - number: 8
     date: "Oct 16"
     start: "2026-10-12"
     topic: "Team Presentation"
-    labs:
-      - name: "Lab 4 Baremetal IDE Due"
     milestones:
       - name: "SODIMM Board Schematic + Layout"
 
