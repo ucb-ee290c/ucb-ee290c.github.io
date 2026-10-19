@@ -181,7 +181,7 @@ weeks:
   - number: 10
     date: "Oct 30"
     start: "2026-10-26"
-    topic: "Apple Mid-term Presentation"
+    topic: "Team Presentation"
 
   - number: 11
     date: "Nov 6"
@@ -191,7 +191,7 @@ weeks:
   - number: 12
     date: "Nov 13"
     start: "2026-11-09"
-    topic: "Team Presentation"
+    topic: "Apple Mid-term Presentation"
 
   - number: 13
     date: "Nov 20"
